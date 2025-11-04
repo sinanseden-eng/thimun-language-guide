@@ -239,6 +239,68 @@
       color: #2e7d32; /* Dark green */
     }
 
+    /* --- NEW TOOLTIP STYLES --- */
+    .tooltip-word {
+      text-decoration: underline dotted #667eea;
+      cursor: help;
+      font-weight: 600;
+      color: #667eea;
+    }
+
+    .accordion-header.active .tooltip-word {
+      color: #fff;
+      text-decoration: underline dotted #fff;
+    }
+
+    .dialogue-line .tooltip-word, .point-description .tooltip-word, .dialogue-line strong .tooltip-word {
+        color: #5c00d3; /* A purple that stands out */
+        text-decoration: underline dotted #5c00d3;
+        font-weight: 600;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 220px;
+      background-color: #333;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px;
+      position: absolute;
+      z-index: 10;
+      bottom: 135%; /* Position above the text */
+      left: 50%;
+      margin-left: -110px; /* Use half of the width to center */
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.6;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%; /* At the bottom of the tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    /* --- END TOOLTIP STYLES --- */
+
     .dialogue-box {
       background: linear-gradient(135deg, #e0f7fa 0%, #e1bee7 100%);
       padding: 20px;
@@ -450,8 +512,8 @@
         <p>"The delegate respectfully disagrees..."</p>
       </div>
       <div class="phrase-card">
-        <h3>🤝 Yield the Floor</h3>
-        <p>"The delegate yields the floor to the Chair."</p>
+        <h3>🤝 <span class="tooltip"><span class="tooltip-word">Yield</span> the Floor<span class="tooltiptext">To give up your remaining speaking time to the Chair or another delegate.</span></span></h3>
+        <p>"The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor to the Chair."</p>
       </div>
     </div>
 
@@ -602,27 +664,27 @@
     <!-- Accordion 6: Yielding Your Time -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAccordion(6)">
-        <span class="accordion-title">🤝 Yielding (Giving Up Your Time)</span>
+        <span class="accordion-title">🤝 <span class="tooltip"><span class="tooltip-word">Yielding</span><span class="tooltiptext">The act of giving up one's remaining speaking time.</span></span> (Giving Up Your Time)</span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
         <p class="point-description">
-          After your speech, the Chair will ask how you yield your time. You have three main options.
+          After your speech, the Chair will ask how you <span class="tooltip"><span class="tooltip-word">yield</span><span class="tooltiptext">To give up your remaining speaking time to the Chair or another delegate.</span></span> your time. You have three main options.
         </p>
         <div class="dialogue-box">
           <span class="dialogue-label">Option 1: To the Chair (Most Common)</span>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields the floor back to the Chair."</div>
+          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor back to the Chair."</div>
           <div class="dialogue-line"><strong>What it means:</strong> You are done and do not want to answer questions.</div>
         </div>
         <div class="dialogue-box">
           <span class="dialogue-label">Option 2: To Questions</span>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields to Points of Information."</div>
+          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> to Points of Information."</div>
           <div class="dialogue-line"><strong>What it means:</strong> You are opening the floor for other delegates to ask you questions.</div>
         </div>
         <div class="dialogue-box">
           <span class="dialogue-label">Option 3: To Another Delegate</span>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields the floor to the delegate of Argentina."</div>
-          <div class="dialogue-line"><strong>What it means:</strong> You give the rest of your time to another delegate (must be pre-arranged). <strong>THIMUN Rule:</strong> This can only be done once consecutively. The next delegate must yield back to the Chair.</div>
+          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor to the delegate of Argentina."</div>
+          <div class="dialogue-line"><strong>What it means:</strong> You give the rest of your time to another delegate (must be pre-arranged). <strong>THIMUN Rule:</strong> This can only be done once consecutively. The next delegate must <span class="tooltip"><span class="tooltip-word">yield</span><span class="tooltiptext">To give up remaining speaking time.</span></span> back to the Chair.</div>
         </div>
       </div>
     </div>
@@ -630,7 +692,7 @@
     <!-- Accordion 7: Motion to Close Debate -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAccordion(7)">
-        <span class="accordion-title">🗳️ Motion to Close Debate (Previous Question)</span>
+        <span class="accordion-title">🗳️ Motion to Close Debate (<span class="tooltip"><span class="tooltip-word">Previous Question</span><span class="tooltiptext">The formal name for the motion to close debate and move immediately to a vote.</span></span>)</span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
@@ -640,7 +702,7 @@
         <div class="dialogue-box">
           <span class="dialogue-label">📍 Example: Closing Debate</span>
           <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Germany):</span> "Honourable Chair, the delegate of Germany <strong>moves the Previous Question</strong>."</div>
+          <div class="dialogue-line"><span class="speaker-you">You (Germany):</span> "Honourable Chair, the delegate of Germany <strong>moves the <span class="tooltip"><span class="tooltip-word">Previous Question</span><span class="tooltiptext">The formal name for the motion to close debate and move immediately to a vote.</span></span></strong>."</div>
           <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds?"</div>
           <div class="dialogue-line"><span class="speaker-other">(Other Delegates):</span> "Second!"</div>
           <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any objections?"</div>
@@ -653,7 +715,7 @@
     <!-- Accordion 8: Motion to Adjourn Debate -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAccordion(8)">
-        <span class="accordion-title">🗓️ Motion to Adjourn the Debate</span>
+        <span class="accordion-title">🗓️ Motion to <span class="tooltip"><span class="tooltip-word">Adjourn the Debate</span><span class="tooltiptext">To "table" or postpone debate on a topic, setting it aside to be discussed later.</span></span></span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
@@ -665,7 +727,7 @@
         </p>
         <div class="dialogue-box">
           <span class="dialogue-label">📍 Example: Tabling a Resolution</span>
-          <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Honourable Chair, the delegate of Argentina <strong>motions to adjourn the debate</strong> on Resolution 1.1."</div>
+          <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Honourable Chair, the delegate of Argentina <strong>motions to <span class="tooltip"><span class="tooltip-word">adjourn the debate</span><span class="tooltiptext">To "table" or postpone debate on a topic, setting it aside to be discussed later.</span></span></strong> on Resolution 1.1."</div>
           <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds? ... Objections? ... We will have one speaker for and one against this motion."</div>
         </div>
       </div>
@@ -777,12 +839,12 @@
     <!-- Accordion 13: Right of Reply -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAccordion(13)">
-        <span class="accordion-title">📣 Right of Reply</span>
+        <span class="accordion-title">📣 <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span></span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
         <p class="point-description">
-          <strong>Purpose:</strong> This is not a "Point" but a formal right. A delegate can request a Right of Reply if their country or delegation has been insulted by a speaker.
+          <strong>Purpose:</strong> This is not a "Point" but a formal right. A delegate can request a <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span> if their country or delegation has been insulted by a speaker.
         </p>
         <p class="point-description">
           <strong>Rules:</strong> You must send a note to the Chair requesting it. The Chair will grant it at their discretion, usually after the speech. It is not meant to debate policy, only to respond to the insult.
@@ -791,7 +853,7 @@
           <span class="dialogue-label">📍 Example: Responding to an Insult</span>
           <div class="dialogue-line"><span class="speaker-delegate">Delegate of X:</span> "...which is why the warmongering policy of Country Y is destabilizing the region."</div>
           <div class="dialogue-line"><span class="speaker-you">(You, Delegate of Y, send a note to the Chair)</span></div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of X. The Chair has received a request for a Right of Reply from the delegate of Y. You have the floor for 30 seconds."</div>
+          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of X. The Chair has received a request for a <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span> from the delegate of Y. You have the floor for 30 seconds."</div>
           <div class="dialogue-line"><span class="speaker-you">You (Y):</span> "The delegate of Y wishes to state that our policies are for self-defense, not "warmongering," and we find such language unhelpful to diplomatic debate."</div>
         </div>
       </div>
@@ -800,7 +862,7 @@
     <!-- Accordion 14: Roll Call & Quorum -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAccordion(14)">
-        <span class="accordion-title">📋 Roll Call &amp; Quorum</span>
+        <span class="accordion-title">📋 Roll Call &amp; <span class="tooltip"><span class="tooltip-word">Quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span></span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
@@ -809,9 +871,9 @@
           <div class="dialogue-line"><strong>What it is:</strong> The attendance check at the beginning of every session.</div>
           <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The committee will come to order. We will now begin Roll Call. Delegates, please respond 'Present' or 'Present and Voting'..."</div>
         </div>
-        <div classSignature: 2024-11-04 06:18:23.238 2-0-0
-          <span class="dialogue-label">Quorum</span>
-          <div class="dialogue-line"><strong>What it is:</strong> The minimum number of delegates (usually one-third) that must be present for formal debate to begin and for votes to be valid. The Chair establishes quorum during the first roll call.</div>
+        <div class="dialogue-box">
+          <span class="dialogue-label"><span class="tooltip"><span class="tooltip-word">Quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span></span>
+          <div class="dialogue-line"><strong>What it is:</strong> The minimum number of delegates (usually one-third) that must be present for formal debate to begin and for votes to be valid. The Chair establishes <span class="tooltip"><span class="tooltip-word">quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span> during the first roll call.</div>
         </div>
       </div>
     </div>
@@ -863,4 +925,5 @@
 
 </body>
 </html>
+
 
