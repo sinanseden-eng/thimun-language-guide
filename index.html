@@ -177,12 +177,12 @@
       transition: max-height 0.4s ease, padding 0.4s ease;
       background: #fafaff;
       border-radius: 0 0 15px 15px;
-      margin-top: -10px;
+      margin-top: -10px; /* Overlaps to connect with header */
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     .accordion-content.active {
-      max-height: 2500px;
+      max-height: 2500px; /* Large value */
       padding: 30px;
       padding-top: 20px;
     }
@@ -192,6 +192,51 @@
       font-size: 1.1rem;
       margin-bottom: 20px;
       line-height: 1.8;
+    }
+    
+    /* New styles for the third-person example box */
+    .third-person-examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .example-box {
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .example-box h4 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .example-box ul {
+      list-style-position: inside;
+      padding-left: 5px;
+    }
+    
+    .example-box li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    
+    .dont-say {
+      background: #ffebee; /* Light red */
+      border: 1px solid #e57373;
+    }
+    
+    .dont-say h4 {
+      color: #c62828; /* Dark red */
+    }
+    
+    .do-say {
+      background: #e8f5e9; /* Light green */
+      border: 1px solid #81c784;
+    }
+    
+    .do-say h4 {
+      color: #2e7d32; /* Dark green */
     }
 
     .dialogue-box {
@@ -313,6 +358,9 @@
       .accordion-header {
         padding: 20px;
       }
+      .third-person-examples {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -331,6 +379,53 @@
       <p>Never say "I think..." → Say "The delegate of [Country] believes..."</p>
     </div>
 
+    <!-- *** MODIFIED ACCORDION SECTION *** -->
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(0)">
+        <span class="accordion-title">⭐ Mastering the Third Person: The Rule in Action</span>
+        <span class="accordion-icon">▼</span>
+      </div>
+      <div class="accordion-content">
+        <p class="point-description">
+          Speaking in the third person is the most important rule of parliamentary procedure. It maintains formality and ensures you are representing your country, not yourself. Here are practical examples:
+        </p>
+        
+        <div class="third-person-examples">
+          <div class="example-box dont-say">
+            <h4>❌ Don't Say This (First Person)</h4>
+            <ul>
+              <li>"I think this resolution is bad."</li>
+              <li>"My country believes..."</li>
+              <li>"I want to ask France..."</li>
+              <li>"Your idea doesn't make sense."</li>
+              <li>"Why did you say that?"</li>
+              <li>"Can I add something?"</li>
+              <li>"I yield my time to you, Mr. Chair."</li>
+              <li>"I want to make a motion."</li>
+              <li>"My notes say that..."</li>
+              <li>"We, the G7, believe..."</li>
+            </ul>
+          </div>
+          
+          <div class="example-box do-say">
+            <h4>✅ Say This (Third Person)</h4>
+            <ul>
+              <li>"The delegate of [Your Country] finds this resolution to be counter-productive."</li>
+              <li>"The delegation of [Your Country] believes..."</li>
+              <li>"The delegate of [Your Country] would like to ask the delegate of France..."</li>
+              <li>"The delegate of [Your Country] respectfully disagrees with the delegate's idea."</li>
+              <li>"Could the delegate please clarify their previous statement?"</li>
+              <li>"The delegate of [Your Country] wishes to speak."</li>
+              <li>"The delegate yields the floor back to the Chair."</li>
+              <li>"The delegate of [Your Country] would like to make a motion..."</li>
+              <li>"The delegate of [Your Country]'s research indicates that..."</li>
+              <li>"The delegations of the G7 believe..."</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- Essential Phrases -->
     <h2 class="section-title">🗣️ Essential Phrases</h2>
     <div class="phrases-grid">
@@ -365,7 +460,7 @@
 
     <!-- Accordion 1: Point of Information (to Speaker) -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(1)">
         <span class="accordion-title">1️⃣ Point of Information (to the Speaker)</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -394,7 +489,7 @@
 
     <!-- Accordion 2: Point of Information (to Chair) -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(2)">
         <span class="accordion-title">2️⃣ Point of Information to the Chair</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -420,7 +515,7 @@
 
     <!-- Accordion 3: Point of Parliamentary Enquiry -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(3)">
         <span class="accordion-title">3️⃣ Point of Parliamentary Enquiry</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -446,7 +541,7 @@
 
     <!-- Accordion 4: Point of Order -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(4)">
         <span class="accordion-title">4️⃣ Point of Order</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -475,7 +570,7 @@
 
     <!-- Accordion 5: Point of Personal Privilege -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(5)">
         <span class="accordion-title">5️⃣ Point of Personal Privilege</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -501,12 +596,12 @@
       </div>
     </div>
 
-    <!-- Motions and Yields Section (This was missing) -->
+    <!-- Motions and Yields Section -->
     <h2 class="section-title">⚖️ Motions &amp; Yields</h2>
 
     <!-- Accordion 6: Yielding Your Time -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(6)">
         <span class="accordion-title">🤝 Yielding (Giving Up Your Time)</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -534,7 +629,7 @@
 
     <!-- Accordion 7: Motion to Close Debate -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(7)">
         <span class="accordion-title">🗳️ Motion to Close Debate (Previous Question)</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -554,12 +649,10 @@
         </div>
       </div>
     </div>
-
-    <!-- NEW ACCORDIONS BELOW -->
-
-    <!-- Accordion 10: Motion to Adjourn Debate -->
+    
+    <!-- Accordion 8: Motion to Adjourn Debate -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(8)">
         <span class="accordion-title">🗓️ Motion to Adjourn the Debate</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -578,9 +671,9 @@
       </div>
     </div>
 
-    <!-- Accordion 11: Motion to Extend Debate Time -->
+    <!-- Accordion 9: Motion to Extend Debate Time -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(9)">
         <span class="accordion-title">⏱️ Motion to Extend Debate Time</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -600,9 +693,9 @@
       </div>
     </div>
     
-    <!-- Accordion 12: Motion to Reconsider a Resolution -->
+    <!-- Accordion 10: Motion to Reconsider a Resolution -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(10)">
         <span class="accordion-title">🔄 Motion to Reconsider a Resolution</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -613,12 +706,18 @@
         <p class="point-description">
           <strong>Rules:</strong> This can only be done after all other resolutions on the agenda have been debated. It is not debatable and requires a two-thirds (2/3) majority to pass.
         </p>
+         <div class="dialogue-box">
+          <span class="dialogue-label">📍 Example: Reconsidering</span>
+          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "We have concluded debate on all resolutions on the agenda. Are there any further points or motions?"</div>
+          <div class="dialogue-line"><span class="speaker-you">You (Brazil):</span> "Honourable Chair, the delegate of Brazil <strong>motions to reconsider Resolution 1.1</strong>."</div>
+          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. This motion requires a two-thirds majority. All those in favor of reconsidering Resolution 1.1, please raise your placards..."</div>
+        </div>
       </div>
     </div>
 
-    <!-- Accordion 13: Other Motions -->
+    <!-- Accordion 11: Other Motions -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(11)">
         <span class="accordion-title">📋 Other Motions &amp; Objections</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -652,9 +751,9 @@
     <!-- NEW SECTION -->
     <h2 class="section-title">🔑 Key Rules &amp; Terms</h2>
 
-    <!-- Accordion 14: Voting Procedure -->
+    <!-- Accordion 12: Voting Procedure -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(12)">
         <span class="accordion-title">🗳️ Voting Procedure: Who Can Vote?</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -675,9 +774,9 @@
       </div>
     </div>
 
-    <!-- Accordion 15: Right of Reply -->
+    <!-- Accordion 13: Right of Reply -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(13)">
         <span class="accordion-title">📣 Right of Reply</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -698,9 +797,9 @@
       </div>
     </div>
 
-    <!-- Accordion 16: Roll Call & Quorum -->
+    <!-- Accordion 14: Roll Call & Quorum -->
     <div class="accordion">
-      <div class="accordion-header">
+      <div class="accordion-header" onclick="toggleAccordion(14)">
         <span class="accordion-title">📋 Roll Call &amp; Quorum</span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -710,21 +809,22 @@
           <div class="dialogue-line"><strong>What it is:</strong> The attendance check at the beginning of every session.</div>
           <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The committee will come to order. We will now begin Roll Call. Delegates, please respond 'Present' or 'Present and Voting'..."</div>
         </div>
-        <div class="dialogue-box">
+        <div classSignature: 2024-11-04 06:18:23.238 2-0-0
           <span class="dialogue-label">Quorum</span>
           <div class="dialogue-line"><strong>What it is:</strong> The minimum number of delegates (usually one-third) that must be present for formal debate to begin and for votes to be valid. The Chair establishes quorum during the first roll call.</div>
         </div>
       </div>
     </div>
     
-    <!-- Pro Tips (This was incomplete) -->
+    <!-- MODIFIED Pro Tips -->
     <div class="tips-box">
       <h2>💡 THIMUN Pro Tips</h2>
       <ul class="tips-list">
+        <li><strong>Jacket On:</strong> A delegate must have their jacket/blazer on *anytime* they stand to speak (giving a speech, raising a point, or making a motion). It is a sign of respect.</li>
         <li><strong>Respect the Chair:</strong> You must respect the decisions of the Chair at all times. Their rulings are final.</li>
         <li><strong>Stand Up:</strong> You must always stand when speaking, whether giving a speech or raising a point.</li>
         <li><strong>Be Diplomatic:</strong> Always be courteous. You may attack a country's *policy*, but never the *delegate*.</li>
-        <li><strong>One Thing at a Time:</strong> The committee only debates one resolution at a time, and only one amendment to that resolution at a time.</li>
+        <li><strong>One Thing at aTime:</strong> The committee only debates one resolution at a time, and only one amendment to that resolution at a time.</li>
         <li><strong>No Interruptions:</strong> A speaker may *never* be interrupted, except for an audibility-related Point of Personal Privilege.</li>
         <li><strong>Voting is Sacred:</strong> Once the Chair has announced the start of voting, no interruptions are allowed except for a Point of Order related to the vote itself.</li>
       </ul>
@@ -735,38 +835,32 @@
   <!-- JavaScript for Accordions -->
   <script>
     const accordionHeaders = document.querySelectorAll('.accordion-header');
+    const accordionContents = document.querySelectorAll('.accordion-content');
 
-    // Function to close all accordions
-    function closeAllAccordions() {
-      accordionHeaders.forEach(header => {
-        header.classList.remove('active');
-        header.nextElementSibling.classList.remove('active');
-        header.nextElementSibling.style.maxHeight = null;
-        header.nextElementSibling.style.padding = null;
+    function toggleAccordion(index) {
+      const content = accordionContents[index];
+      const header = accordionHeaders[index];
+      const isActive = header.classList.contains('active');
+
+      // Close all accordions
+      accordionHeaders.forEach((h, i) => {
+        h.classList.remove('active');
+        accordionContents[i].classList.remove('active');
+        accordionContents[i].style.maxHeight = null;
+        accordionContents[i].style.padding = null;
       });
+
+      // If the clicked one wasn't already active, open it
+      if (!isActive) {
+        header.classList.add('active');
+        content.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 60 + 'px'; // 60px for padding
+        content.style.padding = '30px';
+        content.style.paddingTop = '20px';
+      }
     }
-
-    accordionHeaders.forEach((header, index) => {
-      header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        const isActive = header.classList.contains('active');
-
-        // Close all accordions first
-        closeAllAccordions();
-
-        // If the clicked one wasn't already active, open it
-        if (!isActive) {
-          header.classList.add('active');
-          content.classList.add('active');
-          content.style.maxHeight = content.scrollHeight + 60 + 'px'; // 60px for padding
-          content.style.padding = '30px';
-          content.style.paddingTop = '20px';
-        }
-      });
-    });
   </script>
 
 </body>
 </html>
-
 
