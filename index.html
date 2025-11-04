@@ -1,929 +1,1452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THIMUN Language Guide</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAÇKA MUN CLUB Delegate Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Global Styles --- */
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            /* Ensure smooth gradient background for portal */
+            background: linear-gradient(135deg, #1c1c1c 0%, #333333 100%);
+            min-height: 100vh;
+        }
 
-    body {
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-      color: #333;
-    }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+        /* --- Page Hiding --- */
+        .page {
+            display: none; /* All pages are hidden by default */
+        }
+        .page.active {
+            display: block; /* The active page is shown */
+        }
+        
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin: 20px 0 0 20px;
+            padding: 10px 18px;
+            background: #444;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #2dc492;
+        }
 
-    .header {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      text-align: center;
-      margin-bottom: 30px;
-      animation: slideDown 0.6s ease-out;
-    }
 
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        /* ===== 1. PORTAL PAGE STYLES ===== */
+        #portal-page {
+            padding: 20px;
+        }
+        .portal-header {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 30px;
+            border-top: 5px solid #2dc492; /* Green accent */
+        }
+        .portal-header h1 {
+            color: #000;
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        .portal-header h2 {
+            color: #2dc492; /* Green */
+            font-size: 1.5rem;
+            margin: 5px 0 10px;
+            font-weight: 600;
+        }
+        .portal-header p {
+            color: #555;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        .portal-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-bottom: 4px solid #eee;
+        }
+        .portal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            border-bottom-color: #2dc492;
+        }
+        .portal-card h3 {
+            color: #333;
+            font-size: 1.6rem;
+            margin: 0 0 10px 0;
+        }
+        .portal-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+        }
 
-    .header h1 {
-      color: #667eea;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
 
-    .header p {
-      color: #666;
-      font-size: 1.1rem;
-    }
+        /* ===== 2. LANGUAGE GUIDE STYLES ===== */
+        #language-guide-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        #language-guide-page .guide-header {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideDown 0.6s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #language-guide-page .guide-header h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        #language-guide-page .guide-header p { color: #666; font-size: 1.1rem; }
+        .golden-rule {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .golden-rule h2 { font-size: 2rem; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .golden-rule p { font-size: 1.2rem; line-height: 1.8; }
+        .section-title {
+            color: white;
+            font-size: 2rem;
+            margin: 40px 0 20px 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .phrases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .phrase-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+        .phrase-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .phrase-card h3 { color: #667eea; margin-bottom: 10px; font-size: 1.1rem; }
+        .phrase-card p { color: #555; font-style: italic; line-height: 1.6; }
+        .accordion { margin-bottom: 15px; }
+        .accordion-header {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header:hover { transform: translateX(5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .accordion-header.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        .accordion-title { font-size: 1.3rem; font-weight: 600; }
+        .accordion-icon { font-size: 1.5rem; transition: transform 0.3s ease; font-weight: bold; }
+        .accordion-header.active .accordion-icon { transform: rotate(180deg); }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: #fafaff;
+            border-radius: 0 0 15px 15px;
+            margin-top: -10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .accordion-content.active {
+            max-height: 2500px;
+            padding: 30px;
+            padding-top: 20px;
+        }
+        .point-description { color: #555; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.8; }
+        .dialogue-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #e1bee7 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .dialogue-label { font-weight: 700; color: #667eea; margin-bottom: 12px; font-size: 1.1rem; display: block; }
+        .dialogue-line { margin: 8px 0; padding: 8px 12px; background: rgba(255, 255, 255, 0.7); border-radius: 8px; line-height: 1.6; }
+        .speaker-you { color: #1976d2; font-weight: 700; }
+        .speaker-chair { color: #d32f2f; font-weight: 700; }
+        .speaker-delegate { color: #388e3c; font-weight: 700; }
+        .speaker-other { color: #f57c00; font-weight: 700; }
+        .warning-box { background: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 8px; }
+        .warning-box strong { color: #856404; }
+        .tips-box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); margin-top: 40px; }
+        .tips-box h2 { color: #667eea; font-size: 1.8rem; margin-bottom: 20px; text-align: center; }
+        .tips-list { list-style: none; padding-left: 0; }
+        .tips-list li { padding: 15px; margin: 10px 0; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 10px; font-size: 1.1rem; transition: transform 0.3s ease; }
+        .tips-list li:hover { transform: translateX(10px); }
+        .tips-list li::before { content: "✓"; color: #667eea; font-weight: bold; font-size: 1.3rem; margin-right: 10px; }
+        /* Tooltip Styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 2px dotted #667eea;
+            cursor: help;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        /* Third Person Examples */
+        .example-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .example-table th, .example-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .example-table th { background-color: #f2f2f2; color: #333; }
+        .example-table .bad { background-color: #fff5f5; color: #c53030; }
+        .example-table .good { background-color: #f0fff4; color: #276749; }
+        .example-table .bad::before { content: '❌ '; font-weight: bold; }
+        .example-table .good::before { content: '✅ '; font-weight: bold; }
 
-    .golden-rule {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      margin-bottom: 30px;
-      text-align: center;
-      animation: pulse 2.5s ease-in-out infinite;
-    }
+        /* ===== 3. RESOLUTION GUIDE STYLES ===== */
+        #resolution-guide-page {
+            background-color: #f4f7f6;
+            padding: 20px;
+        }
+        #resolution-guide-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #resolution-guide-page .header-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        #resolution-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #resolution-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+        #resolution-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
+        #resolution-guide-page .section:last-child { border-bottom: none; }
+        #resolution-guide-page h2 { font-size: 1.75rem; margin-bottom: 20px; }
+        #resolution-guide-page .intro h2 { color: #5a67d8; }
+        #resolution-guide-page .header-info h2 { color: #d69e2e; }
+        #resolution-guide-page .preamble h2 { color: #3182ce; }
+        #resolution-guide-page .operative h2 { color: #38a169; }
+        #resolution-guide-page .rules h2 { color: #d53f8c; }
+        #resolution-guide-page .summary h2 { color: #6B46C1; }
+        #resolution-guide-page .gemini-helper h2 { color: #805AD5; }
+        #resolution-guide-page .clause-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        #resolution-guide-page .clause-card {
+            background: #f7fafc;
+            border-left: 4px solid;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+        }
+        #resolution-guide-page .preamble .clause-card { border-color: #3182ce; }
+        #resolution-guide-page .operative .clause-card { border-color: #38a169; }
+        #resolution-guide-page .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        #resolution-guide-page .rule-card {
+            background: #fffaf0;
+            border: 1px solid #feebc8;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        #resolution-guide-page .rule-card h3 { color: #c05621; margin-bottom: 10px; font-size: 1.2rem; }
+        #resolution-guide-page .example-box {
+            background: #fafafa;
+            border: 1px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #resolution-guide-page .example-box .comment { color: #718096; font-style: italic; }
+        #resolution-guide-page .example-box i { font-style: italic; color: #3182ce; }
+        #resolution-guide-page .example-box u { text-decoration: underline; color: #38a169; }
+        #resolution-guide-page .example-box .highlight { background-color: #fefcbf; font-weight: bold; }
+        #resolution-guide-page .example-box .end-comma { color: #e53e3e; font-weight: bold; }
+        #resolution-guide-page .example-box .end-semi { color: #e53e3e; font-weight: bold; font-size: 1.2rem; }
+        #resolution-guide-page .example-box .end-period { color: #e53e3e; font-weight: bold; font-size: 1.2rem; }
+        #resolution-guide-page .summary-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        #resolution-guide-page .summary-list ul { list-style: none; padding: 0; margin: 0; }
+        #resolution-guide-page .summary-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        #resolution-guide-page .summary-list li::before {
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-size: 1.5rem;
+        }
+        #resolution-guide-page .do-list li::before { content: '✅'; }
+        #resolution-guide-page .dont-list li::before { content: '❌'; }
+        #resolution-guide-page .gemini-helper { background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf5 100%); }
+        #resolution-guide-page .gemini-helper textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+        #resolution-guide-page .gemini-helper .controls { display: flex; gap: 15px; align-items: center; }
+        #resolution-guide-page .gemini-helper select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+        #resolution-guide-page .gemini-helper button {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            background: #805AD5;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        #resolution-guide-page .gemini-helper button:disabled { background: #b794f4; cursor: not-allowed; }
+        #resolution-guide-page .gemini-helper button:hover:not(:disabled) { background: #6B46C1; }
+        #resolution-guide-page #loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(128, 90, 213, 0.3);
+            border-radius: 50%;
+            border-top-color: #805AD5;
+            animation: spin 1s ease-in-out infinite;
+            margin: 20px auto 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #resolution-guide-page #result-container {
+            margin-top: 20px;
+            background: #fafafa;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+            position: relative;
+        }
+        #resolution-guide-page #result-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            margin: 0;
+            padding-right: 70px; /* Space for the button */
+        }
+        #resolution-guide-page #copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            background: #e2e8f0;
+            color: #4a5568;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #resolution-guide-page #copy-btn:hover { background: #cbd5e0; }
+        #resolution-guide-page #error-box {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border: 1px solid #e53e3e;
+            background: #fff5f5;
+            color: #c53030;
+            border-radius: 8px;
+        }
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.02);
-      }
-    }
+        /* ===== 4. STUDENT OFFICER GUIDE STYLES ===== */
+        #student-officer-guide-page {
+            background: #fff;
+            padding: 20px;
+        }
+        #student-officer-guide-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #student-officer-guide-page .header-card {
+            background: linear-gradient(135deg, #08AEEA 0%, #2AF598 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        #student-officer-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #student-officer-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+        #student-officer-guide-page .section { padding: 30px; }
+        #student-officer-guide-page .section h2 { color: #08AEEA; }
+        #student-officer-guide-page .section p { font-size: 1.1rem; }
 
-    .golden-rule h2 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    }
 
-    .golden-rule p {
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
+        /* --- Media Queries for Responsive Design --- */
+        @media (max-width: 768px) {
+            #resolution-guide-page .rules-grid, 
+            #resolution-guide-page .summary-list {
+                grid-template-columns: 1fr;
+            }
+            #resolution-guide-page .header-card h1 { font-size: 1.8rem; }
+            #resolution-guide-page .section { padding: 20px; }
+            #resolution-guide-page .gemini-helper .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            #language-guide-page .guide-header h1 { font-size: 1.8rem; }
+            #language-guide-page .guide-header { padding: 25px; }
+            .section-title { font-size: 1.5rem; }
+            .phrases-grid { grid-template-columns: 1fr; }
+            .accordion-title { font-size: 1.1rem; }
+            .accordion-header { padding: 20px; }
+            .portal-header h1 { font-size: 2rem; }
+            .portal-header h2 { font-size: 1.3rem; }
+        }
 
-    .section-title {
-      color: white;
-      font-size: 2rem;
-      margin: 40px 0 20px 0;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .phrases-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .phrase-card {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-left: 5px solid #667eea;
-    }
-
-    .phrase-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-
-    .phrase-card h3 {
-      color: #667eea;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-
-    .phrase-card p {
-      color: #555;
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    .accordion {
-      margin-bottom: 15px;
-    }
-
-    .accordion-header {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .accordion-header:hover {
-      transform: translateX(5px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-
-    .accordion-header.active {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border-radius: 15px 15px 0 0;
-    }
-
-    .accordion-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    .accordion-icon {
-      font-size: 1.5rem;
-      transition: transform 0.3s ease;
-      font-weight: bold;
-    }
-
-    .accordion-header.active .accordion-icon {
-      transform: rotate(180deg);
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease;
-      background: #fafaff;
-      border-radius: 0 0 15px 15px;
-      margin-top: -10px; /* Overlaps to connect with header */
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .accordion-content.active {
-      max-height: 2500px; /* Large value */
-      padding: 30px;
-      padding-top: 20px;
-    }
-
-    .point-description {
-      color: #555;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      line-height: 1.8;
-    }
-    
-    /* New styles for the third-person example box */
-    .third-person-examples {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    
-    .example-box {
-      padding: 15px;
-      border-radius: 10px;
-    }
-    
-    .example-box h4 {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-
-    .example-box ul {
-      list-style-position: inside;
-      padding-left: 5px;
-    }
-    
-    .example-box li {
-      margin-bottom: 8px;
-      line-height: 1.6;
-    }
-    
-    .dont-say {
-      background: #ffebee; /* Light red */
-      border: 1px solid #e57373;
-    }
-    
-    .dont-say h4 {
-      color: #c62828; /* Dark red */
-    }
-    
-    .do-say {
-      background: #e8f5e9; /* Light green */
-      border: 1px solid #81c784;
-    }
-    
-    .do-say h4 {
-      color: #2e7d32; /* Dark green */
-    }
-
-    /* --- NEW TOOLTIP STYLES --- */
-    .tooltip-word {
-      text-decoration: underline dotted #667eea;
-      cursor: help;
-      font-weight: 600;
-      color: #667eea;
-    }
-
-    .accordion-header.active .tooltip-word {
-      color: #fff;
-      text-decoration: underline dotted #fff;
-    }
-
-    .dialogue-line .tooltip-word, .point-description .tooltip-word, .dialogue-line strong .tooltip-word {
-        color: #5c00d3; /* A purple that stands out */
-        text-decoration: underline dotted #5c00d3;
-        font-weight: 600;
-    }
-
-    .tooltip {
-      position: relative;
-      display: inline-block;
-    }
-
-    .tooltip .tooltiptext {
-      visibility: hidden;
-      width: 220px;
-      background-color: #333;
-      color: #fff;
-      text-align: left;
-      border-radius: 6px;
-      padding: 10px;
-      position: absolute;
-      z-index: 10;
-      bottom: 135%; /* Position above the text */
-      left: 50%;
-      margin-left: -110px; /* Use half of the width to center */
-      opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 0.9rem;
-      font-weight: 400;
-      line-height: 1.6;
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .tooltip .tooltiptext::after {
-      content: "";
-      position: absolute;
-      top: 100%; /* At the bottom of the tooltip */
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #333 transparent transparent transparent;
-    }
-
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-    }
-    /* --- END TOOLTIP STYLES --- */
-
-    .dialogue-box {
-      background: linear-gradient(135deg, #e0f7fa 0%, #e1bee7 100%);
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
-      border-left: 5px solid #667eea;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .dialogue-label {
-      font-weight: 700;
-      color: #667eea;
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      display: block;
-    }
-
-    .dialogue-line {
-      margin: 8px 0;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 8px;
-      line-height: 1.6;
-    }
-
-    .speaker-you {
-      color: #1976d2;
-      font-weight: 700;
-    }
-
-    .speaker-chair {
-      color: #d32f2f;
-      font-weight: 700;
-    }
-
-    .speaker-delegate {
-      color: #388e3c;
-      font-weight: 700;
-    }
-
-    .speaker-other {
-      color: #f57c00;
-      font-weight: 700;
-    }
-
-    .warning-box {
-      background: #fff3cd;
-      border-left: 5px solid #ffc107;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 8px;
-    }
-
-    .warning-box strong {
-      color: #856404;
-    }
-
-    .tips-box {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      margin-top: 40px;
-    }
-
-    .tips-box h2 {
-      color: #667eea;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .tips-list {
-      list-style: none;
-    }
-
-    .tips-list li {
-      padding: 15px;
-      margin: 10px 0;
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      border-radius: 10px;
-      font-size: 1.1rem;
-      transition: transform 0.3s ease;
-    }
-
-    .tips-list li:hover {
-      transform: translateX(10px);
-    }
-
-    .tips-list li::before {
-      content: "✓";
-      color: #667eea;
-      font-weight: bold;
-      font-size: 1.3rem;
-      margin-right: 10px;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      .header h1 {
-        font-size: 1.8rem;
-      }
-      .header {
-        padding: 25px;
-      }
-      .section-title {
-        font-size: 1.5rem;
-      }
-      .phrases-grid {
-        grid-template-columns: 1fr;
-      }
-      .accordion-title {
-        font-size: 1.1rem;
-      }
-      .accordion-header {
-        padding: 20px;
-      }
-      .third-person-examples {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <div class="header">
-      <h1>🏛️ THIMUN Language Guide</h1>
-      <p>Master the Art of Parliamentary Discourse</p>
+
+    <!-- =================================================================== -->
+    <!-- 1. PORTAL PAGE -->
+    <!-- =================================================================== -->
+    <div id="portal-page" class="page active">
+        <div class="container">
+            <div class="portal-header">
+                <h1>DAÇKA MUN CLUB</h1>
+                <h2>Delegate Resources</h2>
+                <p>Your portal for mastering MUN procedure and resolution writing.</p>
+            </div>
+            
+            <div class="portal-grid">
+                <a class="portal-card" onclick="showPage('language-guide-page')">
+                    <h3>🏛️ Language Guide</h3>
+                    <p>Learn the points, motions, and formal language of THIMUN parliamentary procedure.</p>
+                </a>
+                <a class="portal-card" onclick="showPage('resolution-guide-page')">
+                    <h3>📝 Resolution Guide</h3>
+                    <p>Master the format for writing a perfect resolution, with an AI-powered helper.</p>
+                </a>
+                <a class="portal-card" onclick="showPage('student-officer-guide-page')">
+                    <h3>🧑‍⚖️ Student Officer Guide</h3>
+                    <p>Learn how to Chair a committee, manage debate, and apply the rules of procedure.</p>
+                </a>
+            </div>
+        </div>
     </div>
 
-    <!-- Golden Rule -->
-    <div class="golden-rule">
-      <h2>🎯 Golden Rule</h2>
-      <p><strong>Always speak in third person!</strong></p>
-      <p>Never say "I think..." → Say "The delegate of [Country] believes..."</p>
-    </div>
+    <!-- =================================================================== -->
+    <!-- 2. LANGUAGE GUIDE PAGE -->
+    <!-- =================================================================== -->
+    <div id="language-guide-page" class="page">
+        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
+        <div class="guide-container">
+            <!-- Header -->
+            <div class="guide-header">
+                <h1>🏛️ THIMUN Language Guide</h1>
+                <p>Master the Art of Parliamentary Discourse</p>
+            </div>
 
-    <!-- *** MODIFIED ACCORDION SECTION *** -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(0)">
-        <span class="accordion-title">⭐ Mastering the Third Person: The Rule in Action</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          Speaking in the third person is the most important rule of parliamentary procedure. It maintains formality and ensures you are representing your country, not yourself. Here are practical examples:
-        </p>
+            <!-- Golden Rule -->
+            <div class="golden-rule">
+                <h2>🎯 Golden Rule</h2>
+                <p><strong>Always speak in third person!</strong></p>
+                <p>Never say "I think..." → Say "The delegate of [Country] believes..."</p>
+            </div>
+
+            <!-- NEW: Third Person Elaboration -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(0)">
+                    <span class="accordion-title">⭐ Mastering the Third Person: The Rule in Action</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        This is the most important rule of formal debate. You are not representing yourself; you are representing an entire country. Using "I" or "my" breaks this formality. Here are common mistakes and how to fix them.
+                    </p>
+                    <table class="example-table">
+                        <thead>
+                            <tr>
+                                <th>Common Situation</th>
+                                <th>❌ Don't Say This (First Person)</th>
+                                <th>✅ Say This (Third Person)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Stating an Opinion</td>
+                                <td class="bad">"I think we should pass this resolution."</td>
+                                <td class="good">"The delegate of Japan believes the committee should pass this resolution."</td>
+                            </tr>
+                            <tr>
+                                <td>Asking a Question</td>
+                                <td class="bad">"My question for you is: where will you get the money?"</td>
+                                <td class="good">"The delegate of Kenya asks the delegate of France: how will this fund be financed?"</td>
+                            </tr>
+                            <tr>
+                                <td>Making a Motion</td>
+                                <td class="bad">"I want to motion to close debate."</td>
+                                <td class="good">"The delegate of Germany motions to close debate."</td>
+                            </tr>
+                            <tr>
+                                <td>Referring to another Delegate</td>
+                                <td class="bad">"I agree with what he just said."</td>
+                                <td class="good">"The delegate of South Africa concurs with the previous speaker."</td>
+                            </tr>
+                            <tr>
+                                <td>Referring to a group</td>
+                                <td class="bad">"All of us here want peace."</td>
+                                <td class="good">"All delegates present wish to see a peaceful resolution."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Essential Phrases -->
+            <h2 class="section-title">🗣️ Essential Phrases</h2>
+            <div class="phrases-grid">
+                <div class="phrase-card">
+                    <h3>📢 Opening Speech</h3>
+                    <p>"Honourable Chair, fellow delegates..."</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>💭 State Your Position</h3>
+                    <p>"The delegate of Japan believes that..."</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>❓ Ask Questions</h3>
+                    <p>"Is the delegate of France aware that..."</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>✅ Show Agreement</h3>
+                    <p>"The delegate of South Africa concurs with..."</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>⚠️ Express Disagreement</h3>
+                    <p>"The delegate respectfully disagrees..."</p>
+                </div>
+                <div class="phrase-card">
+                    <h3>🤝 <span class="tooltip">Yield the Floor<span class="tooltip-text">To give up your speaking time to the Chair or another delegate.</span></span></h3>
+                    <p>"The delegate yields the floor to the Chair."</p>
+                </div>
+            </div>
+
+            <!-- Points Section -->
+            <h2 class="section-title">🙋‍♀️ Points in THIMUN</h2>
+
+            <!-- Accordion 1: Point of Information (to Speaker) -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(1)">
+                    <span class="accordion-title">1️⃣ Point of Information (to the Speaker)</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> Ask questions to the speaker who currently has the floor, but ONLY if they have indicated willingness to yield to points of information.
+                    </p>
+                    <div class="warning-box">
+                        <strong>⚠️ THIMUN Rule:</strong> Cannot interrupt a speaker. Follow-up questions from the same questioner are usually not in order.
+                    </div>
+                    
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Asking for Elaboration</span>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of India. To what point do you yield your time?"</div>
+                        <div class="dialogue-line"><span class="speaker-delegate">Delegate of India:</span> "The delegate of India yields to Points of Information."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any Points of Information on the floor?"</div>
+                        <div class="dialogue-line">(You raise your placard and are recognized)</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Kenya):</span> "Point of Information to the speaker. The delegate of India mentioned a new fund. Could the delegate please elaborate on how this fund would be financed?"</div>
+                        <div class="dialogue-line"><span class="speaker-delegate">Delegate of India:</span> "The delegate thanks the delegate of Kenya for the question. The fund would be financed through..."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 2: Point of Information (to Chair) -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(2)">
+                    <span class="accordion-title">2️⃣ Point of Information to the Chair</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> Ask the Chair questions about any matter related to the committee's business or for clarification on non-procedural issues (e.g., debate time, lunch schedule).
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Asking About Time</span>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "We will now move to debate on the draft resolution. Are there any points or motions?"</div>
+                        <div class="dialogue-line">(You raise your placard)</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Egypt):</span> "Point of Information to the Chair."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The delegate of Egypt."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "Could the Chair inform the committee of the debate time allocated for this resolution?"</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The Chair proposes 30 minutes of debate time. Seeing no objections, it is set."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 3: Point of Parliamentary Enquiry -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(3)">
+                    <span class="accordion-title">3️⃣ Point of Parliamentary Enquiry</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> Ask the Chair questions *specifically* concerning the rules of procedure.
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Motion Clarification</span>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate. Are there any points or motions?"</div>
+                        <div class="dialogue-line">(You raise your placard)</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Nigeria):</span> "Point of Parliamentary Enquiry."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Yes, delegate of Nigeria?"</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "Is it in order to move the Previous Question at this time?"</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That is correct, delegate. A motion to close debate would be in order."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 4: Point of Order -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(4)">
+                    <span class="accordion-title">4️⃣ Point of Order</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> Call attention to a procedural error (when the rules of procedure are being violated by the Chair or a delegate).
+                    </p>
+                    <div class="warning-box">
+                        <strong>⚠️ THIMUN Rule:</strong> Points of Order may ONLY relate to procedural matters, not speech content. Use this sparingly.
+                    </div>
+                    
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Incorrect Debate Time</span>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The Chair proposes 20 minutes of debate time for this amendment."</div>
+                        <div class="dialogue-line">(You raise your placard)</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Japan):</span> "Point of Order."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "State your point, delegate of Japan."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "According to the conference rules, debate on amendments is limited to a maximum of 10 minutes."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The point is well taken. The Chair stands corrected. Debate time is set at 10 minutes."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 5: Point of Personal Privilege -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(5)">
+                    <span class="accordion-title">5️⃣ Point of Personal Privilege</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> Address issues of personal comfort (e.g., room temperature, noise) that prevent you from participating.
+                    </p>
+                    <div class="warning-box">
+                        <strong>⚠️ CRITICAL THIMUN Rule:</strong> This is the ONLY point that can interrupt a speaker, but *only* if the speech is inaudible.
+                    </div>
+                    
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Inaudible Speaker (CAN INTERRUPT)</span>
+                        <div class="dialogue-line"><span class="speaker-delegate">Delegate of Italy:</span> <em>(speaking very quietly)</em> "...and the delegate believes..."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Point of Personal Privilege!"</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The speaker will pause. State your point, delegate of Argentina."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate cannot hear the speaker. The delegate kindly requests that the speaker speak more loudly."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Delegate of Italy, please speak into the microphone. You may continue."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Motions and Yields Section -->
+            <h2 class="section-title">⚖️ Motions &amp; Yields</h2>
+
+            <!-- Accordion 6: Yielding Your Time -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(6)">
+                    <span class="accordion-title">🤝 Yielding (Giving Up Your Time)</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        After your speech, the Chair will ask how you <span class="tooltip">yield<span class="tooltip-text">To give up your speaking time.</span></span> your time. You have three main options.
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Option 1: To the Chair (Most Common)</span>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields the floor back to the Chair."</div>
+                        <div class="dialogue-line"><strong>What it means:</strong> You are done and do not want to answer questions.</div>
+                    </div>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Option 2: To Questions</span>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields to Points of Information."</div>
+                        <div class="dialogue-line"><strong>What it means:</strong> You are opening the floor for other delegates to ask you questions.</div>
+                    </div>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Option 3: To Another Delegate</span>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields the floor to the delegate of Argentina."</div>
+                        <div class="dialogue-line"><strong>What it means:</strong> You give the rest of your time to another delegate (must be pre-arranged). <strong>THIMUN Rule:</strong> This can only be done once consecutively. The next delegate must yield back to the Chair.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 7: Motion to Close Debate -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(7)">
+                    <span class="accordion-title">🗳️ Motion to Close Debate (<span class="tooltip">Previous Question<span class="tooltip-text">The formal name for the motion to end debate and vote.</span></span>)</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> To end the debate on the current topic (resolution or amendment) and move immediately to a vote.
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Closing Debate</span>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Germany):</span> "Honourable Chair, the delegate of Germany <strong>moves the Previous Question</strong>."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds?"</div>
+                        <div class="dialogue-line"><span class="speaker-other">(Other Delegates):</span> "Second!"</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any objections?"</div>
+                        <div class="dialogue-line"><span class="speaker-other">(Another Delegate):</span> "Objection!"</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "We will have two speakers for and two speakers against this motion..."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 8: Motion to Adjourn Debate -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(8)">
+                    <span class="accordion-title">🗓️ Motion to <span class="tooltip">Adjourn the Debate<span class="tooltip-text">To "table" or pause debate on the current topic, moving to the next item.</span></span></span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> To stop debate on the current topic (resolution) and "table" it, meaning it is set aside to be potentially debated later, after all other resolutions.
+                    </p>
+                    <p class="point-description">
+                        <strong>Rules:</strong> This motion is debatable (usually one speaker for, one against) and requires a simple majority to pass.
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Tabling a Resolution</span>
+                        <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Honourable Chair, the delegate of Argentina <strong>motions to adjourn the debate</strong> on Resolution 1.1."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds? ... Objections? ... We will have one speaker for and one against this motion."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 9: Motion to Extend Debate Time -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(9)">
+                    <span class="accordion-title">⏱️ Motion to Extend Debate Time</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> To add more time for debate on the current topic (resolution or amendment).
+                    </p>
+                    <p class="point-description">
+                        <strong>Rules:</strong> This motion is not debatable and is decided at the Chair's discretion. It requires a "second."
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Extending Time</span>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Debate time has elapsed. Are there any points or motions?"</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Canada):</span> "Honourable Chair, the delegate <strong>motions to extend debate time</strong> by 10 minutes."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any seconds? ... Seeing seconds, the Chair will entertain this. We will move to a vote..."</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Accordion 10: Motion to Reconsider a Resolution -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(10)">
+                    <span class="accordion-title">🔄 Motion to Reconsider a Resolution</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> To bring a resolution that has already been passed or failed back to the floor for a new debate and vote.
+                    </p>
+                    <p class="point-description">
+                        <strong>Rules:</strong> This can only be done after all other resolutions on the agenda have been debated. It is not debatable and requires a two-thirds (2/3) majority to pass.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion 11: Other Motions -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(11)">
+                    <span class="accordion-title">📋 Other Motions &amp; Objections</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Motion to Refer to Another Forum</span>
+                        <div class="dialogue-line"><strong>Purpose:</strong> Used if a clause is outside the committee's power (e.g., uses "Demands" in the General Assembly). It's discouraged; chairs prefer amending the clause (e.g., to "Urges the Security Council to...").</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Peru):</span> "Honourable Chair, the delegate of Peru <strong>motions to refer this resolution to the Security Council</strong>, as operative clause 2 uses language such as 'Demands' which is outside the purview of the General Assembly."</div>
+                    </div>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Withdrawing a Resolution</span>
+                        <div class="dialogue-line"><strong>Rule:</strong> The main submitter can motion to withdraw their resolution, but it requires *all* co-submitters to agree to it.</div>
+                        <div class="dialogue-line"><span class="speaker-delegate">Delegate of Japan (Main Submitter):</span> "Honourable Chair, the delegate of Japan <strong>motions to withdraw Resolution 1.1</strong> from the floor."</div>
+                    </div>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Objection to the Main Motion</span>
+                        <div class="dialogue-line"><strong>Purpose:</strong> To object to the *entire resolution* being debated, often on grounds that it violates national sovereignty. It is strongly discouraged as it's destructive to debate. Requires a 2/3 majority.</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (China):</span> "Honourable Chair, the delegate of China <strong>objects to the main motion</strong>."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Rules Section -->
+            <h2 class="section-title">🔑 Key Rules &amp; Terms</h2>
+
+            <!-- Accordion 12: Voting Procedure -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(12)">
+                    <span class="accordion-title">🗳️ Voting Procedure: Who Can Vote?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        A critical distinction exists between "procedural" and "substantive" votes.
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Substantive Votes (Resolutions & Amendments)</span>
+                        <div class="dialogue-line">Only <strong>Member States</strong> (countries) can vote on resolutions and amendments.</div>
+                        <div class="dialogue-line"><strong>Observers</strong> (e.g., NGOs like the Red Cross, or non-member states) <strong>CANNOT</strong> vote on substantive matters.</div>
+                    </div>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Procedural Votes (Motions)</span>
+                        <div class="dialogue-line"><strong>ALL delegates</strong> (Member States *and* Observers) can vote on procedural motions.</div>
+                        <div class="dialogue-line"><strong>Example:</strong> An NGO (Observer) cannot vote on an amendment, but *can* vote on a "Motion to Extend Debate Time" for that amendment.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 13: Right of Reply -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(13)">
+                    <span class="accordion-title">📣 <span class="tooltip">Right of Reply<span class="tooltip-text">A right to respond if your country has been insulted. Granted by the Chair.</span></span></span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="point-description">
+                        <strong>Purpose:</strong> This is not a "Point" but a formal right. A delegate can request a Right of Reply if their country or delegation has been insulted by a speaker.
+                    </p>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Responding to an Insult</span>
+                        <div class="dialogue-line"><span class="speaker-delegate">Delegate of X:</span> "...which is why the warmongering policy of Country Y is destabilizing the region."</div>
+                        <div class="dialogue-line"><span class="speaker-you">(You, Delegate of Y, send a note to the Chair)</span></div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of X. The Chair has received a request for a Right of Reply from the delegate of Y. You have the floor for 30 seconds."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Y):</span> "The delegate of Y wishes to state that our policies are for self-defense, not "warmongering," and we find such language unhelpful to diplomatic debate."</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 14: Roll Call & Quorum -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(14)">
+                    <span class="accordion-title">📋 Roll Call &amp; <span class="tooltip">Quorum<span class="tooltip-text">The minimum number of delegates (usually 1/3) needed to start debate or vote.</span></span></span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Roll Call</span>
+                        <div class="dialogue-line"><strong>What it is:</strong> The attendance check at the beginning of every session.</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The committee will come to order. We will now begin Roll Call. Delegates, please respond 'Present' or 'Present and Voting'..."</div>
+                    </div>
+                    <div class="dialogue-box">
+                        <span class="dialogue-label">Quorum</span>
+                        <div class="dialogue-line"><strong>What it is:</strong> The minimum number of delegates (usually one-third) that must be present for formal debate to begin and for votes to be valid. The Chair establishes quorum during the first roll call.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pro Tips -->
+            <div class="tips-box">
+                <h2>💡 THIMUN Pro Tips</h2>
+                <ul class="tips-list">
+                    <li><strong>Respect the Chair:</strong> You must respect the decisions of the Chair at all times. Their rulings are final.</li>
+                    <li><strong>Stand Up:</strong> You must always stand when speaking, whether giving a speech or raising a point.</li>
+                    <li><strong>Jacket On:</strong> Whenever a delegate has the floor (i.e., is speaking), they must have their suit jacket on and buttoned.</li>
+                    <li><strong>Be Diplomatic:</strong> Always be courteous. You may attack a country's *policy*, but never the *delegate*.</li>
+                    <li><strong>No Interruptions:</strong> A speaker may *never* be interrupted, except for an audibility-related Point of Personal Privilege.</li>
+                    <li><strong>Voting is Sacred:</strong> Once the Chair has announced the start of voting, no interruptions are allowed except for a Point of Order related to the vote itself.</li>
+                </ul>
+            </div>
+
+        </div> <!-- end language guide container -->
+    </div> <!-- end language guide page -->
+
+
+    <!-- =================================================================== -->
+    <!-- 3. RESOLUTION GUIDE PAGE -->
+    <!-- =================================================================== -->
+    <div id="resolution-guide-page" class="page">
+        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
+        <div class="guide-container">
+
+            <!-- ===== HEADER ===== -->
+            <div class="header-card">
+                <h1>A Simple Guide to Writing a Resolution</h1>
+                <p>(THIMUN Style)</p>
+            </div>
+
+            <!-- ===== WHAT IS A RESOLUTION? ===== -->
+            <div class="section intro">
+                <h2>What is a Resolution?</h2>
+                <p>A resolution is a single, long sentence that proposes a solution to a problem. It's like a formal recommendation from the committee.</p>
+                <p>It is split into two main parts:</p>
+                <ul>
+                    <li><strong>Preambulatory Clauses (The "WHY"):</strong> Explains the background of the problem and why you're concerned.</li>
+                    <li><strong>Operative Clauses (The "HOW"):</strong> The action plan. This is what you want the UN and other countries to *do*.</li>
+                </ul>
+            </div>
+
+            <!-- ===== THE HEADER ===== -->
+            <div class="section header-info">
+                <h2>Part 1: The Header</h2>
+                <p>This is the "address" of your resolution. It must be 100% correct.</p>
+                <div class="example-box">
+                    <strong>FORUM:</strong> General Assembly First Committee <span class="comment">(Your committee)</span><br>
+                    <strong>QUESTION OF:</strong> The role of diamonds in fueling conflict... <span class="comment">(The topic, exactly as written on the agenda)</span><br>
+                    <strong>SUBMITTED BY:</strong> Saint Vincent and the Grenadines <span class="comment">(The main author)</span><br>
+                    <strong>CO-SUBMITTERS:</strong> Argentina, Australia, Canada, France... <span class="comment">(Other delegations that want to see this debated. List them in alphabetical order.)</span>
+                </div>
+            </div>
+
+            <!-- ===== PREAMBLE CLAUSES ===== -->
+            <div class="section preamble">
+                <h2>Part 2: The Preamble (The "WHY")</h2>
+                <p>This is the introduction. You are explaining the problem and setting the context. Remember these key rules:</p>
+                <ul>
+                    <li>Starts with the full committee name in all caps (e.g., <code>THE DISARMAMENT COMMISSION,</code>)</li>
+                    <li>Clause starters are <i>italicized</i>.</li>
+                    <li>Every clause ends with a <strong>comma (,)</strong>.</li>
+                </ul>
+                
+                <p>Here are 12 common starters to choose from:</p>
+                <div class="clause-grid">
+                    <div class="clause-card"><i>Aware of</i></div>
+                    <div class="clause-card"><i>Bearing in mind</i></div>
+                    <div class="clause-card"><i>Deeply concerned</i></div>
+                    <div class="clause-card"><i>Declaring</i></div>
+                    <div class="clause-card"><i>Emphasizing</i></div>
+                    <div class="clause-card"><i>Expressing its satisfaction</i></div>
+                    <div class="clause-card"><i>Guided by</i></div>
+                    <div class="clause-card"><i>Having examined</i></div>
+                    <div class="clause-card"><i>Keeping in mind</i></div>
+                    <div class="clause-card"><i>Noting with regret</i></div>
+                    <div class="clause-card"><i>Reaffirming</i></div>
+                    <div class="clause-card"><i>Recalling</i></div>
+                </div>
+
+                <div class="example-box">
+                    <span class="comment">...</span><br>
+                    <i>Aware of</i> that 4% of diamonds produced are classified as "conflict or blood diamonds"<span class="end-comma">,</span><br><br>
+                    <i>Recognizing</i> the Kimberley Process Certification Scheme (KPCS) as an internationally recognized system<span class="end-comma">,</span><br><br>
+                    <i>Further recognizing</i> that the KPCS is lacking a comprehensive system for monitoring<span class="end-comma">,</span>
+                </div>
+            </div>
+
+            <!-- ===== OPERATIVE CLAUSES ===== -->
+            <div class="section operative">
+                <h2>Part 3: The Operative (The "HOW")</h2>
+                <p>This is your action plan. You are explaining the specific solutions. Remember these key rules:</p>
+                <ul>
+                    <li>Clauses are <strong>numbered (1, 2, 3...)</strong>.</li>
+                    <li>Clause starters are <u>underlined</u>.</li>
+                    <li>Every clause ends with a <strong>semicolon (;)</strong>.</li>
+                    <li>The <strong>VERY LAST</strong> clause ends with a <strong>period (.)</strong>. This is the only period in the entire resolution.</li>
+                </ul>
+
+                <p>Here are 12 common starters (for non-Security Council committees):</p>
+                <div class="clause-grid">
+                    <div class="clause-card"><u>Approves</u></div>
+                    <div class="clause-card"><u>Asks</u></div>
+                    <div class="clause-card"><u>Authorizes</u></div>
+                    <div class="clause-card"><u>Calls for</u></div>
+                    <div class="clause-card"><u>Calls upon</u></div>
+                    <div class="clause-card"><u>Encourages</u></div>
+                    <div class="clause-card"><u>Expresses its hope</u></div>
+                    <div class="clause-card"><u>Further invites</u></div>
+                    <div class="clause-card"><u>Recommends</u></div>
+                    <div class="clause-card"><u>Reminds</u></div>
+                    <div class="clause-card"><u>Requests</u></div>
+                    <div class="clause-card"><u>Supports</u></div>
+                </div>
+
+                <div class="example-box">
+                    <span class="comment">...</span><br>
+                    1. <u>Calls for</u> all relevant Member States to sign and ratify the KPCS to promote cooperation<span class="end-semi">;</span><br><br>
+                    2. <u>Further calls for</u> all relevant nations which are withholding signature... to request funds or low interest loans from intergovernmental organizations (IGOs) such as the International Monetary Fund (IMF) and the World Bank<span class="end-semi">;</span><br><br>
+                    3. <u>Asks for</u> the creation of the Collation for Stopping Conflict Diamonds (CSCD)<span class="end-period">.</span> <span class="comment">&lt;-- This is the last clause!</span>
+                </div>
+            </div>
+
+            <!-- ===== TRICKY RULES ===== -->
+            <div class="section rules">
+                <h2>Part 4: The Tricky Rules (Made Easy)</h2>
+                <p>This is what most people get wrong. Here's how to get it right!</p>
+                
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <h3>💡 Acronyms (e.g., KPCS)</h3>
+                        <p>You must write out the full name the <strong>first time</strong> you use it, followed by the acronym in parentheses. After that, you can just use the acronym.</p>
+                        <div class="example-box">
+                            ...the Kimberley Process Certification Scheme <span class="highlight">(KPCS)</span>...<br><br>
+                            <span class="comment">(Later in the resolution...)</span><br>
+                            ...to sign and ratify the <span class="highlight">KPCS</span>...
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <h3>🚫 No Repeating Starters</h3>
+                        <p>You cannot use the same clause starter twice (e.g., you can't have two clauses starting with <i>Recognizing</i>).</p>
+                        <p><strong>The Fix:</strong> Just add "Further" to the beginning!</p>
+                        <div class="example-box">
+                            <i>Noting</i> that smuggling is bad<span class="end-comma">,</span><br>
+                            <i>Further noting</i> that illicit diamonds are a problem<span class="end-comma">,</span>
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <h3>Sub-Clauses (a, b, c)</h3>
+                        <p>If an operative clause has multiple parts, you use sub-clauses. Introduce them with a <strong>colon (:)</strong>.</p>
+                        <p><strong>Punctuation Rule:</strong> The sub-clauses themselves have <strong>no punctuation</strong> at the end. Only the *last* one gets the semicolon for the whole clause.</p>
+                        <div class="example-box">
+                            3. <u>Asks for</u> the creation of the CSCD... in order to stop illicit diamond transportation... by<span class="highlight">:</span><br>
+                            <span style="padding-left: 20px;">a. monitoring who is buying and selling</span><br>
+                            <span style="padding-left: 20px;">b. ensuring the methods are legal</span><br>
+                            <span style="padding-left: 20px;">c. sending submitted proof of diamond proceeds</span><span class="end-semi">;</span> <span class="comment">&lt;-- Semicolon goes here!</span>
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <h3>Sub-Sub-Clauses (i, ii, iii)</h3>
+                        <p>You can even go one level deeper! The same punctuation rule applies.</p>
+                        <p><strong>List Rule:</strong> You can't have a list of one. If you have an `a.`, you MUST have a `b.`. If you have a `i.`, you MUST have a `ii.`.</p>
+                        <div class="example-box">
+                            4. <u>Urges</u> a customs checking system including<span class="highlight">:</span><br>
+                            <span style="padding-left: 20px;">a. a monitoring system... in order to<span class="highlight">:</span></span><br>
+                            <span style="padding-left: 40px;">i. check the amount of "clean" diamonds</span><br>
+                            <span style="padding-left: 40px;">ii. make sure certificates are genuine</span><br>
+                            <span style="padding-left: 20px;">b. cooperation between customs and INTERPOL</span><span class="end-semi">;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== GEMINI HELPER SECTION ===== -->
+            <div class="section gemini-helper">
+                <h2>✨ Resolution Helper</h2>
+                <p>Stuck? Type a simple fact, an idea, or a rough clause below, and let Gemini help you formalize it in correct THIMUN format.</p>
+                
+                <textarea id="userInput" placeholder="e.g., 'create a new UN group to monitor diamonds' or 'we need to remember the UN charter'"></textarea>
+                
+                <div class="controls">
+                    <select id="apiMode">
+                        <option value="preamble">Generate Preamble Clause (from a fact)</option>
+                        <option value="operative">Generate Operative Clause (from an idea)</option>
+                        <option value="fix">Fix / Formalize My Clause</option>
+                    </select>
+                    <button id="generateBtn">✨ Generate</button>
+                </div>
+                
+                <div id="loading-spinner"></div>
+                
+                <div id="result-container">
+                    <button id="copy-btn">Copy</button>
+                    <pre id="result-text"></pre>
+                </div>
+
+                <div id="error-box"></div>
+            </div>
+
+
+            <!-- ===== DO'S AND DON'TS ===== -->
+            <div class="section summary">
+                <h2>Final Do's & Don'ts</h2>
+                <div class="summary-list">
+                    <div class="do-list">
+                        <h3>Do...</h3>
+                        <ul>
+                            <li>Write the *entire* resolution as one long sentence.</li>
+                            <li>End preambulatory clauses with a comma (,)</li>
+                            <li>End operative clauses with a semicolon (;)</li>
+                            <li>End the *last* operative clause with a period (.)</li>
+                            <li>List co-submitters in alphabetical order.</li>
+                            <li>Write out acronyms the first time.</li>
+                        </ul>
+                    </div>
+                    <div class="dont-list">
+                        <h3>Don't...</h3>
+                        <ul>
+                            <li>Use personal pronouns ("I", "we", "our"). Always say "The delegate of..."</li>
+                            <li>Repeat clause starters (use "Further..." instead).</li>
+                            <li>Have a list of one (if you have `a.`, you need `b.`).</li>
+                            <li>Use "Security Council" words (like <u>Demands</u> or <u>Condemns</u>) if you are in the General Assembly.</li>
+                            <li>Waste a clause on "Remaining seized on the matter."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- end resolution guide container -->
+    </div> <!-- end resolution guide page -->
+
+
+    <!-- =================================================================== -->
+    <!-- 4. STUDENT OFFICER GUIDE PAGE -->
+    <!-- =================================================================== -->
+    <div id="student-officer-guide-page" class="page">
+        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
+        <div class="guide-container">
+            <!-- Header -->
+            <div class="header-card">
+                <h1>🧑‍⚖️ Student Officer Guide</h1>
+                <p>How to Chair a THIMUN Committee</p>
+            </div>
+
+            <!-- Content -->
+            <div class="section">
+                <h2>Welcome, Student Officers!</h2>
+                <p>This guide will help you understand the basics of chairing a committee, managing the flow of debate, and applying the THIMUN Rules of Procedure effectively.</p>
+                <p><em>(Content for this guide is under construction.)</em></p>
+            </div>
+        </div> <!-- end student officer guide container -->
+    </div> <!-- end student officer guide page -->
+
+
+    <!-- =================================================================== -->
+    <!-- JAVASCRIPT TO RUN THE PORTAL -->
+    <!-- =================================================================== -->
+    <script>
+        // --- 1. Page Navigation ---
         
-        <div class="third-person-examples">
-          <div class="example-box dont-say">
-            <h4>❌ Don't Say This (First Person)</h4>
-            <ul>
-              <li>"I think this resolution is bad."</li>
-              <li>"My country believes..."</li>
-              <li>"I want to ask France..."</li>
-              <li>"Your idea doesn't make sense."</li>
-              <li>"Why did you say that?"</li>
-              <li>"Can I add something?"</li>
-              <li>"I yield my time to you, Mr. Chair."</li>
-              <li>"I want to make a motion."</li>
-              <li>"My notes say that..."</li>
-              <li>"We, the G7, believe..."</li>
-            </ul>
-          </div>
-          
-          <div class="example-box do-say">
-            <h4>✅ Say This (Third Person)</h4>
-            <ul>
-              <li>"The delegate of [Your Country] finds this resolution to be counter-productive."</li>
-              <li>"The delegation of [Your Country] believes..."</li>
-              <li>"The delegate of [Your Country] would like to ask the delegate of France..."</li>
-              <li>"The delegate of [Your Country] respectfully disagrees with the delegate's idea."</li>
-              <li>"Could the delegate please clarify their previous statement?"</li>
-              <li>"The delegate of [Your Country] wishes to speak."</li>
-              <li>"The delegate yields the floor back to the Chair."</li>
-              <li>"The delegate of [Your Country] would like to make a motion..."</li>
-              <li>"The delegate of [Your Country]'s research indicates that..."</li>
-              <li>"The delegations of the G7 believe..."</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Essential Phrases -->
-    <h2 class="section-title">🗣️ Essential Phrases</h2>
-    <div class="phrases-grid">
-      <div class="phrase-card">
-        <h3>📢 Opening Speech</h3>
-        <p>"Honourable Chair, fellow delegates..."</p>
-      </div>
-      <div class="phrase-card">
-        <h3>💭 State Your Position</h3>
-        <p>"The delegate of Japan believes that..."</p>
-      </div>
-      <div class="phrase-card">
-        <h3>❓ Ask Questions</h3>
-        <p>"Is the delegate of France aware that..."</p>
-      </div>
-      <div class="phrase-card">
-        <h3>✅ Show Agreement</h3>
-        <p>"The delegate of South Africa concurs with..."</p>
-      </div>
-      <div class="phrase-card">
-        <h3>⚠️ Express Disagreement</h3>
-        <p>"The delegate respectfully disagrees..."</p>
-      </div>
-      <div class="phrase-card">
-        <h3>🤝 <span class="tooltip"><span class="tooltip-word">Yield</span> the Floor<span class="tooltiptext">To give up your remaining speaking time to the Chair or another delegate.</span></span></h3>
-        <p>"The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor to the Chair."</p>
-      </div>
-    </div>
+        // Show the portal page by default
+        document.getElementById('portal-page').style.display = 'block';
 
-    <!-- Points Section -->
-    <h2 class="section-title">🙋‍♀️ Points in THIMUN</h2>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.style.display = 'block';
+                window.scrollTo(0, 0); // Scroll to top
+                
+                // INITIALIZE scripts for the specific page
+                if (pageId === 'language-guide-page') {
+                    initLanguageGuideAccordions();
+                } else if (pageId === 'resolution-guide-page') {
+                    initResolutionGuideAI();
+                }
+            }
+        }
 
-    <!-- Accordion 1: Point of Information (to Speaker) -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(1)">
-        <span class="accordion-title">1️⃣ Point of Information (to the Speaker)</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> Ask questions to the speaker who currently has the floor, but ONLY if they have indicated willingness to yield to points of information.
-        </p>
-        <p class="point-description">
-          <strong>When to use:</strong> After a speech when the speaker yields to points of information. Must be formulated as a question (a short introductory statement may precede the question).
-        </p>
-        <div class="warning-box">
-          <strong>⚠️ THIMUN Rule:</strong> Cannot interrupt a speaker. Follow-up questions from the same questioner are usually not in order.
-        </div>
+        // --- 2. Language Guide Accordion Script ---
         
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Asking for Elaboration</span>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of India. To what point do you yield your time?"</div>
-          <div class="dialogue-line"><span class="speaker-delegate">Delegate of India:</span> "The delegate of India yields to Points of Information."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any Points of Information on the floor?"</div>
-          <div class="dialogue-line">(You raise your placard and are recognized)</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Kenya):</span> "Point of Information to the speaker. The delegate of India mentioned a new fund. Could the delegate please elaborate on how this fund would be financed?"</div>
-          <div class="dialogue-line"><span class="speaker-delegate">Delegate of India:</span> "The delegate thanks the delegate of Kenya for the question. The fund would be financed through..."</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Accordion 2: Point of Information (to Chair) -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(2)">
-        <span class="accordion-title">2️⃣ Point of Information to the Chair</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> Ask the Chair questions about any matter related to the committee's business or for clarification on non-procedural issues.
-        </p>
-        <p class="point-description">
-          <strong>When to use:</strong> When you need clarification from the Chair about committee business, timing, or content matters. Cannot interrupt a speaker.
-        </p>
+        let languageAccordionsInitialized = false;
         
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Asking About Time</span>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "We will now move to debate on the draft resolution. Are there any points or motions?"</div>
-          <div class="dialogue-line">(You raise your placard)</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Egypt):</span> "Point of Information to the Chair."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The delegate of Egypt."</div>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "Could the Chair inform the committee of the debate time allocated for this resolution?"</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The Chair proposes 30 minutes of debate time. Seeing no objections, it is set."</div>
-        </div>
-      </div>
-    </div>
+        function initLanguageGuideAccordions() {
+            if (languageAccordionsInitialized) return; // Only run once
+            
+            const accordions = document.querySelectorAll('#language-guide-page .accordion-header');
+            
+            // Function to close all accordions
+            function closeAllLanguageAccordions() {
+                accordions.forEach(header => {
+                    const content = header.nextElementSibling;
+                    if (content) {
+                        header.classList.remove('active');
+                        content.classList.remove('active');
+                        content.style.maxHeight = null;
+                        content.style.padding = null;
+                    }
+                });
+            }
 
-    <!-- Accordion 3: Point of Parliamentary Enquiry -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(3)">
-        <span class="accordion-title">3️⃣ Point of Parliamentary Enquiry</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> Ask the Chair questions *specifically* concerning the rules of procedure.
-        </p>
-        <p class="point-description">
-          <strong>When to use:</strong> When you are confused about the rules (e.g., "Is a motion to... in order?"). Cannot interrupt a speaker.
-        </p>
-        
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Motion Clarification</span>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate. Are there any points or motions?"</div>
-          <div class="dialogue-line">(You raise your placard)</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Nigeria):</span> "Point of Parliamentary Enquiry."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Yes, delegate of Nigeria?"</div>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "Is it in order to move the Previous Question at this time?"</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That is correct, delegate. A motion to close debate would be in order."</div>
-        </div>
-      </div>
-    </div>
+            accordions.forEach((header, index) => {
+                header.setAttribute('data-index', index); // Add index for the onclick
+                header.onclick = function() {
+                    const content = this.nextElementSibling;
+                    if (!content) return;
+                    
+                    const isActive = this.classList.contains('active');
+                    
+                    closeAllLanguageAccordions(); // Close all
+                    
+                    if (!isActive) { // If it wasn't active, open it
+                        this.classList.add('active');
+                        content.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 60 + 'px'; // 60px for padding
+                        content.style.padding = '30px';
+                        content.style.paddingTop = '20px';
+                    }
+                };
+            });
+            languageAccordionsInitialized = true;
+        }
 
-    <!-- Accordion 4: Point of Order -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(4)">
-        <span class="accordion-title">4️⃣ Point of Order</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> Call attention to a procedural error (when the rules of procedure are being violated by the Chair or a delegate).
-        </p>
-        <p class="point-description">
-          <strong>When to use:</strong> Only when there is a clear violation of procedure. This is serious and should be used sparingly. Cannot interrupt a speaker (unless it's about voting).
-        </p>
-        <div class="warning-box">
-          <strong>⚠️ THIMUN Rule:</strong> Points of Order may ONLY relate to procedural matters, not speech content.
-        </div>
-        
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Incorrect Debate Time</span>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The Chair proposes 20 minutes of debate time for this amendment."</div>
-          <div class="dialogue-line">(You raise your placard)</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Japan):</span> "Point of Order."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "State your point, delegate of Japan."</div>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "According to the conference rules, debate on amendments is limited to a maximum of 10 minutes."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The point is well taken. The Chair stands corrected. Debate time is set at 10 minutes."</div>
-        </div>
-      </div>
-    </div>
+        // --- 3. Resolution Guide AI Helper Script ---
 
-    <!-- Accordion 5: Point of Personal Privilege -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(5)">
-        <span class="accordion-title">5️⃣ Point of Personal Privilege</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> Address issues of personal comfort (e.g., room temperature, noise) that prevent you from participating.
-        </p>
-        <p class="point-description">
-          <strong>When to use:</strong> This is the ONLY point that can interrupt a speaker, but *only* if the speech is inaudible.
-        </p>
-        <div class="warning-box">
-          <strong>⚠️ CRITICAL THIMUN Rule:</strong> It may NOT refer to the content of any speech.
-        </div>
-        
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example 1: Inaudible Speaker (CAN INTERRUPT)</span>
-          <div class="dialogue-line"><span class="speaker-delegate">Delegate of Italy:</span> <em>(speaking very quietly)</em> "...and the delegate believes..."</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Point of Personal Privilege!"</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The speaker will pause. State your point, delegate of Argentina."</div>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate cannot hear the speaker. The delegate kindly requests that the speaker speak more loudly."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Delegate of Italy, please speak into the microphone. You may continue."</div>
-        </div>
-      </div>
-    </div>
+        let resolutionAIAssistantInitialized = false;
 
-    <!-- Motions and Yields Section -->
-    <h2 class="section-title">⚖️ Motions &amp; Yields</h2>
+        function initResolutionGuideAI() {
+            if (resolutionAIAssistantInitialized) return; // Only run once
+            
+            // Get all elements *within the resolution guide page*
+            const page = document.getElementById('resolution-guide-page');
+            if (!page) return; // Safety check
 
-    <!-- Accordion 6: Yielding Your Time -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(6)">
-        <span class="accordion-title">🤝 <span class="tooltip"><span class="tooltip-word">Yielding</span><span class="tooltiptext">The act of giving up one's remaining speaking time.</span></span> (Giving Up Your Time)</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          After your speech, the Chair will ask how you <span class="tooltip"><span class="tooltip-word">yield</span><span class="tooltiptext">To give up your remaining speaking time to the Chair or another delegate.</span></span> your time. You have three main options.
-        </p>
-        <div class="dialogue-box">
-          <span class="dialogue-label">Option 1: To the Chair (Most Common)</span>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor back to the Chair."</div>
-          <div class="dialogue-line"><strong>What it means:</strong> You are done and do not want to answer questions.</div>
-        </div>
-        <div class="dialogue-box">
-          <span class="dialogue-label">Option 2: To Questions</span>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> to Points of Information."</div>
-          <div class="dialogue-line"><strong>What it means:</strong> You are opening the floor for other delegates to ask you questions.</div>
-        </div>
-        <div class="dialogue-box">
-          <span class="dialogue-label">Option 3: To Another Delegate</span>
-          <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor to the delegate of Argentina."</div>
-          <div class="dialogue-line"><strong>What it means:</strong> You give the rest of your time to another delegate (must be pre-arranged). <strong>THIMUN Rule:</strong> This can only be done once consecutively. The next delegate must <span class="tooltip"><span class="tooltip-word">yield</span><span class="tooltiptext">To give up remaining speaking time.</span></span> back to the Chair.</div>
-        </div>
-      </div>
-    </div>
+            const generateBtn = page.querySelector('#generateBtn');
+            const userInputElem = page.querySelector('#userInput');
+            const apiModeElem = page.querySelector('#apiMode');
+            const loadingSpinner = page.querySelector('#loading-spinner');
+            const resultContainer = page.querySelector('#result-container');
+            const resultTextElem = page.querySelector('#result-text');
+            const errorBox = page.querySelector('#error-box');
+            const copyBtn = page.querySelector('#copy-btn');
 
-    <!-- Accordion 7: Motion to Close Debate -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(7)">
-        <span class="accordion-title">🗳️ Motion to Close Debate (<span class="tooltip"><span class="tooltip-word">Previous Question</span><span class="tooltiptext">The formal name for the motion to close debate and move immediately to a vote.</span></span>)</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> To end the debate on the current topic (resolution or amendment) and move immediately to a vote.
-        </p>
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Closing Debate</span>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Germany):</span> "Honourable Chair, the delegate of Germany <strong>moves the <span class="tooltip"><span class="tooltip-word">Previous Question</span><span class="tooltiptext">The formal name for the motion to close debate and move immediately to a vote.</span></span></strong>."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds?"</div>
-          <div class="dialogue-line"><span class="speaker-other">(Other Delegates):</span> "Second!"</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any objections?"</div>
-          <div class="dialogue-line"><span class="speaker-other">(Another Delegate):</span> "Objection!"</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "We will have two speakers for and two speakers against this motion..."</div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Accordion 8: Motion to Adjourn Debate -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(8)">
-        <span class="accordion-title">🗓️ Motion to <span class="tooltip"><span class="tooltip-word">Adjourn the Debate</span><span class="tooltiptext">To "table" or postpone debate on a topic, setting it aside to be discussed later.</span></span></span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> To stop debate on the current topic (resolution) and "table" it, meaning it is set aside to be potentially debated later, after all other resolutions.
-        </p>
-        <p class="point-description">
-          <strong>Rules:</strong> This motion is debatable (usually one speaker for, one against) and requires a simple majority to pass.
-        </p>
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Tabling a Resolution</span>
-          <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Honourable Chair, the delegate of Argentina <strong>motions to <span class="tooltip"><span class="tooltip-word">adjourn the debate</span><span class="tooltiptext">To "table" or postpone debate on a topic, setting it aside to be discussed later.</span></span></strong> on Resolution 1.1."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds? ... Objections? ... We will have one speaker for and one against this motion."</div>
-        </div>
-      </div>
-    </div>
+            // If any element is missing, stop to prevent errors
+            if (!generateBtn || !userInputElem || !apiModeElem || !loadingSpinner || !resultContainer || !resultTextElem || !errorBox || !copyBtn) {
+                console.error("Resolution Helper script could not find all required elements.");
+                return;
+            }
 
-    <!-- Accordion 9: Motion to Extend Debate Time -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(9)">
-        <span class="accordion-title">⏱️ Motion to Extend Debate Time</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> To add more time for debate on the current topic (resolution or amendment).
-        </p>
-        <p class="point-description">
-          <strong>Rules:</strong> This motion is not debatable and is decided at the Chair's discretion. It requires a "second."
-        </p>
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Extending Time</span>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Debate time has elapsed. Are there any points or motions?"</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Canada):</span> "Honourable Chair, the delegate <strong>motions to extend debate time</strong> by 10 minutes."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any seconds? ... Seeing seconds, the Chair will entertain this. We will move to a vote..."</div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Accordion 10: Motion to Reconsider a Resolution -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(10)">
-        <span class="accordion-title">🔄 Motion to Reconsider a Resolution</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> To bring a resolution that has already been passed or failed back to the floor for a new debate and vote.
-        </p>
-        <p class="point-description">
-          <strong>Rules:</strong> This can only be done after all other resolutions on the agenda have been debated. It is not debatable and requires a two-thirds (2/3) majority to pass.
-        </p>
-         <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Reconsidering</span>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "We have concluded debate on all resolutions on the agenda. Are there any further points or motions?"</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Brazil):</span> "Honourable Chair, the delegate of Brazil <strong>motions to reconsider Resolution 1.1</strong>."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. This motion requires a two-thirds majority. All those in favor of reconsidering Resolution 1.1, please raise your placards..."</div>
-        </div>
-      </div>
-    </div>
+            const systemPrompt = `You are an expert Model United Nations (MUN) delegate and chair, specializing in THIMUN procedure. Your task is to help a student write a single, formal resolution clause.
+            
+            You must follow all THIMUN formatting rules:
+            1.  All clauses are part of a single sentence.
+            2.  Never use personal pronouns ('I', 'we', 'our'). Refer to bodies as 'Member States' or their official names.
+            3.  Preambulatory clauses start with an *italicized* starter (e.g., '<i>Aware of</i>') and end with a comma (,). Use HTML <i> tags for italics.
+            4.  Operative clauses start with a *numbered* and <u>underlined</u> starter (e.g., '1. <u>Calls for</u>') and end with a semicolon (;), except for the very last clause which ends with a period (.). Use HTML <u> tags for underline.
+            5.  Do not repeat the same starter phrase if given multiple examples.
+            6.  Write out all acronyms the first time [e.g., 'United Nations (UN)'].
+            7.  Be formal, diplomatic, and concise.
+            8.  Respond *only* with the single, requested clause. Do not add any explanation, conversational text, or markdown formatting (like '\`\`\`html'). Just return the raw HTML-formatted clause.`;
 
-    <!-- Accordion 11: Other Motions -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(11)">
-        <span class="accordion-title">📋 Other Motions &amp; Objections</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <div class="dialogue-box">
-          <span class="dialogue-label">Motion to Refer to Another Forum</span>
-          <div class="dialogue-line"><strong>Purpose:</strong> Used if a clause is outside the committee's power (e.g., uses "Demands" in the General Assembly). It's discouraged; chairs prefer amending the clause (e.g., to "Urges the Security Council to...").</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Peru):</span> "Honourable Chair, the delegate of Peru <strong>motions to refer this resolution to the Security Council</strong>, as operative clause 2 uses language such as 'Demands' which is outside the purview of the General Assembly."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. This motion is debatable. Is the delegate of Peru willing to speak for their motion?"</div>
-        </div>
-        <div class="dialogue-box">
-          <span class="dialogue-label">Withdrawing a Resolution</span>
-          <div class="dialogue-line"><strong>Rule:</strong> The main submitter can motion to withdraw their resolution, but it requires *all* co-submitters to agree to it.</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
-          <div class="dialogue-line"><span class="speaker-delegate">Delegate of Japan (Main Submitter):</span> "Honourable Chair, after hearing the debate, the delegate of Japan <strong>motions to withdraw Resolution 1.1</strong> from the floor."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. The Chair asks all co-submitters of Resolution 1.1: are there any objections to withdrawing this resolution? ... Seeing no objections from the co-submitters, Resolution 1.1 is withdrawn."</div>
-        </div>
-        <div class="dialogue-box">
-          <span class="dialogue-label">Objection to the Main Motion</span>
-          <div class="dialogue-line"><strong>Purpose:</strong> To object to the entire resolution being debated, often on grounds that it violates national sovereignty. It is strongly discouraged as it's destructive to debate. Requires a 2/3 majority.</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The next resolution for debate is Resolution 1.2. Are there any points or motions on the floor?"</div>
-          <div class="dialogue-line"><span class="speaker-you">You (China):</span> "Honourable Chair, the delegate of China <strong>objects to the main motion</strong>."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "An objection to the main motion has been raised. This is a motion to *not* debate this resolution. Delegate of China, you have the floor for a short speech on your objection."</div>
-          <div class="dialogue-line"><span class="speaker-you">You (China):</span> "The delegate objects on the grounds that this resolution is a clear violation of national sovereignty..."</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you. This motion is not debatable and requires a two-thirds majority to pass. We will now vote on the objection... All those in favor of *not* debating this resolution, please raise your placards..."</div>
-        </div>
-      </div>
-    </div>
+            async function fetchWithBackoff(apiUrl, payload, retries = 3, delay = 1000) {
+                for (let i = 0; i < retries; i++) {
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
 
-    <!-- NEW SECTION -->
-    <h2 class="section-title">🔑 Key Rules &amp; Terms</h2>
+                        if (response.ok) {
+                            return await response.json();
+                        }
+                        if (response.status >= 400 && response.status < 500) {
+                            throw new Error(`Client error: ${response.status} ${response.statusText}`);
+                        }
+                    } catch (error) {
+                        if (i === retries - 1) throw error;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                }
+            }
 
-    <!-- Accordion 12: Voting Procedure -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(12)">
-        <span class="accordion-title">🗳️ Voting Procedure: Who Can Vote?</span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          A critical distinction exists between "procedural" and "substantive" votes.
-        </p>
-        <div class="dialogue-box">
-          <span class="dialogue-label">Substantive Votes (Resolutions & Amendments)</span>
-          <div class="dialogue-line">Only <strong>Member States</strong> (countries) can vote on resolutions and amendments.</div>
-          <div class="dialogue-line"><strong>Observers</strong> (e.g., NGOs like the Red Cross, or non-member states) <strong>CANNOT</strong> vote on substantive matters.</div>
-        </div>
-        <div class="dialogue-box">
-          <span class="dialogue-label">Procedural Votes (Motions)</span>
-          <div class="dialogue-line"><strong>ALL delegates</strong> (Member States *and* Observers) can vote on procedural motions.</div>
-          <div class="dialogue-line"><strong>Example:</strong> An NGO (Observer) cannot vote on an amendment, but *can* vote on a "Motion to Extend Debate Time" for that amendment.</div>
-        </div>
-      </div>
-    </div>
+            async function callGeminiAPI(userInput, apiMode) {
+                let userQuery = "";
+                switch (apiMode) {
+                    case 'preamble':
+                        userQuery = `Take this fact or idea and turn it into a single THIMUN preambulatory clause: "${userInput}"`;
+                        break;
+                    case 'operative':
+                        userQuery = `Take this solution idea and turn it into a single THIMUN operative clause. Start with '1.' as a placeholder number: "${userInput}"`;
+                        break;
+                    case 'fix':
+                        userQuery = `Take this rough/informal clause and rewrite it as a single, formal THIMUN clause. If it sounds like a preamble (a 'why' statement), format it as one. If it sounds like an operative (an 'action' statement), format it as an operative clause (using '1.' as a placeholder number): "${userInput}"`;
+                        break;
+                }
 
-    <!-- Accordion 13: Right of Reply -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(13)">
-        <span class="accordion-title">📣 <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span></span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p class="point-description">
-          <strong>Purpose:</strong> This is not a "Point" but a formal right. A delegate can request a <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span> if their country or delegation has been insulted by a speaker.
-        </p>
-        <p class="point-description">
-          <strong>Rules:</strong> You must send a note to the Chair requesting it. The Chair will grant it at their discretion, usually after the speech. It is not meant to debate policy, only to respond to the insult.
-        </p>
-        <div class="dialogue-box">
-          <span class="dialogue-label">📍 Example: Responding to an Insult</span>
-          <div class="dialogue-line"><span class="speaker-delegate">Delegate of X:</span> "...which is why the warmongering policy of Country Y is destabilizing the region."</div>
-          <div class="dialogue-line"><span class="speaker-you">(You, Delegate of Y, send a note to the Chair)</span></div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of X. The Chair has received a request for a <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span> from the delegate of Y. You have the floor for 30 seconds."</div>
-          <div class="dialogue-line"><span class="speaker-you">You (Y):</span> "The delegate of Y wishes to state that our policies are for self-defense, not "warmongering," and we find such language unhelpful to diplomatic debate."</div>
-        </div>
-      </div>
-    </div>
+                const apiKey = ""; // API key is handled by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                };
 
-    <!-- Accordion 14: Roll Call & Quorum -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(14)">
-        <span class="accordion-title">📋 Roll Call &amp; <span class="tooltip"><span class="tooltip-word">Quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span></span>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <div class="dialogue-box">
-          <span class="dialogue-label">Roll Call</span>
-          <div class="dialogue-line"><strong>What it is:</strong> The attendance check at the beginning of every session.</div>
-          <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The committee will come to order. We will now begin Roll Call. Delegates, please respond 'Present' or 'Present and Voting'..."</div>
-        </div>
-        <div class="dialogue-box">
-          <span class="dialogue-label"><span class="tooltip"><span class="tooltip-word">Quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span></span>
-          <div class="dialogue-line"><strong>What it is:</strong> The minimum number of delegates (usually one-third) that must be present for formal debate to begin and for votes to be valid. The Chair establishes <span class="tooltip"><span class="tooltip-word">quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span> during the first roll call.</div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- MODIFIED Pro Tips -->
-    <div class="tips-box">
-      <h2>💡 THIMUN Pro Tips</h2>
-      <ul class="tips-list">
-        <li><strong>Jacket On:</strong> A delegate must have their jacket/blazer on *anytime* they stand to speak (giving a speech, raising a point, or making a motion). It is a sign of respect.</li>
-        <li><strong>Respect the Chair:</strong> You must respect the decisions of the Chair at all times. Their rulings are final.</li>
-        <li><strong>Stand Up:</strong> You must always stand when speaking, whether giving a speech or raising a point.</li>
-        <li><strong>Be Diplomatic:</strong> Always be courteous. You may attack a country's *policy*, but never the *delegate*.</li>
-        <li><strong>One Thing at aTime:</strong> The committee only debates one resolution at a time, and only one amendment to that resolution at a time.</li>
-        <li><strong>No Interruptions:</strong> A speaker may *never* be interrupted, except for an audibility-related Point of Personal Privilege.</li>
-        <li><strong>Voting is Sacred:</strong> Once the Chair has announced the start of voting, no interruptions are allowed except for a Point of Order related to the vote itself.</li>
-      </ul>
-    </div>
+                try {
+                    const result = await fetchWithBackoff(apiUrl, payload);
+                    const candidate = result.candidates?.[0];
 
-  </div> <!-- end container -->
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const text = candidate.content.parts[0].text;
+                        resultTextElem.innerHTML = text; // Use innerHTML as we expect HTML
+                        resultContainer.style.display = 'block';
+                        errorBox.style.display = 'none';
+                    } else {
+                        throw new Error("Invalid response structure from API.");
+                    }
+                } catch (error) {
+                    console.error("Error calling Gemini API:", error);
+                    errorBox.textContent = `An error occurred: ${error.message}. Please try again.`;
+                    errorBox.style.display = 'block';
+                    resultContainer.style.display = 'none';
+                }
+            }
 
-  <!-- JavaScript for Accordions -->
-  <script>
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-    const accordionContents = document.querySelectorAll('.accordion-content');
+            function copyToClipboard() {
+                const textToCopy = resultTextElem.innerText; // Get the plain text
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = textToCopy;
+                document.body.appendChild(tempTextArea);
+                
+                tempTextArea.select();
+                tempTextArea.setSelectionRange(0, 99999);
+                
+                try {
+                    document.execCommand('copy');
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                    errorBox.textContent = 'Failed to copy text. Please copy manually.';
+                    errorBox.style.display = 'block';
+                }
+                
+                document.body.removeChild(tempTextArea);
+            }
 
-    function toggleAccordion(index) {
-      const content = accordionContents[index];
-      const header = accordionHeaders[index];
-      const isActive = header.classList.contains('active');
+            generateBtn.addEventListener('click', () => {
+                const userInput = userInputElem.value;
+                const apiMode = apiModeElem.value;
 
-      // Close all accordions
-      accordionHeaders.forEach((h, i) => {
-        h.classList.remove('active');
-        accordionContents[i].classList.remove('active');
-        accordionContents[i].style.maxHeight = null;
-        accordionContents[i].style.padding = null;
-      });
+                if (!userInput.trim()) {
+                    errorBox.textContent = 'Please enter a fact or idea first.';
+                    errorBox.style.display = 'block';
+                    return;
+                }
 
-      // If the clicked one wasn't already active, open it
-      if (!isActive) {
-        header.classList.add('active');
-        content.classList.add('active');
-        content.style.maxHeight = content.scrollHeight + 60 + 'px'; // 60px for padding
-        content.style.padding = '30px';
-        content.style.paddingTop = '20px';
-      }
-    }
-  </script>
+                generateBtn.disabled = true;
+                generateBtn.innerHTML = 'Generating...';
+                loadingSpinner.style.display = 'block';
+                resultContainer.style.display = 'none';
+                errorBox.style.display = 'none';
 
+                callGeminiAPI(userInput, apiMode).finally(() => {
+                    generateBtn.disabled = false;
+                    generateBtn.innerHTML = '✨ Generate';
+                    loadingSpinner.style.display = 'none';
+                });
+            });
+            
+            copyBtn.addEventListener('click', copyToClipboard);
+
+            resolutionAIAssistantInitialized = true;
+        }
+
+    </script>
 </body>
 </html>
-
 
