@@ -95,6 +95,9 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border-bottom: 4px solid #eee;
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: space-between; /* Push content apart */
         }
         .portal-card:hover {
             transform: translateY(-8px);
@@ -210,7 +213,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .accordion-content.active {
-            max-height: 2500px;
+            max-height: 5000px; /* Increased max-height for the new examples */
             padding: 30px;
             padding-top: 20px;
         }
@@ -267,7 +270,7 @@
             opacity: 1;
         }
         /* Third Person Examples */
-        .example-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .example-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
         .example-table th, .example-table td {
             border: 1px solid #ddd;
             padding: 12px;
@@ -311,6 +314,55 @@
         #resolution-guide-page .rules h2 { color: #d53f8c; }
         #resolution-guide-page .summary h2 { color: #6B46C1; }
         #resolution-guide-page .gemini-helper h2 { color: #805AD5; }
+        /* New Styles for Annotated Resolution */
+        #resolution-guide-page .annotated-reso h2 { color: #6B46C1; } /* Matching summary */
+        .reso-text-block {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 15px 0;
+        }
+        .reso-remark {
+            background: #fefcbf; /* Light yellow */
+            border: 1px solid #f6e05e; /* Yellow border */
+            border-left: 4px solid #f6e05e; /* Thick left border */
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 0 0 25px 0; /* Margin below */
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .reso-remark::before {
+            content: '💡 Remark: ';
+            font-weight: 700;
+            color: #d69e2e;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .reso-text-block .reso-preamble-header {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .reso-text-block i {
+            font-style: italic;
+            color: #3182ce;
+            font-weight: bold;
+        }
+        .reso-text-block u {
+            text-decoration: underline;
+            color: #38a169;
+            font-weight: bold;
+        }
+        .reso-text-block .end-comma, .reso-text-block .end-semi, .reso-text-block .end-period {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+        .reso-text-block .sub-clause { padding-left: 20px; }
+        .reso-text-block .sub-sub-clause { padding-left: 40px; }
+        /* End of Annotated Reso Styles */
+
         #resolution-guide-page .clause-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -348,8 +400,6 @@
             font-family: 'Courier New', Courier, monospace;
         }
         #resolution-guide-page .example-box .comment { color: #718096; font-style: italic; }
-        #resolution-guide-page .example-box i { font-style: italic; color: #3182ce; }
-        #resolution-guide-page .example-box u { text-decoration: underline; color: #38a169; }
         #resolution-guide-page .example-box .highlight { background-color: #fefcbf; font-weight: bold; }
         #resolution-guide-page .example-box .end-comma { color: #e53e3e; font-weight: bold; }
         #resolution-guide-page .example-box .end-semi { color: #e53e3e; font-weight: bold; font-size: 1.2rem; }
@@ -479,15 +529,308 @@
         }
         #student-officer-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
         #student-officer-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
-        #student-officer-guide-page .section { padding: 30px; }
+        #student-officer-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
+        #student-officer-guide-page .section:last-child { border-bottom: none; }
         #student-officer-guide-page .section h2 { color: #08AEEA; }
         #student-officer-guide-page .section p { font-size: 1.1rem; }
+        
+        /* New Styles for Chair Guide Section */
+        #student-officer-guide-page .chair-dialogue-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #08AEEA;
+            border-radius: 8px;
+            margin: 15px 0;
+            padding: 15px 20px;
+        }
+        #student-officer-guide-page .chair-dialogue-box p {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+        }
+        #student-officer-guide-page .chair-dialogue-box .phrase {
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        #student-officer-guide-page .chair-dialogue-box .dialogue {
+            color: #555;
+            padding-left: 15px;
+            border-left: 3px solid #ced4da;
+            margin-top: 8px;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        #student-officer-guide-page .dialogue .speaker-chair {
+            color: #d32f2f;
+            font-weight: 700;
+        }
+         #student-officer-guide-page .dialogue .speaker-delegate {
+            color: #1976d2;
+            font-weight: 700;
+        }
+        
+        /* ===== 5. FLOW OF DEBATE GUIDE STYLES ===== */
+        #flow-of-debate-page {
+            background: #fff;
+            padding: 20px;
+        }
+        #flow-of-debate-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #flow-of-debate-page .header-card {
+            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 50%, #FF99AC 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        #flow-of-debate-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #flow-of-debate-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+        #flow-of-debate-page .section { padding: 30px; }
+        #flow-of-debate-page .section h2 { color: #FF6A88; text-align: center; }
+        
+        /* Infographic Styles */
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .flow-step, .flow-split-container, .flow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .flow-step {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px 25px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            max-width: 500px;
+        }
+        .flow-step-main {
+            background: #fff0f0;
+            border-color: #ffb3b3;
+            color: #d6336c;
+        }
+        .flow-step-secondary {
+            background: #e6f7ff;
+            border-color: #b3e0ff;
+            color: #1976d2;
+        }
+        .flow-step-action {
+             background: #f3e8ff;
+            border-color: #d8b4fe;
+            color: #862e9c;
+        }
+        .flow-step-end {
+            background: #e6f7eb;
+            border-color: #b3e6cc;
+            color: #2f9e44;
+        }
+        .flow-connector {
+            height: 30px;
+            position: relative;
+        }
+        .flow-connector::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: #ccc;
+        }
+        .flow-connector.arrow::after {
+            content: '▼';
+            position: absolute;
+            bottom: -8px;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        .flow-split-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+        .flow-split-branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45%;
+        }
+        .flow-split-branch .flow-step {
+            width: 100%;
+        }
+
+        /* ===== 6. FOR/AGAINST SPEECH GUIDE STYLES (NEW) ===== */
+        #speech-guide-page {
+            background: #fff;
+            padding: 20px;
+        }
+        #speech-guide-page .guide-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        #speech-guide-page .header-card {
+            background: linear-gradient(135deg, #FFB75E 0%, #ED8F03 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        #speech-guide-page .header-card h1 { margin: 0; font-size: 2.25rem; }
+        #speech-guide-page .header-card p { font-size: 1.1rem; opacity: 0.9; margin-top: 10px; }
+        #speech-guide-page .section { padding: 30px; border-bottom: 1px solid #eee; }
+        #speech-guide-page .section:last-child { border-bottom: none; }
+        #speech-guide-page .section h2 { color: #ED8F03; }
+        #speech-guide-page .section h3 { color: #333; font-size: 1.4rem; margin-bottom: 15px; }
+
+        /* Speech Guide Tabs */
+        .speech-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            /* Allow scrolling on mobile */
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .speech-tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #777;
+            position: relative;
+            bottom: -2px;
+            border-bottom: 2px solid transparent;
+            flex-shrink: 0; /* Prevent tabs from shrinking */
+        }
+        .speech-tab-btn.active {
+            color: #ED8F03;
+            border-bottom-color: #ED8F03;
+        }
+        .speech-tab-content {
+            display: none;
+        }
+        .speech-tab-content.active {
+            display: block;
+        }
+        .reso-summary {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 20px;
+        }
+        .reso-summary h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+        }
+        .reso-summary ul {
+            padding-left: 20px;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        .speech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .speech-box {
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .speech-box h4 {
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+        }
+        .speech-box.speech-for {
+            border-left: 5px solid #2f9e44;
+        }
+        .speech-box.speech-for h4 {
+            color: #2f9e44;
+            border-bottom-color: #b3e6cc;
+        }
+        .speech-box.speech-against {
+            border-left: 5px solid #e03131;
+        }
+        .speech-box.speech-against h4 {
+            color: #e03131;
+            border-bottom-color: #ffb3b3;
+        }
+        .speech-box p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .speech-box p:last-child {
+            margin-bottom: 0;
+        }
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .tips-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+        }
+        .tips-card h3 {
+            color: #ED8F03;
+            margin: 0 0 15px 0;
+        }
+        .tips-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .tips-card li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .tips-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ED8F03;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
 
 
         /* --- Media Queries for Responsive Design --- */
         @media (max-width: 768px) {
             #resolution-guide-page .rules-grid, 
-            #resolution-guide-page .summary-list {
+            #resolution-guide-page .summary-list,
+            .speech-grid, .tips-grid {
                 grid-template-columns: 1fr;
             }
             #resolution-guide-page .header-card h1 { font-size: 1.8rem; }
@@ -495,6 +838,20 @@
             #resolution-guide-page .gemini-helper .controls {
                 flex-direction: column;
                 align-items: stretch;
+            }
+            .flow-split-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .flow-split-branch {
+                width: 90%;
+            }
+            .speech-tabs {
+                gap: 5px;
+            }
+            .speech-tab-btn {
+                padding: 10px;
+                font-size: 0.9rem;
             }
         }
         @media (max-width: 600px) {
@@ -537,6 +894,15 @@
                     <h3>🧑‍⚖️ Student Officer Guide</h3>
                     <p>Learn how to Chair a committee, manage debate, and apply the rules of procedure.</p>
                 </a>
+                <a class="portal-card" onclick="showPage('flow-of-debate-page')">
+                    <h3>🌊 Flow of Debate</h3>
+                    <p>A visual step-by-step infographic of formal debate, from lobbying to voting.</p>
+                </a>
+                <!-- NEW CARD FOR SPEECH GUIDE -->
+                <a class="portal-card" onclick="showPage('speech-guide-page')">
+                    <h3>🗣️ For/Against Speech Guide</h3>
+                    <p>Learn how to structure a persuasive speech with clear examples and key argument types.</p>
+                </a>
             </div>
         </div>
     </div>
@@ -560,7 +926,7 @@
                 <p>Never say "I think..." → Say "The delegate of [Country] believes..."</p>
             </div>
 
-            <!-- NEW: Third Person Elaboration -->
+            <!-- Third Person Elaboration -->
             <div class="accordion">
                 <div class="accordion-header" onclick="toggleAccordion(0)">
                     <span class="accordion-title">⭐ Mastering the Third Person: The Rule in Action</span>
@@ -604,6 +970,81 @@
                                 <td class="bad">"All of us here want peace."</td>
                                 <td class="good">"All delegates present wish to see a peaceful resolution."</td>
                             </tr>
+                            <tr>
+                                <td>Stating National Policy</td>
+                                <td class="bad">"My country has always fought for human rights."</td>
+                                <td class="good">"The nation of Canada has a long-standing policy of supporting human rights."</td>
+                            </tr>
+                            <tr>
+                                <td>Proposing an Amendment</td>
+                                <td class="bad">"I wrote an amendment to add a new clause."</td>
+                                <td class="good">"The delegate of Brazil has submitted an amendment to add a new operative clause."</td>
+                            </tr>
+                            <tr>
+                                <td>Responding to a Question</td>
+                                <td class="bad">"To answer your question, my plan will work because..."</td>
+                                <td class="good">"In response to the delegate's query, this plan will succeed because..."</td>
+                            </tr>
+                            <tr>
+                                <td>Expressing Emotion</td>
+                                <td class="bad">"I am shocked by this proposal."</td>
+                                <td class="good">"The delegation of France is shocked by this proposal."</td>
+                            </tr>
+                            <tr>
+                                <td>Correcting a Fact</td>
+                                <td class="bad">"You are wrong. The statistic I found says..."</td>
+                                <td class="good">"The delegate of Russia would like to correct a factual inaccuracy. The correct statistic is..."</td>
+                            </tr>
+                            <tr>
+                                <td>Yielding Time</td>
+                                <td class="bad">"I'm done. I yield my time to the chair."</td>
+                                <td class="good">"The delegate of Egypt yields the floor back to the Chair."</td>
+                            </tr>
+                            <tr>
+                                <td>Referring to Personal Knowledge</td>
+                                <td class="bad">"In a book I read, it said..."</td>
+                                <td class="good">"The delegate of China would like to bring to the committee's attention that..."</td>
+                            </tr>
+                            <tr>
+                                <td>Asking for a Point</td>
+                                <td class="bad">"I have a Point of Information."</td>
+                                <td class="good">"Point of Information to the speaker." (Or just raise placard)</td>
+                            </tr>
+                            <tr>
+                                <td>Disagreeing Strongly</td>
+                                <td class="bad">"I completely disagree with your entire speech."</td>
+                                <td class="good">"The delegate of the United States respectfully but firmly disagrees with the position of the previous speaker."</td>
+                            </tr>
+                            <tr>
+                                <td>Addressing the Chair</td>
+                                <td class="bad">"Can you tell me if this is allowed?"</td>
+                                <td class="good">"Point of Parliamentary Enquiry: The delegate wishes to know if this motion is in order."</td>
+                            </tr>
+                             <tr>
+                                <td>Referring to an Ally</td>
+                                <td class="bad">"My allies and I all agree that..."</td>
+                                <td class="good">"The delegate of Germany, along with its fellow EU member states, agrees that..."</td>
+                            </tr>
+                            <tr>
+                                <td>Refuting an Argument</td>
+                                <td class="bad">"That's a bad idea because it won't work."</td>
+                                <td class="good">"The delegation of India finds this proposal to be unfeasible because..."</td>
+                            </tr>
+                            <tr>
+                                <td>Making a Suggestion</td>
+                                <td class="bad">"Maybe we should try to create a new fund."</td>
+                                <td class="good">"The delegate of Nigeria suggests the creation of a new fund."</td>
+                            </tr>
+                            <tr>
+                                <td>Asking for Clarification</td>
+                                <td class="bad">"I don't understand what you mean."</td>
+                                <td class="good">"Could the delegate of Australia please clarify what is meant by 'regional mechanisms'?"</td>
+                            </tr>
+                            <tr>
+                                <td>Referring to the Resolution</td>
+                                <td class="bad">"I like the first part of my resolution, but not the second."</td>
+                                <td class="good">"The delegate of Brazil supports the preambulatory clauses but has concerns about the operative clauses."</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -643,7 +1084,7 @@
 
             <!-- Accordion 1: Point of Information (to Speaker) -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(1)">
+                <div class="accordion-header">
                     <span class="accordion-title">1️⃣ Point of Information (to the Speaker)</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -669,7 +1110,7 @@
 
             <!-- Accordion 2: Point of Information (to Chair) -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(2)">
+                <div class="accordion-header">
                     <span class="accordion-title">2️⃣ Point of Information to the Chair</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -691,7 +1132,7 @@
 
             <!-- Accordion 3: Point of Parliamentary Enquiry -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(3)">
+                <div class="accordion-header">
                     <span class="accordion-title">3️⃣ Point of Parliamentary Enquiry</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -713,7 +1154,7 @@
 
             <!-- Accordion 4: Point of Order -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(4)">
+                <div class="accordion-header">
                     <span class="accordion-title">4️⃣ Point of Order</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -739,7 +1180,7 @@
 
             <!-- Accordion 5: Point of Personal Privilege -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(5)">
+                <div class="accordion-header">
                     <span class="accordion-title">5️⃣ Point of Personal Privilege</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -767,7 +1208,7 @@
 
             <!-- Accordion 6: Yielding Your Time -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(6)">
+                <div class="accordion-header">
                     <span class="accordion-title">🤝 Yielding (Giving Up Your Time)</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -795,7 +1236,7 @@
 
             <!-- Accordion 7: Motion to Close Debate -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(7)">
+                <div class="accordion-header">
                     <span class="accordion-title">🗳️ Motion to Close Debate (<span class="tooltip">Previous Question<span class="tooltip-text">The formal name for the motion to end debate and vote.</span></span>)</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -818,7 +1259,7 @@
 
             <!-- Accordion 8: Motion to Adjourn Debate -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(8)">
+                <div class="accordion-header">
                     <span class="accordion-title">🗓️ Motion to <span class="tooltip">Adjourn the Debate<span class="tooltip-text">To "table" or pause debate on the current topic, moving to the next item.</span></span></span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -839,7 +1280,7 @@
 
             <!-- Accordion 9: Motion to Extend Debate Time -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(9)">
+                <div class="accordion-header">
                     <span class="accordion-title">⏱️ Motion to Extend Debate Time</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -861,7 +1302,7 @@
             
             <!-- Accordion 10: Motion to Reconsider a Resolution -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(10)">
+                <div class="accordion-header">
                     <span class="accordion-title">🔄 Motion to Reconsider a Resolution</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -877,7 +1318,7 @@
 
             <!-- Accordion 11: Other Motions -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(11)">
+                <div class="accordion-header">
                     <span class="accordion-title">📋 Other Motions &amp; Objections</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -905,7 +1346,7 @@
 
             <!-- Accordion 12: Voting Procedure -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(12)">
+                <div class="accordion-header">
                     <span class="accordion-title">🗳️ Voting Procedure: Who Can Vote?</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -928,7 +1369,7 @@
 
             <!-- Accordion 13: Right of Reply -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(13)">
+                <div class="accordion-header">
                     <span class="accordion-title">📣 <span class="tooltip">Right of Reply<span class="tooltip-text">A right to respond if your country has been insulted. Granted by the Chair.</span></span></span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -948,7 +1389,7 @@
 
             <!-- Accordion 14: Roll Call & Quorum -->
             <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(14)">
+                <div class="accordion-header">
                     <span class="accordion-title">📋 Roll Call &amp; <span class="tooltip">Quorum<span class="tooltip-text">The minimum number of delegates (usually 1/3) needed to start debate or vote.</span></span></span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1137,6 +1578,120 @@
                 </div>
             </div>
 
+            <!-- ============================================= -->
+            <!-- ===== NEW ANNOTATED RESOLUTION SECTION ===== -->
+            <!-- ============================================= -->
+            <div class="section annotated-reso">
+                <h2>Annotated Sample Resolution</h2>
+                <p>Here is a full resolution with remarks explaining each part, based on the PDF you provided.</p>
+                
+                <div class="reso-text-block">
+                    <strong>FORUM:</strong> Disarmament Sub-Commission 1<br>
+                    <strong>QUESTION OF:</strong> The role of diamonds in fueling conflict: breaking the link between the illicit transaction of rough diamonds and armed conflict as a contribution to prevention and settlement of conflicts<br>
+                    <strong>SUBMITTED BY:</strong> Saint Vincent and the Grenadines<br>
+                    <strong>CO-SUBMITTERS:</strong> Argentina, Australia, Canada, France, Germany, India, Indonesia, Japan, Mexico, Saudi Arabia, South Africa, Türkiye, United Kingdom, United States of America
+                </div>
+                <div class="reso-remark">
+                    The <strong>Header</strong> must be perfect. The `FORUM` and `QUESTION OF` must match the official agenda exactly. `CO-SUBMITTERS` must be listed in alphabetical order, and country names must be the official ones recognized by the UN.
+                </div>
+
+                <div class="reso-text-block">
+                    <span class="reso-preamble-header">THE DISARMAMENT COMMISSION,</span><br><br>
+                    <i>Noting</i> that the smuggling of illicit rough diamonds accounts for over 50 percent of the diamond trade and it is estimated by the Government Gold and Diamond Office that the total production of rough illicit diamonds amounts to 100 million USD per year<span class="end-comma">,</span><br><br>
+                    <i>Further noting</i> illicit rough diamonds as diamonds that are uncut and unpolished but are used as "conflict or blood diamonds" to finance conflicts to overthrow governments<span class="end-comma">,</span><br><br>
+                    <i>Aware</i> that 4% of diamonds produced are classified as "conflict or blood diamonds," which is enough to purchase weapons to destabilize the entire African continent<span class="end-comma">,</span><br><br>
+                    <i>Defining</i> "conflict or blood diamonds" as gems which are found in regions that are not under the control of the democratically elected ruler or government, or diamonds used by business or non-state forces to fund movements of human rights abuses against civilians<span class="end-comma">,</span>
+                </div>
+                <div class="reso-remark">
+                    <strong>Preambulatory Clauses (The "WHY")</strong><br>
+                    Notice how this section sets the stage. It defines the problem ("conflict or blood diamonds"), states the scale (100 million USD), and explains why it's a problem (used to finance conflicts).
+                    <ul>
+                        <li>Clause starters are <i>italicized</i>.</li>
+                        <li>Every clause ends with a <strong>comma (,)</strong>.</li>
+                        <li>The committee name ("THE DISARMAMENT COMMISSION,") is in all caps.</li>
+                        <li>No repeated starters: `Noting` is followed by `Further noting`.</li>
+                    </ul>
+                </div>
+
+                <div class="reso-text-block">
+                    <i>Recognizing</i> the Kimberley Process Certification Scheme (KPCS) as an internationally recognized certification system, established in 2003 by the United Nations (UN) General Assembly to establish national import and export standards of rough diamonds<span class="end-comma">,</span><br><br>
+                    <i>Further recognizing</i> that the KPCS is lacking a comprehensive system for monitoring where diamonds are mined, how they are mined, what the proceeds are funding and how diamonds are domestically transported, which influences a government's control over conflicts and can possibly promote illicit diamond trading<span class="end-comma">,</span>
+                </div>
+                <div class="reso-remark">
+                    <strong>Acronyms (KPCS, UN)</strong><br>
+                    This is the first time "Kimberley Process Certification Scheme" and "United Nations" are used, so they are written out in full, followed by their acronyms in parentheses. Now, the resolution can just use "KPCS" and "UN".
+                </div>
+
+                <div class="reso-text-block">
+                    1. <u>Calls for</u> all relevant Member States to sign and ratify the KPCS to promote cooperation and awareness of trade<span class="end-semi">;</span><br><br>
+                    2. <u>Further calls for</u> all relevant nations which are withholding signature and ratification of the KPCS due to financial reasons, to request funds or low interest loans from intergovernmental organizations (IGOs) such as the International Monetary Fund (IMF) and the World Bank<span class="end-semi">;</span>
+                </div>
+                <div class="reso-remark">
+                    <strong>Operative Clauses (The "HOW")</strong><br>
+                    Now the action begins. These are the solutions.
+                    <ul>
+                        <li>Clauses are <strong>numbered (1, 2, 3...)</strong>.</li>
+                        <li>Clause starters are <u>underlined</u>.</li>
+                        <li>Every clause ends with a <strong>semicolon (;)</strong>.</li>
+                        <li>Notice the use of `Further calls for` to avoid repeating `Calls for`.</li>
+                        <li>Acronyms like "IGO" and "IMF" are written out in full the first time.</li>
+                    </ul>
+                </div>
+                
+                <div class="reso-text-block">
+                    3. <u>Asks for</u> the creation of the Collation for Stopping Conflict Diamonds (CSCD), a United Nations Organization (UNO), which would work with the relevant Member States... in order to stop illicit diamond transportation both domestically and internationally level by<span class="end-comma">:</span>
+                    <div class="sub-clause">a. monitoring in their respective countries who is buying and selling the diamonds</div>
+                    <div class="sub-clause">b. ensuring the methods by which the diamonds are bought and mined are legal according to the KPCS's definition of "clean" diamonds as well as ensuring compliance with the Geneva Convention</div>
+                    <div class="sub-clause">c. sending a submitted proof of each country's and mining companies' diamond proceeds to ensure that they are not funding armed conflicts</div>
+                    <div class="sub-clause">d. sending a member of the CSCD and of the UNMOVIC in the first year following a nation's ratification of the KPCS, to observe the changes, thus ensuring transparency<span class="end-semi">;</span></div>
+                </div>
+                <div class="reso-remark">
+                    <strong>Sub-Clauses (a, b, c)</strong><br>
+                    When a clause has a list of actions, use sub-clauses.
+                    <ul>
+                        <li>Introduce the list with a <strong>colon (:)</strong>.</li>
+                        <li>Sub-clauses start with lowercase letters (a, b, c...).</li>
+                        <li>Only the *last* sub-clause (d) gets the <strong>semicolon (;)</strong> that ends the *entire* clause 3.</li>
+                    </ul>
+                </div>
+
+                <div class="reso-text-block">
+                    4. <u>Urges</u> that the monitoring system of CSCD and Member States that have signed the KPCS allow and implement a customs checking system in each county including<span class="end-comma">:</span>
+                    <div class="sub-clause">a. a monitoring system using modern measuring and weighing instruments, financed if needed by the IMF, in order to<span class="end-comma">:</span>
+                        <div class="sub-sub-clause">i. check that the amount and quality of "clean" diamonds stated on the certificate is received</div>
+                        <div class="sub-sub-clause">ii. also make sure that the certificates received are genuine and include all necessary information</div>
+                        <div class="sub-sub-clause">iii. confiscate any unregistered diamonds and the revenue of the illegal sales which will then be used for the CSCD</div>
+                    </div>
+                    <div class="sub-clause">b. the cooperation between the custom checking system, Member States and International Criminal Police Organization (INTERPOL), in order to allocate a punishment for offenders who are illegally smuggling diamonds by<span class="end-comma">:</span>
+                        <div class="sub-sub-clause">i. withholding certificates for international and domestic transportation of the businesses and Member States</div>
+                        <div class="sub-sub-clause">ii. investigating other past certificates issued by the business or persons that sent the certificate in order to prevent more illegal smuggling</div>
+                        <div class="sub-sub-clause">iii. implementing other penalties suggested by the CSCD and any other relevant body<span class="end-semi">;</span></div>
+                    </div>
+                </div>
+                <div class="reso-remark">
+                    <strong>Sub-Sub-Clauses (i, ii, iii)</strong><br>
+                    You can go even deeper for more detail.
+                    <ul>
+                        <li>Sub-clause `a.` and `b.` introduce their lists with a <strong>colon (:)</strong>.</li>
+                        <li>Sub-sub-clauses use lowercase <strong>Roman numerals (i, ii, iii...)</strong>.</li>
+                        <li>The punctuation rule is the same: only the *very last* item (`b. iii.`) gets the final <strong>semicolon (;)</strong> for all of clause 4.</li>
+                    </ul>
+                </div>
+
+                <div class="reso-text-block">
+                    5. <u>Suggests</u> the creation of an online database...<span class="end-semi">;</span><br><br>
+                    6. <u>Further suggests</u> the creation of an internationally accepted KPCS form...<span class="end-semi">;</span><br><br>
+                    7. <u>Promotes</u> publicizing of verified investigations and sanctions run by the CSCD on multinational corporations engaged in the purchase of blood diamonds, to jeopardize their reputation<span class="end-period">.</span>
+                </div>
+                <div class="reso-remark">
+                    <strong>The Final Clause</strong><br>
+                    The very last operative clause (clause 7) is the only place in the *entire document* (after the header) that ends with a <strong>period (.).</strong> This officially ends the one-sentence resolution.
+                    <br><br>
+                    <strong>Pro-Tip:</strong> Avoid "wasting" your final clause on a phrase like "Remains seized on the matter." Make your last clause an action.
+                </div>
+
+            </div>
+            
             <!-- ===== GEMINI HELPER SECTION ===== -->
             <div class="section gemini-helper">
                 <h2>✨ Resolution Helper</h2>
@@ -1212,10 +1767,499 @@
             <div class="section">
                 <h2>Welcome, Student Officers!</h2>
                 <p>This guide will help you understand the basics of chairing a committee, managing the flow of debate, and applying the THIMUN Rules of Procedure effectively.</p>
-                <p><em>(Content for this guide is under construction.)</em></p>
+                <p><em>(More content for this guide is under construction.)</em></p>
             </div>
+
+            <!-- CHAIR PHRASES SECTION -->
+            <div class="section chair-phrases">
+                <h2>Common Chair Phrases & Dialogues</h2>
+                <p>As a chair, you must control the flow of debate using precise parliamentary language. Here are some of the most essential phrases.</p>
+
+                <h3>Starting Debate</h3>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The House will come to order.”</span>
+                    <p class="dialogue">Used to start the session or regain control if delegates are talking.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The chair calls upon the delegate of [...] (the submitter) to read the resolution to the House.”</span>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The House has heard the resolution. Is there a second?”</span>
+                    <p class="dialogue"><span class="speaker-delegate">Delegate:</span> "Second!"<br><span class="speaker-chair">Chair:</span> "Are there any objections? ... Seeing none, the motion is in order."</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The chair fixes a debate time of 10 minutes for and 10 minutes against the motion.”</span>
+                </div>
+
+                <h3>Managing Speakers</h3>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The delegate of [...] has the floor.”</span>
+                    <p class="dialogue">This formally gives the delegate permission to speak.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The chair recognizes the delegate of…”.</span>
+                    <p class="dialogue">Used to select the next delegate to speak or raise a point.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Are there any further points on the floor?”</span>
+                    <p class="dialogue">Used to ask for motions or points when no one is speaking.</p>
+                </div>
+                 <div class="chair-dialogue-box">
+                    <span class="phrase">“Are there any further points of information to this speaker?”</span>
+                    <p class="dialogue">Used after a delegate has answered a Point of Information, to see if others have questions.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Will the speaker please make his/her concluding remarks.”</span>
+                    <p class="dialogue">A polite way to tell a speaker their time is almost up and they need to finish.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Debate time... has expired. Will the speaker please yield the floor.”</span>
+                    <p class="dialogue">The formal way to stop a speaker whose time has run out.</p>
+                </div>
+
+                <h3>Managing Points</h3>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“To what point does the delegate of [...] rise?”</span>
+                    <p class="dialogue"><span class="speaker-delegate">Delegate:</span> "Point of Parliamentary Enquiry."<br><span class="speaker-chair">Chair:</span> "Please rise and state your point."</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“All points are out of order until the speaker has concluded his/her speech.”</span>
+                    <p class="dialogue">Used if a delegate tries to raise a non-urgent point while someone is speaking.</p>
+                </div>
+                 <div class="chair-dialogue-box">
+                    <span class="phrase">“Will you please state your point in a form of a question.”</span>
+                    <p class="dialogue">Used when a delegate is making a statement instead of asking a question during a Point of Information.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Will you please repeat/rephrase your question.”</span>
+                    <p class="dialogue">Used if the speaker or Chair did not understand a delegate's point.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Your point is (not) well taken.”</span>
+                    <p class="dialogue">The formal way to accept or reject a Point of Order.</p>
+                </div>
+
+                <h3>Moving to Vote</h3>
+                 <div class="chair-dialogue-box">
+                    <span class="phrase">“The chair proposes an extension of debate time by 5 minutes for and 5 minutes against the motion.”</span>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The debate is now closed. We will move into voting procedures. All points are out of order.”</span>
+                    <p class="dialogue">This is a critical announcement. It makes all note-passing and discussion illegal until voting is over.</p>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“The motion will now be put to the vote.”</span>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Will all those in favour of the resolution/amendment, please raise their placards.”</span>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Will all those opposed/against... please raise their placards.”</span>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Will all those abstaining, please raise their placards.”</span>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“With X votes in favour, Y votes against and Z votes abstaining, the motion/resolution/amendment has passed/failed.”</span>
+                </div>
+                <div class="chair-dialogue-box">
+                    <span class="phrase">“Clapping is (not) in order.”</span>
+                    <p class="dialogue">Used to maintain decorum after a vote. (In THIMUN, clapping is usually only in order after the entire debate is adjourned.)</p>
+                </div>
+            </div>
+
         </div> <!-- end student officer guide container -->
     </div> <!-- end student officer guide page -->
+
+
+    <!-- =================================================================== -->
+    <!-- 5. FLOW OF DEBATE GUIDE PAGE (NEW) -->
+    <!-- =================================================================== -->
+    <div id="flow-of-debate-page" class="page">
+        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
+        <div class="guide-container">
+            <!-- Header -->
+            <div class="header-card">
+                <h1>🌊 Flow of Debate</h1>
+                <p>A Step-by-Step Guide to THIMUN Debate</p>
+            </div>
+
+            <!-- Content -->
+            <div class="section">
+                <h2>The Debate Process: An Infographic</h2>
+                <p>This flowchart outlines the standard THIMUN procedure, from the start of committee to voting on a resolution. This process repeats for each resolution on the agenda.</p>
+                
+                <div class="flowchart">
+                    
+                    <div class="flow-step flow-step-main"><strong>Delegates Enter & Roll Call</strong><br/>(Session Begins)</div>
+                    <div class="flow-connector arrow"></div>
+                    
+                    <div class="flow-step flow-step-main"><strong>Lobbying (First Session)</strong><br/>Delegates find co-submitters and merge resolutions.</div>
+                    <div class="flow-connector arrow"></div>
+                    
+                    <div class="flow-step flow-step-main"><strong>Chair Announces Resolution</strong><br/>"The next resolution to be debated is 1.1..."</div>
+                    <div class="flow-connector arrow"></div>
+
+                    <div class="flow-step flow-step-secondary"><strong>Main Submitter is Called</strong><br/>Reads operative clauses and gives 3 min. speech.</div>
+                    <div class="flow-connector arrow"></div>
+
+                    <div class="flow-step flow-step-action"><strong>Main Submitter Yields</strong><br/>(e.g., to Points of Information or back to the Chair)</div>
+                    <div class="flow-connector arrow"></div>
+                    
+                    <div class="flow-step flow-step-secondary"><strong>Chair Sets Debate Time & Opens Floor</strong><br/>"The Chair fixes debate time for 20 minutes."<br/>"Are there any delegates wishing to take the floor?"</div>
+                    <div class="flow-connector arrow"></div>
+
+                    <!-- Split for main debate loop -->
+                    <div class="flow-split-container">
+                        <!-- Branch 1: Speaking on Resolution -->
+                        <div class="flow-split-branch">
+                            <div class="flow-step flow-step-secondary"><strong>Delegate is Recognized & Speaks</strong><br/>(Gives speech for or against the resolution)</div>
+                            <div class="flow-connector arrow"></div>
+                            <div class="flow-step flow-step-action"><strong>Delegate Yields</strong><br/>(To Chair, to POIs, or to another delegate)</div>
+                        </div>
+                        
+                        <!-- Branch 2: Making an Amendment -->
+                        <div class="flow-split-branch">
+                            <div class="flow-step flow-step-action"><strong>Delegate is Recognized & Moves an Amendment</strong><br/>(Gives speech on the amendment)</div>
+                            <div class="flow-connector arrow"></div>
+                            <div class="flow-step flow-step-action"><strong>Chair Sets Time & Votes on Amendment</strong><br/>(Debate on the *resolution* is paused)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-connector arrow"></div>
+                    <div class="flow-step flow-step-secondary"><strong>Process Repeats</strong><br/>(Delegates continue to speak or make amendments)</div>
+                    <div class="flow-connector arrow"></div>
+
+                    <div class="flow-step flow-step-main"><strong>Debate Time Elapses or Motion to Close Debate Passes</strong></div>
+                    <div class="flow-connector arrow"></div>
+                    
+                    <div class="flow-step flow-step-end"><strong>Voting Procedures</strong><br/>(Chair closes debate, all points are out of order, and the House votes on the final resolution)</div>
+
+                </div>
+
+            </div>
+
+        </div> <!-- end flow-of-debate guide container -->
+    </div> <!-- end flow-of-debate guide page -->
+
+    <!-- =================================================================== -->
+    <!-- 6. FOR/AGAINST SPEECH GUIDE PAGE (NEW) -->
+    <!-- =================================================================== -->
+    <div id="speech-guide-page" class="page">
+        <a class="back-btn" onclick="showPage('portal-page')">← Back to Portal</a>
+        <div class="guide-container">
+            <!-- Header -->
+            <div class="header-card">
+                <h1>🗣️ For/Against Speech Guide</h1>
+                <p>How to Structure a Persuasive Speech</p>
+            </div>
+
+            <!-- How to Structure -->
+            <div class="section">
+                <h2>How to Structure a Speech (60-90 Seconds)</h2>
+                <div class="flowchart">
+                    <div class="flow-step flow-step-secondary" style="max-width: 600px;"><strong>1. Opening (10 sec):</strong> State your position clearly.<br/><em>"Thank you, Chair. The delegation of [Country] rises in strong support of this resolution."</em></div>
+                    <div class="flow-connector arrow"></div>
+                    <div class="flow-step flow-step-secondary" style="max-width: 600px;"><strong>2. Key Points (40-60 sec):</strong> Give 2-3 strong arguments.<br/><em>"First, this resolution addresses... Second, the funding mechanism in Clause 3 is..."</em></div>
+                    <div class="flow-connector arrow"></div>
+                    <div class="flow-step flow-step-secondary" style="max-width: 600px;"><strong>3. Closing (10 sec):</strong> Reinforce your position and call to action.<br/><em>"This resolution is vital for climate justice. We urge all delegations to vote in favor."</em></div>
+                </div>
+            </div>
+
+            <!-- Example Speeches -->
+            <div class="section">
+                <h2>Example Speeches on Key Topics</h2>
+                <div class="speech-tabs">
+                    <button class="speech-tab-btn active" onclick="openSpeechTab(event, 'climate')">Climate Finance</button>
+                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'privacy')">Digital Privacy</button>
+                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'education')">Education Access</button>
+                    <!-- NEW TABS START HERE -->
+                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'ai')">AI Regulation</button>
+                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'vaccine')">Vaccine Mandates</button>
+                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'fossil')">Fossil Fuel Subsidies</button>
+                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'pmc')">Private Militaries (PMCs)</button>
+                    <button class="speech-tab-btn" onclick="openSpeechTab(event, 'untax')">UN Taxing Authority</button>
+                    <!-- NEW TABS END HERE -->
+                </div>
+
+                <!-- Climate Tab -->
+                <div id="climate" class="speech-tab-content active">
+                    <h3>Topic: Establishing a Global Climate Adaptation Fund</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Establishes a $100 billion annual fund for climate adaptation in developing nations.</li>
+                            <li>Requires developed nations to contribute based on historical emissions.</li>
+                            <li>Creates an independent committee to allocate funds based on vulnerability.</li>
+                        </ul>
+                    </div>
+                    <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., Bangladesh)</h4>
+                            <p>"Thank you, Chair. The delegation of Bangladesh rises in strong support of this resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, this fund addresses a fundamental injustice. Developing nations contribute least to climate change yet suffer most from its impacts. Bangladesh faces annual flooding that displaces millions, yet we produced less than 0.5% of global emissions. This resolution recognizes the principle of common but differentiated responsibility.</p>
+                            <p><strong>(Economic/Data-Based Argument)</strong> Second, the $100 billion figure is not arbitrary—it reflects the actual adaptation costs identified by the UN Environment Programme. Current funding reaches only $20 billion annually, leaving a critical gap that costs lives and livelihoods.</p>
+                            <p>This resolution is not charity—it is climate justice. We urge all delegations to vote in favor. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., Singapore)</h4>
+                            <p>"Thank you, Chair. The delegation of Singapore must respectfully oppose this resolution, despite sharing concerns about climate adaptation.</p>
+                            <p><strong>(Economic Argument)</strong> First, the $100 billion annual commitment is economically unrealistic. Many developed nations face their own fiscal constraints. The resolution provides no timeline for contribution increases, risking economic strain and broken promises.</p>
+                            <p><strong>(Implementation/Vagueness Argument)</strong> Second, the contribution formula based solely on historical emissions is flawed. It ignores current emission levels and economic capacity. Nations like China, now the world's largest emitter, would contribute less than smaller developed nations. This formula is neither fair nor effective.</p>
+                            <p>We need climate finance reform, but this resolution's approach is financially unsustainable and diplomatically divisive. We urge delegates to vote against. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Tab -->
+                <div id="privacy" class="speech-tab-content">
+                    <h3>Topic: Protecting Citizens' Data Privacy in the Digital Age</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Requires all member states to establish comprehensive data protection laws.</li>
+                            <li>Mandates that tech companies obtain explicit consent before collecting personal data.</li>
+                            <li>Grants citizens the "right to be forgotten" from online platforms.</li>
+                            <li>Establishes an international data protection enforcement agency.</li>
+                        </ul>
+                    </div>
+                     <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., Germany)</h4>
+                            <p>"Thank you, Chair. Germany strongly supports this essential resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, digital privacy is a fundamental human right in the 21st century. Currently, 3 billion people worldwide lack basic legal protection for their personal data. This resolution establishes universal minimum standards, ensuring all citizens have control over their digital identity.</p>
+                            <p><strong>(Implementation Argument)</strong> Second, the explicit consent requirement addresses a critical problem. Companies collect vast amounts of personal data through confusing terms of service. This clause empowers individuals with meaningful choice.</p>
+                            <p>Some may argue this stifles innovation, but privacy and progress are not mutually exclusive. The digital economy can thrive while respecting human rights. We urge your support. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., United States)</h4>
+                            <p>"Thank you, Chair. The United States opposes this resolution, though we share the goal of protecting privacy.</p>
+                            <p><strong>(Sovereignty Argument)</strong> First, this resolution imposes a one-size-fits-all approach on nations with vastly different legal systems. Member states should determine their own balance between privacy and innovation.</p>
+                            <p><strong>(Unintended Consequences Argument)</strong> Second, the "right to be forgotten" is fundamentally flawed. It conflicts with freedom of expression and press freedom. Should historical records be deleted? This clause creates dangerous censorship potential.</p>
+                            <p><strong>(Sovereignty/Scope Argument)</strong> Third, the proposed international enforcement agency violates national sovereignty. No UN body should have authority to impose fines on private companies within member states. We need privacy protection, but not at the cost of innovation, sovereignty, and free expression. Vote against. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Tab -->
+                <div id="education" class="speech-tab-content">
+                    <h3>Topic: Achieving Universal Secondary Education by 2035</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Commits member states to provide free secondary education to all children.</li>
+                            <li>Establishes a global education fund of $50 billion annually.</li>
+                            <li>Requires removal of all gender-based barriers to education.</li>
+                            <li>Mandates minimum teacher training standards and student-teacher ratios of 30:1.</li>
+                        </ul>
+                    </div>
+                     <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., Kenya)</h4>
+                            <p>"Thank you, Chair. Kenya proudly speaks in favor of this transformative resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, education is the foundation of all development. Currently, 130 million girls worldwide are denied secondary education. This perpetuates cycles of poverty and limits economic growth. This resolution provides both the framework and funding to change this reality.</p>
+                            <p><strong>(Implementation Argument)</strong> Second, the gender equality clause is crucial. In many regions, cultural barriers and safety concerns prevent girls from attending school. By requiring member states to actively remove these barriers, we ensure education reaches those most denied opportunity.</p>
+                            <p><strong>(Economic Argument)</strong> Some claim this is too expensive, but consider the cost of inaction. UNESCO estimates this would add $17 trillion to the global economy. This is not charity—it is investment in our collective future. We urge your support. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., Switzerland)</h4>
+                            <p>"Thank you, Chair. While Switzerland supports education access in principle, we must oppose this resolution's approach.</p>
+                            <p><strong>(Implementation/Vagueness Argument)</strong> First, the 2035 timeline is unrealistic for many nations facing conflict or infrastructure challenges. Setting unachievable deadlines undermines credibility and sets nations up for failure.</p>
+                            <p><strong>(Financial Argument)</strong> Second, the $50 billion annual fund lacks a clear financing mechanism. Which nations will contribute and how much? Without this clarity, the resolution is an empty promise.</p>
+                            <p><strong>(Unintended Consequences Argument)</strong> Third, the mandated 30:1 student-teacher ratio, while admirable, ignores context. Some rural areas struggle to find any qualified teachers. This rigid standard could force school closures where flexibility is needed most. We need targeted, sustainable solutions, not ambitious declarations. Vote against. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================== -->
+                <!-- ===== NEW TABS START ===== -->
+                <!-- ========================== -->
+
+                <!-- AI Regulation Tab -->
+                <div id="ai" class="speech-tab-content">
+                    <h3>Topic: Regulating Artificial Intelligence</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Establishes a new UN agency, the "Global AI Auditing Organization" (GAAO).</li>
+                            <li>Mandates that all "high-risk" AI systems (e.g., in healthcare, law) be licensed by the GAAO.</li>
+                            <li>Bans the use of predictive policing and social scoring algorithms by member states.</li>
+                        </ul>
+                    </div>
+                     <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., European Union)</h4>
+                            <p>"Thank you, Chair. The European Union rises in strong support of this resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, this resolution is a necessary defense of human rights. "High-risk" AI, such as social scoring, is not a future threat—it is a current reality that enables discrimination and authoritarianism. By banning these systems, we draw a clear moral line that technology must serve humanity, not control it.</p>
+                            <p><strong>(Implementation Argument)</strong> Second, the creation of the GAAO provides a much-needed center of expertise. No single nation can regulate borderless technology alone. An independent, global auditor is the only way to ensure AI systems are safe, transparent, and unbiased before they are deployed.</p>
+                            <p>This is a an essential step for global digital governance. We urge all delegates to vote in favor. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., China)</h4>
+                            <p>"Thank you, Chair. The delegation of China opposes this resolution in its entirety.</p>
+                            <p><strong>(Sovereignty Argument)</strong> First, this resolution is a direct and unacceptable violation of national sovereignty. The definition of "high-risk" AI and the regulation of technology are fundamentally domestic matters. This resolution attempts to impose a Western-centric view of ethics on all member states, which we cannot accept.</p>
+                            <p><strong>(Economic Argument)</strong> Second, the licensing requirement by a new UN bureaucracy will stifle innovation. The AI sector is a critical driver of economic growth. This resolution would create crippling delays and costs, harming developing nations trying to catch up in the technology race.</p>
+                            <p>AI governance should be led by sovereign states, not a supranational body. We strongly urge all delegates to vote against. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vaccine Mandate Tab -->
+                <div id="vaccine" class="speech-tab-content">
+                    <h3>Topic: Global Pandemic Response Treaty</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Requires all member states to vaccinate 90% of their population against any future WHO-declared pandemic pathogen.</li>
+                            <li>Establishes a global distribution mechanism, controlled by the WHO, to allocate vaccines.</li>
+                        </ul>
+                    </div>
+                     <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., Norway)</h4>
+                            <p>"Thank you, Chair. Norway strongly supports this resolution.</p>
+                            <p><strong>(Scientific/Precedent Argument)</strong> We must learn from the hard lessons of COVID-19. The data is clear: no nation is safe until all are safe. Pockets of low vaccination allow new variants to emerge, threatening the entire globe. A 90% target is the scientifically-backed threshold for herd immunity that will end pandemics quickly.</p>
+                            <p><strong>(Implementation Argument)</strong> The WHO-controlled distribution mechanism is vital. Last time, "vaccine nationalism" left developing nations waiting years for doses. A centralized, fair allocation system is the only way to ensure equity and end a global threat efficiently.</p>
+                            <p>Global health requires a collective response. This treaty provides it. We urge a vote in favor. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., Brazil)</h4>
+                            <p>"Thank you, Chair. The delegation of Brazil opposes this resolution.</p>
+                            <p><strong>(Implementation Argument)</strong> While the 90% target is admirable, it is logistically impossible for many nations. Brazil, for example, has vast, remote regions in the Amazon. Reaching this target would require diverting all public health resources, crippling our fight against malaria and dengue fever. It is an unachievable mandate.</p>
+                            <p><strong>(Sovereignty Argument)</strong> Furthermore, this resolution violates national sovereignty and personal liberty. Health policy and vaccination decisions must remain within the purview of national governments and their citizens, not mandated by a global treaty.</p>
+                            <p>This resolution is an overreach that ignores on-the-ground realities. We urge delegates to vote no. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fossil Fuel Tab -->
+                <div id="fossil" class="speech-tab-content">
+                    <h3>Topic: The Elimination of Fossil Fuel Subsidies</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Calls for the immediate and total elimination of all government subsidies for fossil fuels by 2030.</li>
+                            <li>Recommends redirecting these funds to renewable energy research and development.</li>
+                        </ul>
+                    </div>
+                     <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., Switzerland)</h4>
+                            <p>"Thank you, Chair. Switzerland is proud to support this clear and necessary resolution.</p>
+                            <p><strong>(Financial/Economic Argument)</strong> The IMF reports that the world spends over $5 trillion annually on fossil fuel subsidies. This is a catastrophic misallocation of capital. We are paying to accelerate our own destruction. Clause 1 corrects this by freeing up trillions of dollars for health, education, and a green transition.</p>
+                            <p><strong>(Scientific Argument)</strong> The science is not debatable. The IPCC has stated that new fossil fuel infrastructure is incompatible with the 1.5-degree goal. By ending subsidies, we finally align global finance with scientific reality.</p>
+                            <p>The climate crisis demands bold action, not half-measures. We urge a 'yes' vote. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., Saudi Arabia)</h4>
+                            <p>"Thank you, Chair. The Kingdom of Saudi Arabia strongly opposes this deeply flawed resolution.</p>
+                            <p><strong>(Unintended Consequences Argument)</strong> First, the "immediate" elimination of subsidies, as called for in Clause 1, would be catastrophic. It would cause a sudden, massive spike in energy prices globally, triggering inflation, food shortages, and political instability. This resolution hurts the poor the most.</p>
+                            <p><strong>(Economic Argument)</strong> Second, this resolution ignores the reality of energy security. The transition to renewables will take decades. Until then, stable, affordable fossil fuels are essential for economic development, especially in the Global South. This resolution attempts to pull the rug out from under developing economies.</p>
+                            <p>A stable transition is paramount. This resolution offers only chaos. We urge all delegates to vote against. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PMCs Tab -->
+                <div id="pmc" class="speech-tab-content">
+                    <h3>Topic: Regulating Private Military Contractors (PMCs)</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Establishes an international registry for all Private Military Contractors (PMCs).</li>
+                            <li>Bans the use of PMCs in offensive combat operations by member states.</li>
+                            <li>Urges member states to prosecute PMCs for human rights violations.</li>
+                        </ul>
+                    </div>
+                     <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., Nigeria)</h4>
+                            <p>"Thank you, Chair. Nigeria strongly supports this resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> For too long, PMCs have operated in a legal and moral black hole. They commit human rights abuses with impunity, as seen in conflicts across Africa, and face no international accountability. This resolution finally brings these groups out of the shadows and makes it clear that mercenaries have no place in modern warfare.</p>
+                            <p><strong>(Precedent Argument)</strong> The registry in Clause 1 is a logical extension of existing arms control treaties. If we register weapons, why would we not register the private armies that use them? This is a common-sense step for global transparency.</p>
+                            <p>Accountability must be paramount. We urge a vote in favor. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., Russia)</h4>
+                            <p>"Thank you, Chair. The Russian Federation finds this resolution to be unworkable and an infringement on state sovereignty.</p>
+                            <p><strong>(Scope/Mandate Argument)</strong> First, this issue is a matter of national security, which is explicitly outside the mandate of the General Assembly and this committee. How a state secures its interests is a domestic matter, period.</p>
+                            <p><strong>(Vagueness Argument)</strong> Second, Clause 2, which bans "offensive" operations, is dangerously vague. What is the legal definition of "offensive" versus "defensive"? This ambiguity makes the resolution unenforceable and open to political manipulation against any state the sponsors disagree with.</p>
+                            <p>This is a politically motivated and poorly drafted resolution that infringes on the UN Charter. We urge a 'no' vote. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UN Tax Tab -->
+                <div id="untax" class="speech-tab-content">
+                    <h3>Topic: Funding UN Humanitarian Agencies</h3>
+                    <div class="reso-summary">
+                        <h4>Key Operative Clauses:</h4>
+                        <ul>
+                            <li>Proposes a 0.1% international financial transaction tax to be paid directly to the UN.</li>
+                            <li>Directs these funds to the World Food Programme (WFP) and UNICEF.</li>
+                        </ul>
+                    </div>
+                     <div class="speech-grid">
+                        <div class="speech-box speech-for">
+                            <h4>✅ Speech FOR (e.g., Norway / WFP)</h4>
+                            <p>"Thank you, Chair. The delegation of Norway supports this innovative resolution.</p>
+                            <p><strong>(Financial Argument)</strong> The current UN funding model is broken. Every year, agencies like the WFP are forced to beg for donations while millions starve. This year, the humanitarian funding gap is over $40 billion. This system is failing.</p>
+                            <p><strong>(Implementation Argument)</strong> A 0.1% transaction tax is the stable, predictable funding stream the UN desperately needs. It is a tiny fraction of a single percent, levied on the wealthiest sector of the global economy, and it would save millions of lives. It is a practical solution to a chronic and deadly problem.</p>
+                            <p>This is a moral and financial imperative. We urge a 'yes' vote. Thank you."</p>
+                        </div>
+                        <div class="speech-box speech-against">
+                            <h4>❌ Speech AGAINST (e.g., United Kingdom)</h4>
+                            <p>"Thank you, Chair. The United Kingdom must strongly oppose this resolution.</p>
+                            <p><strong>(Sovereignty Argument)</strong> This resolution is a fundamental attack on national sovereignty. The power to tax is the most basic right of a sovereign state and its elected legislature. Granting this power to an unelected international body like the UN is a non-starter and violates the UN Charter itself.</p>
+                            <p><strong>(Financial/Implementation Argument)</strong> Furthermore, this creates a massive bureaucracy with zero accountability. Who would collect this tax? How? And who would manage the funds? This resolution would create a financial monster, accountable to no one, and would likely destabilize global financial markets.</p>
+                            <p>We support humanitarian aid, but this proposal is misguided and dangerous. We strongly urge a vote against. Thank you."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======================== -->
+                <!-- ===== NEW TABS END ===== -->
+                <!-- ======================== -->
+
+            </div>
+
+            <!-- Analysis and Argument Types -->
+            <div class="section">
+                <h2>Speech Analysis & Argument Types</h2>
+                <div class="tips-grid">
+                    <div class="tips-card">
+                        <h3>Key Analysis Tips</h3>
+                        <ul>
+                            <li>Read the *entire* resolution carefully. Focus on operative clauses.</li>
+                            <li>Identify the strongest points—pick 2-3 arguments maximum.</li>
+                            <li>Use specific evidence (numbers, examples, real consequences).</li>
+                            <li>Align with your country's position and national interests.</li>
+                            <li>Anticipate the opposition and address their strongest argument.</li>
+                            <li>Practice timing: most THIMUN speeches are 60-90 seconds.</li>
+                            <li>End strong with a clear call to action (e.g., "We urge a vote in favor.")</li>
+                        </ul>
+                    </div>
+                    <div class="tips-card">
+                        <h3>Common Argument Types</h3>
+                        <ul>
+                            <li><strong>Moral/Rights-Based:</strong> "This is a fundamental human right..."</li>
+                            <li><strong>Economic:</strong> "The cost of this program is..." or "The economic benefit will be..."</li>
+                            <li><strong>Scientific:</strong> "The data from the IPCC clearly shows..."</li>
+                            <li><strong>Past Precedent:</strong> "A similar program succeeded in..." or "This failed in the 1990s..."</li>
+                            <li><strong>Sovereignty:</strong> "This resolution infringes on the national sovereignty of member states."</li>
+                            <li><strong>Implementation:</strong> "The plan is unworkable because it lacks..."</li>
+                            <li><strong>Financial:</strong> "The funding mechanism is unclear/unsustainable."</li>
+                            <li><strong>Unintended Consequences:</strong> "While well-intentioned, this will actually harm..."</li>
+                            <li><strong>Better Alternative:</strong> "We should vote this down and instead focus on..."</li>
+                            <li><strong>Scope/Mandate:</strong> "This issue is outside the mandate of this committee."</li>
+                            <li><strong>Vagueness:</strong> "The language in clause 3 is too vague to be enforceable."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- end speech guide container -->
+    </div> <!-- end speech guide page -->
 
 
     <!-- =================================================================== -->
@@ -1224,8 +2268,26 @@
     <script>
         // --- 1. Page Navigation ---
         
-        // Show the portal page by default
-        document.getElementById('portal-page').style.display = 'block';
+        // Show the portal page by default when script loads
+        document.addEventListener('DOMContentLoaded', () => {
+             // Find all pages
+            const pages = document.querySelectorAll('.page');
+            // Hide all pages
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+            // Show the portal page
+            const portal = document.getElementById('portal-page');
+            if (portal) {
+                portal.style.display = 'block';
+            } else {
+                console.error("Portal page not found!");
+            }
+            
+            // Initialize the Language Guide accordions
+            initLanguageGuideAccordionsOnClick();
+        });
+
 
         function showPage(pageId) {
             // Hide all pages
@@ -1241,56 +2303,67 @@
                 
                 // INITIALIZE scripts for the specific page
                 if (pageId === 'language-guide-page') {
-                    initLanguageGuideAccordions();
+                    initLanguageGuideAccordionsOnClick();
                 } else if (pageId === 'resolution-guide-page') {
                     initResolutionGuideAI();
+                } else if (pageId === 'speech-guide-page') {
+                    initSpeechGuideTabs();
                 }
             }
         }
+        
+        // --- 2. Language Guide Accordion Script (User's Original Function) ---
+        
+        let lastOpenedAccordion = -1;
+        
+        function toggleAccordion(index) {
+            const allHeaders = document.querySelectorAll('#language-guide-page .accordion-header');
+            const allContents = document.querySelectorAll('#language-guide-page .accordion-content');
 
-        // --- 2. Language Guide Accordion Script ---
-        
-        let languageAccordionsInitialized = false;
-        
-        function initLanguageGuideAccordions() {
-            if (languageAccordionsInitialized) return; // Only run once
-            
-            const accordions = document.querySelectorAll('#language-guide-page .accordion-header');
-            
-            // Function to close all accordions
-            function closeAllLanguageAccordions() {
-                accordions.forEach(header => {
-                    const content = header.nextElementSibling;
-                    if (content) {
-                        header.classList.remove('active');
-                        content.classList.remove('active');
-                        content.style.maxHeight = null;
-                        content.style.padding = null;
-                    }
-                });
+            // If clicking the same one, close it
+            if (lastOpenedAccordion === index) {
+                if(allHeaders[index]) allHeaders[index].classList.remove('active');
+                if(allContents[index]) {
+                    allContents[index].classList.remove('active');
+                    allContents[index].style.maxHeight = null;
+                    allContents[index].style.padding = null;
+                }
+                lastOpenedAccordion = -1;
+                return;
             }
 
-            accordions.forEach((header, index) => {
-                header.setAttribute('data-index', index); // Add index for the onclick
-                header.onclick = function() {
-                    const content = this.nextElementSibling;
-                    if (!content) return;
-                    
-                    const isActive = this.classList.contains('active');
-                    
-                    closeAllLanguageAccordions(); // Close all
-                    
-                    if (!isActive) { // If it wasn't active, open it
-                        this.classList.add('active');
-                        content.classList.add('active');
-                        content.style.maxHeight = content.scrollHeight + 60 + 'px'; // 60px for padding
-                        content.style.padding = '30px';
-                        content.style.paddingTop = '20px';
-                    }
-                };
-            });
-            languageAccordionsInitialized = true;
+            // Close the previously open one
+            if (lastOpenedAccordion !== -1 && allHeaders[lastOpenedAccordion]) {
+                allHeaders[lastOpenedAccordion].classList.remove('active');
+                if(allContents[lastOpenedAccordion]) {
+                    allContents[lastOpenedAccordion].classList.remove('active');
+                    allContents[lastOpenedAccordion].style.maxHeight = null;
+                    allContents[lastOpenedAccordion].style.padding = null;
+                }
+            }
+
+            // Open the new one
+            if(allHeaders[index] && allContents[index]) {
+                allHeaders[index].classList.add('active');
+                allContents[index].classList.add('active');
+                allContents[index].style.maxHeight = allContents[index].scrollHeight + 60 + 'px';
+                allContents[index].style.padding = '30px';
+                allContents[index].style.paddingTop = '20px';
+                lastOpenedAccordion = index;
+            }
         }
+        
+        // This helper function attaches the onclick attributes
+        function initLanguageGuideAccordionsOnClick() {
+             const accordionHeaders = document.querySelectorAll('#language-guide-page .accordion-header');
+             accordionHeaders.forEach((header, index) => {
+                 // Check if it already has an onclick to avoid duplicates
+                 if (!header.getAttribute('onclick')) {
+                    header.setAttribute('onclick', `toggleAccordion(${index})`);
+                 }
+             });
+        }
+
 
         // --- 3. Resolution Guide AI Helper Script ---
 
@@ -1299,9 +2372,8 @@
         function initResolutionGuideAI() {
             if (resolutionAIAssistantInitialized) return; // Only run once
             
-            // Get all elements *within the resolution guide page*
             const page = document.getElementById('resolution-guide-page');
-            if (!page) return; // Safety check
+            if (!page) return;
 
             const generateBtn = page.querySelector('#generateBtn');
             const userInputElem = page.querySelector('#userInput');
@@ -1312,7 +2384,6 @@
             const errorBox = page.querySelector('#error-box');
             const copyBtn = page.querySelector('#copy-btn');
 
-            // If any element is missing, stop to prevent errors
             if (!generateBtn || !userInputElem || !apiModeElem || !loadingSpinner || !resultContainer || !resultTextElem || !errorBox || !copyBtn) {
                 console.error("Resolution Helper script could not find all required elements.");
                 return;
@@ -1418,35 +2489,108 @@
                 document.body.removeChild(tempTextArea);
             }
 
-            generateBtn.addEventListener('click', () => {
-                const userInput = userInputElem.value;
-                const apiMode = apiModeElem.value;
+            if (!generateBtn.dataset.listenerAttached) {
+                generateBtn.addEventListener('click', () => {
+                    const userInput = userInputElem.value;
+                    const apiMode = apiModeElem.value;
 
-                if (!userInput.trim()) {
-                    errorBox.textContent = 'Please enter a fact or idea first.';
-                    errorBox.style.display = 'block';
-                    return;
-                }
+                    if (!userInput.trim()) {
+                        errorBox.textContent = 'Please enter a fact or idea first.';
+                        errorBox.style.display = 'block';
+                        return;
+                    }
 
-                generateBtn.disabled = true;
-                generateBtn.innerHTML = 'Generating...';
-                loadingSpinner.style.display = 'block';
-                resultContainer.style.display = 'none';
-                errorBox.style.display = 'none';
+                    generateBtn.disabled = true;
+                    generateBtn.innerHTML = 'Generating...';
+                    loadingSpinner.style.display = 'block';
+                    resultContainer.style.display = 'none';
+                    errorBox.style.display = 'none';
 
-                callGeminiAPI(userInput, apiMode).finally(() => {
-                    generateBtn.disabled = false;
-                    generateBtn.innerHTML = '✨ Generate';
-                    loadingSpinner.style.display = 'none';
+                    callGeminiAPI(userInput, apiMode).finally(() => {
+                        generateBtn.disabled = false;
+                        generateBtn.innerHTML = '✨ Generate';
+                        loadingSpinner.style.display = 'none';
+                    });
                 });
-            });
+                generateBtn.dataset.listenerAttached = 'true';
+            }
             
-            copyBtn.addEventListener('click', copyToClipboard);
+            if (!copyBtn.dataset.listenerAttached) {
+                copyBtn.addEventListener('click', copyToClipboard);
+                copyBtn.dataset.listenerAttached = 'true';
+            }
 
             resolutionAIAssistantInitialized = true;
+        }
+
+        // --- 4. Speech Guide Tab Script (NEW) ---
+        
+        let speechGuideTabsInitialized = false;
+
+        function initSpeechGuideTabs() {
+            if (speechGuideTabsInitialized) return; // Only run once
+
+            const page = document.getElementById('speech-guide-page');
+            if (!page) return;
+
+            const tabButtons = page.querySelectorAll('.speech-tab-btn');
+            const tabContents = page.querySelectorAll('.speech-tab-content');
+
+            if (tabButtons.length === 0) return;
+
+            tabButtons.forEach(button => {
+                if (!button.dataset.listenerAttached) {
+                    button.addEventListener('click', (event) => {
+                        // Extract tab name from the onclick attribute text
+                        const tabName = button.getAttribute('onclick').match(/'(.*?)'/)[1];
+                        openSpeechTab(event, tabName);
+                    });
+                    button.dataset.listenerAttached = 'true';
+                }
+            });
+            
+            // Set default tab (find the one with 'active' class and click it)
+            const defaultTab = page.querySelector('.speech-tab-btn.active');
+            if (defaultTab) {
+                 const tabName = defaultTab.getAttribute('onclick').match(/'(.*?)'/)[1];
+                 openSpeechTab({ currentTarget: defaultTab }, tabName); // Simulate the event
+            } else if (tabButtons.length > 0) {
+                 // Fallback: click the first tab if none are active
+                 const tabName = tabButtons[0].getAttribute('onclick').match(/'(.*?)'/)[1];
+                 openSpeechTab({ currentTarget: tabButtons[0] }, tabName);
+            }
+
+
+            speechGuideTabsInitialized = true;
+        }
+        
+        function openSpeechTab(event, tabName) {
+            const page = document.getElementById('speech-guide-page');
+            if (!page) return;
+
+            const tabContents = page.querySelectorAll('.speech-tab-content');
+            const tabButtons = page.querySelectorAll('.speech-tab-btn');
+            
+            tabContents.forEach(tab => {
+                tab.style.display = 'none';
+                tab.classList.remove('active');
+            });
+            
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const targetTab = page.querySelector(`#${tabName}`);
+            if (targetTab) {
+                targetTab.style.display = 'block';
+                targetTab.classList.add('active');
+            }
+            
+            if (event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
         }
 
     </script>
 </body>
 </html>
-
