@@ -247,6 +247,9 @@
             border-bottom: 2px dotted #667eea;
             cursor: help;
         }
+        .accordion-header.active .tooltip {
+             border-bottom: 2px dotted #fff;
+        }
         .tooltip .tooltip-text {
             visibility: hidden;
             width: 250px;
@@ -947,8 +950,8 @@
                         <tbody>
                             <tr>
                                 <td>Stating an Opinion</td>
-                                <td class="bad">"I think we should pass this resolution."</td>
-                                <td class="good">"The delegate of Japan believes the committee should pass this resolution."</td>
+                                <td class="bad">"I think this resolution is bad."</td>
+                                <td class="good">"The delegate of Japan finds this resolution to be counter-productive."</td>
                             </tr>
                             <tr>
                                 <td>Asking a Question</td>
@@ -1020,7 +1023,8 @@
                                 <td class="bad">"Can you tell me if this is allowed?"</td>
                                 <td class="good">"Point of Parliamentary Enquiry: The delegate wishes to know if this motion is in order."</td>
                             </tr>
-                             <tr>
+                             <!-- 15 New Examples -->
+                            <tr>
                                 <td>Referring to an Ally</td>
                                 <td class="bad">"My allies and I all agree that..."</td>
                                 <td class="good">"The delegate of Germany, along with its fellow EU member states, agrees that..."</td>
@@ -1036,7 +1040,7 @@
                                 <td class="good">"The delegate of Nigeria suggests the creation of a new fund."</td>
                             </tr>
                             <tr>
-                                <td>Asking for Clarification</td>
+                                G<td>Asking for Clarification</td>
                                 <td class="bad">"I don't understand what you mean."</td>
                                 <td class="good">"Could the delegate of Australia please clarify what is meant by 'regional mechanisms'?"</td>
                             </tr>
@@ -1044,6 +1048,56 @@
                                 <td>Referring to the Resolution</td>
                                 <td class="bad">"I like the first part of my resolution, but not the second."</td>
                                 <td class="good">"The delegate of Brazil supports the preambulatory clauses but has concerns about the operative clauses."</td>
+                            </tr>
+                            <tr>
+                                <td>Stating Confusion</td>
+                                <td class="bad">"I'm confused about the rules."</td>
+                                <td class="good">"Point of Parliamentary Enquiry: The delegate is unclear on the current procedure."</td>
+                            </tr>
+                            <tr>
+                                <td>Being Unable to Hear</td>
+                                <td class="bad">"I can't hear you!"</td>
+                                <td class="good">"Point of Personal Privilege! The delegate cannot hear the speaker."</td>
+                            </tr>
+                            <tr>
+                                <td>Asking for a Vote</td>
+                                <td class="bad">"Let's just vote now, I'm tired of talking."</td>
+                                <td class="good">"The delegate of South Africa moves the Previous Question."</td>
+                            </tr>
+                            <tr>
+                                <td>Disagreeing with the Chair</td>
+                                <td class="bad">"Wait, you're wrong, that's not the rule."</td>
+                                <td class="good">"Point of Order, Honourable Chair. The delegate believes the correct procedure is..."</td>
+                            </tr>
+                            <tr>
+                                <td>Introducing oneself (Lobbying)</td>
+                                <td class="bad">"Hi, I'm John, I'm representing France."</td>
+                                <td class="good">"Greetings fellow delegate. The delegate of France is looking to find allies on this topic."</td>
+                            </tr>
+                            <tr>
+                                <td>Requesting a Pause</td>
+                                <td class="bad">"I motion for a break so we can talk."</td>
+                                <td class="good">"The delegate of Egypt motions for an unmoderated caucus."</td>
+                            </tr>
+                            <tr>
+                                <td>Addressing a Specific Delegate</td>
+                                <td class="bad">"To the delegate of China: you said..."</td>
+                                <td class="good">"In response to the delegate of China's speech, the delegate of Japan would like to state..."</td>
+                            </tr>
+                            <tr>
+                                <td>Correcting an Insult</td>
+                                <td class="bad">"You can't call my country 'warmongering'! I demand a right of reply."</td>
+                                <td class="good">(Sends note to Chair) "Hon. Chair, the delegate of [My Country] requests a Right of Reply on the grounds of a national insult."</td>
+                            </tr>
+                            <tr>
+                                <td>Expressing Empathy</td>
+                                <td class="bad">"We feel very bad for the victims."</td>
+                                <td class="good">"The delegation of Norway expresses its deepest sympathies for the victims of this conflict."</td>
+                            </tr>
+                            <tr>
+                                <td>Praising Another Delegate</td>
+                                <td class="bad">"I really liked your idea."</td>
+                                <td class="good">"The delegate of Canada commends the delegate of Ghana for their excellent proposal."</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1074,8 +1128,8 @@
                     <p>"The delegate respectfully disagrees..."</p>
                 </div>
                 <div class="phrase-card">
-                    <h3>🤝 <span class="tooltip">Yield the Floor<span class="tooltip-text">To give up your speaking time to the Chair or another delegate.</span></span></h3>
-                    <p>"The delegate yields the floor to the Chair."</p>
+                    <h3>🤝 <span class="tooltip"><span class="tooltip-word">Yield</span> the Floor<span class="tooltiptext">To give up your remaining speaking time to the Chair or another delegate.</span></span></h3>
+                    <p>"The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor to the Chair."</p>
                 </div>
             </div>
 
@@ -1084,7 +1138,7 @@
 
             <!-- Accordion 1: Point of Information (to Speaker) -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(1)">
                     <span class="accordion-title">1️⃣ Point of Information (to the Speaker)</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1110,7 +1164,7 @@
 
             <!-- Accordion 2: Point of Information (to Chair) -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(2)">
                     <span class="accordion-title">2️⃣ Point of Information to the Chair</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1132,7 +1186,7 @@
 
             <!-- Accordion 3: Point of Parliamentary Enquiry -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(3)">
                     <span class="accordion-title">3️⃣ Point of Parliamentary Enquiry</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1146,7 +1200,7 @@
                         <div class="dialogue-line">(You raise your placard)</div>
                         <div class="dialogue-line"><span class="speaker-you">You (Nigeria):</span> "Point of Parliamentary Enquiry."</div>
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Yes, delegate of Nigeria?"</div>
-                        <div class="dialogue-line"><span class="speaker-you">You:</span> "Is it in order to move the Previous Question at this time?"</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "Is it in order to move the <span class="tooltip"><span class="tooltip-word">Previous Question</span><span class="tooltiptext">The formal name for the motion to close debate and move immediately to a vote.</span></span> at this time?"</div>
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That is correct, delegate. A motion to close debate would be in order."</div>
                     </div>
                 </div>
@@ -1154,7 +1208,7 @@
 
             <!-- Accordion 4: Point of Order -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(4)">
                     <span class="accordion-title">4️⃣ Point of Order</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1180,7 +1234,7 @@
 
             <!-- Accordion 5: Point of Personal Privilege -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(5)">
                     <span class="accordion-title">5️⃣ Point of Personal Privilege</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1193,7 +1247,7 @@
                     </div>
                     
                     <div class="dialogue-box">
-                        <span class="dialogue-label">📍 Example: Inaudible Speaker (CAN INTERRUPT)</span>
+                        <span class="dialogue-label">📍 Example 1: Inaudible Speaker (CAN INTERRUPT)</span>
                         <div class="dialogue-line"><span class="speaker-delegate">Delegate of Italy:</span> <em>(speaking very quietly)</em> "...and the delegate believes..."</div>
                         <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Point of Personal Privilege!"</div>
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The speaker will pause. State your point, delegate of Argentina."</div>
@@ -1208,36 +1262,36 @@
 
             <!-- Accordion 6: Yielding Your Time -->
             <div class="accordion">
-                <div class="accordion-header">
-                    <span class="accordion-title">🤝 Yielding (Giving Up Your Time)</span>
+                <div class="accordion-header" onclick="toggleAccordion(6)">
+                    <span class="accordion-title">🤝 <span class="tooltip"><span class="tooltip-word">Yielding</span><span class="tooltiptext">The act of giving up one's remaining speaking time.</span></span> (Giving Up Your Time)</span>
                     <span class="accordion-icon">▼</span>
                 </div>
                 <div class="accordion-content">
                     <p class="point-description">
-                        After your speech, the Chair will ask how you <span class="tooltip">yield<span class="tooltip-text">To give up your speaking time.</span></span> your time. You have three main options.
+                        After your speech, the Chair will ask how you <span class="tooltip"><span class="tooltip-word">yield</span><span class="tooltiptext">To give up your remaining speaking time to the Chair or another delegate.</span></span> your time. You have three main options.
                     </p>
                     <div class="dialogue-box">
                         <span class="dialogue-label">Option 1: To the Chair (Most Common)</span>
-                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields the floor back to the Chair."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor back to the Chair."</div>
                         <div class="dialogue-line"><strong>What it means:</strong> You are done and do not want to answer questions.</div>
                     </div>
                     <div class="dialogue-box">
                         <span class="dialogue-label">Option 2: To Questions</span>
-                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields to Points of Information."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> to Points of Information."</div>
                         <div class="dialogue-line"><strong>What it means:</strong> You are opening the floor for other delegates to ask you questions.</div>
                     </div>
                     <div class="dialogue-box">
                         <span class="dialogue-label">Option 3: To Another Delegate</span>
-                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate yields the floor to the delegate of Argentina."</div>
-                        <div class="dialogue-line"><strong>What it means:</strong> You give the rest of your time to another delegate (must be pre-arranged). <strong>THIMUN Rule:</strong> This can only be done once consecutively. The next delegate must yield back to the Chair.</div>
+                        <div class="dialogue-line"><span class="speaker-you">You:</span> "The delegate <span class="tooltip"><span class="tooltip-word">yields</span><span class="tooltiptext">To give up remaining speaking time.</span></span> the floor to the delegate of Argentina."</div>
+                        <div class="dialogue-line"><strong>What it means:</strong> You give the rest of your time to another delegate (must be pre-arranged). <strong>THIMUN Rule:</strong> This can only be done once consecutively. The next delegate must <span class="tooltip"><span class="tooltip-word">yield</span><span class="tooltiptext">To give up remaining speaking time.</span></span> back to the Chair.</div>
                     </div>
                 </div>
             </div>
 
             <!-- Accordion 7: Motion to Close Debate -->
             <div class="accordion">
-                <div class="accordion-header">
-                    <span class="accordion-title">🗳️ Motion to Close Debate (<span class="tooltip">Previous Question<span class="tooltip-text">The formal name for the motion to end debate and vote.</span></span>)</span>
+                <div class="accordion-header" onclick="toggleAccordion(7)">
+                    <span class="accordion-title">🗳️ Motion to Close Debate (<span class="tooltip"><span class="tooltip-word">Previous Question</span><span class="tooltiptext">The formal name for the motion to close debate and move immediately to a vote.</span></span>)</span>
                     <span class="accordion-icon">▼</span>
                 </div>
                 <div class="accordion-content">
@@ -1247,7 +1301,7 @@
                     <div class="dialogue-box">
                         <span class="dialogue-label">📍 Example: Closing Debate</span>
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
-                        <div class="dialogue-line"><span class="speaker-you">You (Germany):</span> "Honourable Chair, the delegate of Germany <strong>moves the Previous Question</strong>."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Germany):</span> "Honourable Chair, the delegate of Germany <strong>moves the <span class="tooltip"><span class="tooltip-word">Previous Question</span><span class="tooltiptext">The formal name for the motion to close debate and move immediately to a vote.</span></span></strong>."</div>
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds?"</div>
                         <div class="dialogue-line"><span class="speaker-other">(Other Delegates):</span> "Second!"</div>
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any objections?"</div>
@@ -1256,11 +1310,11 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Accordion 8: Motion to Adjourn Debate -->
             <div class="accordion">
-                <div class="accordion-header">
-                    <span class="accordion-title">🗓️ Motion to <span class="tooltip">Adjourn the Debate<span class="tooltip-text">To "table" or pause debate on the current topic, moving to the next item.</span></span></span>
+                <div class="accordion-header" onclick="toggleAccordion(8)">
+                    <span class="accordion-title">🗓️ Motion to <span class="tooltip"><span class="tooltip-word">Adjourn the Debate</span><span class="tooltiptext">To "table" or postpone debate on a topic, setting it aside to be discussed later.</span></span></span>
                     <span class="accordion-icon">▼</span>
                 </div>
                 <div class="accordion-content">
@@ -1272,7 +1326,7 @@
                     </p>
                     <div class="dialogue-box">
                         <span class="dialogue-label">📍 Example: Tabling a Resolution</span>
-                        <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Honourable Chair, the delegate of Argentina <strong>motions to adjourn the debate</strong> on Resolution 1.1."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Argentina):</span> "Honourable Chair, the delegate of Argentina <strong>motions to <span class="tooltip"><span class="tooltip-word">adjourn the debate</span><span class="tooltiptext">To "table" or postpone debate on a topic, setting it aside to be discussed later.</span></span></strong> on Resolution 1.1."</div>
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. Are there any seconds? ... Objections? ... We will have one speaker for and one against this motion."</div>
                     </div>
                 </div>
@@ -1280,7 +1334,7 @@
 
             <!-- Accordion 9: Motion to Extend Debate Time -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(9)">
                     <span class="accordion-title">⏱️ Motion to Extend Debate Time</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1302,7 +1356,7 @@
             
             <!-- Accordion 10: Motion to Reconsider a Resolution -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(10)">
                     <span class="accordion-title">🔄 Motion to Reconsider a Resolution</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1313,12 +1367,18 @@
                     <p class="point-description">
                         <strong>Rules:</strong> This can only be done after all other resolutions on the agenda have been debated. It is not debatable and requires a two-thirds (2/3) majority to pass.
                     </p>
+                     <div class="dialogue-box">
+                        <span class="dialogue-label">📍 Example: Reconsidering</span>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "We have concluded debate on all resolutions on the agenda. Are there any further points or motions?"</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (Brazil):</span> "Honourable Chair, the delegate of Brazil <strong>motions to reconsider Resolution 1.1</strong>."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. This motion requires a two-thirds majority. All those in favor of reconsidering Resolution 1.1, please raise your placards..."</div>
+                    </div>
                 </div>
             </div>
 
             <!-- Accordion 11: Other Motions -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(11)">
                     <span class="accordion-title">📋 Other Motions &amp; Objections</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1326,27 +1386,35 @@
                     <div class="dialogue-box">
                         <span class="dialogue-label">Motion to Refer to Another Forum</span>
                         <div class="dialogue-line"><strong>Purpose:</strong> Used if a clause is outside the committee's power (e.g., uses "Demands" in the General Assembly). It's discouraged; chairs prefer amending the clause (e.g., to "Urges the Security Council to...").</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
                         <div class="dialogue-line"><span class="speaker-you">You (Peru):</span> "Honourable Chair, the delegate of Peru <strong>motions to refer this resolution to the Security Council</strong>, as operative clause 2 uses language such as 'Demands' which is outside the purview of the General Assembly."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. This motion is debatable. Is the delegate of Peru willing to speak for their motion?"</div>
                     </div>
                     <div class="dialogue-box">
                         <span class="dialogue-label">Withdrawing a Resolution</span>
                         <div class="dialogue-line"><strong>Rule:</strong> The main submitter can motion to withdraw their resolution, but it requires *all* co-submitters to agree to it.</div>
-                        <div class="dialogue-line"><span class="speaker-delegate">Delegate of Japan (Main Submitter):</span> "Honourable Chair, the delegate of Japan <strong>motions to withdraw Resolution 1.1</strong> from the floor."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Are there any points or motions on the floor?"</div>
+                        <div class="dialogue-line"><span class="speaker-delegate">Delegate of Japan (Main Submitter):</span> "Honourable Chair, after hearing the debate, the delegate of Japan <strong>motions to withdraw Resolution 1.1</strong> from the floor."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "That motion is in order. The Chair asks all co-submitters of Resolution 1.1: are there any objections to withdrawing this resolution? ... Seeing no objections from the co-submitters, Resolution 1.1 is withdrawn."</div>
                     </div>
                     <div class="dialogue-box">
                         <span class="dialogue-label">Objection to the Main Motion</span>
-                        <div class="dialogue-line"><strong>Purpose:</strong> To object to the *entire resolution* being debated, often on grounds that it violates national sovereignty. It is strongly discouraged as it's destructive to debate. Requires a 2/3 majority.</div>
+                        <div class="dialogue-line"><strong>Purpose:</strong> To object to the entire resolution being debated, often on grounds that it violates national sovereignty. It is strongly discouraged as it's destructive to debate. Requires a 2/3 majority.</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The next resolution for debate is Resolution 1.2. Are there any points or motions on the floor?"</div>
                         <div class="dialogue-line"><span class="speaker-you">You (China):</span> "Honourable Chair, the delegate of China <strong>objects to the main motion</strong>."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "An objection to the main motion has been raised. This is a motion to *not* debate this resolution. Delegate of China, you have the floor for a short speech on your objection."</div>
+                        <div class="dialogue-line"><span class="speaker-you">You (China):</span> "The delegate objects on the grounds that this resolution is a clear violation of national sovereignty..."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you. This motion is not debatable and requires a two-thirds majority to pass. We will now vote on the objection... All those in favor of *not* debating this resolution, please raise your placards..."</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Key Rules Section -->
+            <!-- NEW SECTION -->
             <h2 class="section-title">🔑 Key Rules &amp; Terms</h2>
 
             <!-- Accordion 12: Voting Procedure -->
             <div class="accordion">
-                <div class="accordion-header">
+                <div class="accordion-header" onclick="toggleAccordion(12)">
                     <span class="accordion-title">🗳️ Voting Procedure: Who Can Vote?</span>
                     <span class="accordion-icon">▼</span>
                 </div>
@@ -1369,19 +1437,22 @@
 
             <!-- Accordion 13: Right of Reply -->
             <div class="accordion">
-                <div class="accordion-header">
-                    <span class="accordion-title">📣 <span class="tooltip">Right of Reply<span class="tooltip-text">A right to respond if your country has been insulted. Granted by the Chair.</span></span></span>
+                <div class="accordion-header" onclick="toggleAccordion(13)">
+                    <span class="accordion-title">📣 <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span></span>
                     <span class="accordion-icon">▼</span>
                 </div>
                 <div class="accordion-content">
                     <p class="point-description">
-                        <strong>Purpose:</strong> This is not a "Point" but a formal right. A delegate can request a Right of Reply if their country or delegation has been insulted by a speaker.
+                        <strong>Purpose:</strong> This is not a "Point" but a formal right. A delegate can request a <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span> if their country or delegation has been insulted by a speaker.
+                    </p>
+                    <p class="point-description">
+                        <strong>Rules:</strong> You must send a note to the Chair requesting it. The Chair will grant it at their discretion, usually after the speech. It is not meant to debate policy, only to respond to the insult.
                     </p>
                     <div class="dialogue-box">
                         <span class="dialogue-label">📍 Example: Responding to an Insult</span>
                         <div class="dialogue-line"><span class="speaker-delegate">Delegate of X:</span> "...which is why the warmongering policy of Country Y is destabilizing the region."</div>
                         <div class="dialogue-line"><span class="speaker-you">(You, Delegate of Y, send a note to the Chair)</span></div>
-                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of X. The Chair has received a request for a Right of Reply from the delegate of Y. You have the floor for 30 seconds."</div>
+                        <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "Thank you, delegate of X. The Chair has received a request for a <span class="tooltip"><span class="tooltip-word">Right of Reply</span><span class="tooltiptext">A formal right, granted by the Chair, to respond to a personal or national insult. It is not used for policy disagreements.</span></span> from the delegate of Y. You have the floor for 30 seconds."</div>
                         <div class="dialogue-line"><span class="speaker-you">You (Y):</span> "The delegate of Y wishes to state that our policies are for self-defense, not "warmongering," and we find such language unhelpful to diplomatic debate."</div>
                     </div>
                 </div>
@@ -1389,8 +1460,8 @@
 
             <!-- Accordion 14: Roll Call & Quorum -->
             <div class="accordion">
-                <div class="accordion-header">
-                    <span class="accordion-title">📋 Roll Call &amp; <span class="tooltip">Quorum<span class="tooltip-text">The minimum number of delegates (usually 1/3) needed to start debate or vote.</span></span></span>
+                <div class="accordion-header" onclick="toggleAccordion(14)">
+                    <span class="accordion-title">📋 Roll Call &amp; <span class="tooltip"><span class="tooltip-word">Quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span></span>
                     <span class="accordion-icon">▼</span>
                 </div>
                 <div class="accordion-content">
@@ -1400,20 +1471,21 @@
                         <div class="dialogue-line"><span class="speaker-chair">Chair:</span> "The committee will come to order. We will now begin Roll Call. Delegates, please respond 'Present' or 'Present and Voting'..."</div>
                     </div>
                     <div class="dialogue-box">
-                        <span class="dialogue-label">Quorum</span>
-                        <div class="dialogue-line"><strong>What it is:</strong> The minimum number of delegates (usually one-third) that must be present for formal debate to begin and for votes to be valid. The Chair establishes quorum during the first roll call.</div>
+                        <span class="dialogue-label"><span class="tooltip"><span class="tooltip-word">Quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span></span>
+                        <div class="dialogue-line"><strong>What it is:</strong> The minimum number of delegates (usually one-third) that must be present for formal debate to begin and for votes to be valid. The Chair establishes <span class="tooltip"><span class="tooltip-word">quorum</span><span class="tooltiptext">The minimum number of delegates (usually 1/3) that must be present for debate to be formal and for votes to be valid.</span></span> during the first roll call.</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Pro Tips -->
+            <!-- MODIFIED Pro Tips -->
             <div class="tips-box">
                 <h2>💡 THIMUN Pro Tips</h2>
                 <ul class="tips-list">
+                    <li><strong>Jacket On:</strong> A delegate must have their jacket/blazer on *anytime* they stand to speak (giving a speech, raising a point, or making a motion). It is a sign of respect.</li>
                     <li><strong>Respect the Chair:</strong> You must respect the decisions of the Chair at all times. Their rulings are final.</li>
                     <li><strong>Stand Up:</strong> You must always stand when speaking, whether giving a speech or raising a point.</li>
-                    <li><strong>Jacket On:</strong> Whenever a delegate has the floor (i.e., is speaking), they must have their suit jacket on and buttoned.</li>
                     <li><strong>Be Diplomatic:</strong> Always be courteous. You may attack a country's *policy*, but never the *delegate*.</li>
+                    <li><strong>One Thing at aTime:</strong> The committee only debates one resolution at a time, and only one amendment to that resolution at a time.</li>
                     <li><strong>No Interruptions:</strong> A speaker may *never* be interrupted, except for an audibility-related Point of Personal Privilege.</li>
                     <li><strong>Voting is Sacred:</strong> Once the Chair has announced the start of voting, no interruptions are allowed except for a Point of Order related to the vote itself.</li>
                 </ul>
@@ -1996,17 +2068,17 @@
                     <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., Bangladesh)</h4>
-                            <p>"Thank you, Chair. The delegation of Bangladesh rises in strong support of this resolution.</p>
-                            <p><strong>(Moral/Rights-Based Argument)</strong> First, this fund addresses a fundamental injustice. Developing nations contribute least to climate change yet suffer most from its impacts. Bangladesh faces annual flooding that displaces millions, yet we produced less than 0.5% of global emissions. This resolution recognizes the principle of common but differentiated responsibility.</p>
-                            <p><strong>(Economic/Data-Based Argument)</strong> Second, the $100 billion figure is not arbitrary—it reflects the actual adaptation costs identified by the UN Environment Programme. Current funding reaches only $20 billion annually, leaving a critical gap that costs lives and livelihoods.</p>
-                            <p>This resolution is not charity—it is climate justice. We urge all delegations to vote in favor. Thank you."</p>
+                            <p>"Thank you, Chair. The delegation of Bangladesh rises in <strong>strong support</strong> of this resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, this fund addresses a <strong>fundamental injustice</strong>. Developing nations contribute <strong>least</strong> to climate change yet suffer <strong>most</strong> from its impacts. Bangladesh faces <strong>annual flooding</strong> that displaces millions, yet we produced less than 0.5% of global emissions. This resolution recognizes the <strong>critical</strong> principle of common but differentiated responsibility.</p>
+                            <p><strong>(Economic/Data-Based Argument)</strong> Second, the $100 billion figure is <strong>not arbitrary</strong>—it reflects the <strong>actual</strong> adaptation costs identified by the UN Environment Programme. Current funding reaches only $20 billion annually, leaving a <strong>critical gap</strong> that costs lives and livelihoods.</p>
+                            <p>This resolution is <strong>not charity</strong>—it is <strong>climate justice</strong>. We <strong>urge</strong> all delegations to vote in favor. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., Singapore)</h4>
-                            <p>"Thank you, Chair. The delegation of Singapore must respectfully oppose this resolution, despite sharing concerns about climate adaptation.</p>
-                            <p><strong>(Economic Argument)</strong> First, the $100 billion annual commitment is economically unrealistic. Many developed nations face their own fiscal constraints. The resolution provides no timeline for contribution increases, risking economic strain and broken promises.</p>
-                            <p><strong>(Implementation/Vagueness Argument)</strong> Second, the contribution formula based solely on historical emissions is flawed. It ignores current emission levels and economic capacity. Nations like China, now the world's largest emitter, would contribute less than smaller developed nations. This formula is neither fair nor effective.</p>
-                            <p>We need climate finance reform, but this resolution's approach is financially unsustainable and diplomatically divisive. We urge delegates to vote against. Thank you."</p>
+                            <p>"Thank you, Chair. The delegation of Singapore must <strong>respectfully oppose</strong> this resolution, despite sharing <strong>deep concerns</strong> about climate adaptation.</p>
+                            <p><strong>(Economic Argument)</strong> First, the $100 billion annual commitment is <strong>economically unrealistic</strong>. Many developed nations face their own <strong>serious</strong> fiscal constraints. The resolution provides no timeline for contribution increases, risking <strong>severe</strong> economic strain and broken promises.</p>
+                            <p><strong>(Implementation/Vagueness Argument)</strong> Second, the contribution formula based <strong>solely</strong> on historical emissions is <strong>deeply flawed</strong>. It ignores current emission levels and economic capacity. Nations like China, now the world's <strong>largest</strong> emitter, would contribute less than smaller developed nations. This formula is <strong>neither fair nor effective</strong>.</p>
+                            <p>We need climate finance reform, but this resolution's approach is <strong>financially unsustainable</strong> and <strong>diplomatically divisive</strong>. We <strong>urge</strong> delegates to vote against. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2026,17 +2098,17 @@
                      <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., Germany)</h4>
-                            <p>"Thank you, Chair. Germany strongly supports this essential resolution.</p>
-                            <p><strong>(Moral/Rights-Based Argument)</strong> First, digital privacy is a fundamental human right in the 21st century. Currently, 3 billion people worldwide lack basic legal protection for their personal data. This resolution establishes universal minimum standards, ensuring all citizens have control over their digital identity.</p>
-                            <p><strong>(Implementation Argument)</strong> Second, the explicit consent requirement addresses a critical problem. Companies collect vast amounts of personal data through confusing terms of service. This clause empowers individuals with meaningful choice.</p>
-                            <p>Some may argue this stifles innovation, but privacy and progress are not mutually exclusive. The digital economy can thrive while respecting human rights. We urge your support. Thank you."</p>
+                            <p>"Thank you, Chair. Germany <strong>strongly supports</strong> this <strong>essential</strong> resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, digital privacy is a <strong>fundamental human right</strong> in the 21st century. <strong>Currently</strong>, 3 billion people worldwide lack <strong>basic</strong> legal protection for their personal data. This resolution establishes <strong>universal minimum standards</strong>, ensuring all citizens have control over their digital identity.</p>
+                            <p><strong>(Implementation Argument)</strong> Second, the <strong>explicit consent</strong> requirement addresses a <strong>critical problem</strong>. Companies collect <strong>vast</strong> amounts of personal data through <strong>confusing</strong> terms of service. This clause empowers individuals with <strong>meaningful choice</strong>.</p>
+                            <p>Some may argue this <strong>stifles innovation</strong>, but privacy and progress are <strong>not mutually exclusive</strong>. The digital economy can thrive while respecting human rights. We <strong>urge</strong> your support. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., United States)</h4>
-                            <p>"Thank you, Chair. The United States opposes this resolution, though we share the goal of protecting privacy.</p>
-                            <p><strong>(Sovereignty Argument)</strong> First, this resolution imposes a one-size-fits-all approach on nations with vastly different legal systems. Member states should determine their own balance between privacy and innovation.</p>
-                            <p><strong>(Unintended Consequences Argument)</strong> Second, the "right to be forgotten" is fundamentally flawed. It conflicts with freedom of expression and press freedom. Should historical records be deleted? This clause creates dangerous censorship potential.</p>
-                            <p><strong>(Sovereignty/Scope Argument)</strong> Third, the proposed international enforcement agency violates national sovereignty. No UN body should have authority to impose fines on private companies within member states. We need privacy protection, but not at the cost of innovation, sovereignty, and free expression. Vote against. Thank you."</p>
+                            <p>"Thank you, Chair. The United States <strong>opposes</strong> this resolution, though we share the goal of protecting privacy.</p>
+                            <p><strong>(Sovereignty Argument)</strong> First, this resolution imposes a <strong>one-size-fits-all</strong> approach on nations with <strong>vastly different</strong> legal systems. Member states should determine their own balance between privacy and innovation.</p>
+                            <p><strong>(Unintended Consequences Argument)</strong> Second, the "right to be forgotten" is <strong>fundamentally flawed</strong>. It conflicts with freedom of expression and press freedom. Should historical records be deleted? This clause creates <strong>dangerous censorship potential</strong>.</p>
+                            <p><strong>(Sovereignty/Scope Argument)</strong> Third, the proposed international enforcement agency <strong>violates national sovereignty</strong>. No UN body should have authority to impose fines on private companies within member states. We need privacy protection, but not at the cost of innovation, sovereignty, and free expression. <strong>Vote against</strong>. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2056,17 +2128,17 @@
                      <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., Kenya)</h4>
-                            <p>"Thank you, Chair. Kenya proudly speaks in favor of this transformative resolution.</p>
-                            <p><strong>(Moral/Rights-Based Argument)</strong> First, education is the foundation of all development. Currently, 130 million girls worldwide are denied secondary education. This perpetuates cycles of poverty and limits economic growth. This resolution provides both the framework and funding to change this reality.</p>
-                            <p><strong>(Implementation Argument)</strong> Second, the gender equality clause is crucial. In many regions, cultural barriers and safety concerns prevent girls from attending school. By requiring member states to actively remove these barriers, we ensure education reaches those most denied opportunity.</p>
-                            <p><strong>(Economic Argument)</strong> Some claim this is too expensive, but consider the cost of inaction. UNESCO estimates this would add $17 trillion to the global economy. This is not charity—it is investment in our collective future. We urge your support. Thank you."</p>
+                            <p>"Thank you, Chair. Kenya <strong>proudly</strong> speaks in favor of this <strong>transformative</strong> resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, education is the <strong>foundation of all development</strong>. <strong>Currently</strong>, 130 million girls worldwide are denied secondary education. This perpetuates <strong>cycles of poverty</strong> and limits economic growth. This resolution provides both the framework and funding to change this reality.</p>
+                            <p><strong>(Implementation Argument)</strong> Second, the gender equality clause is <strong>crucial</strong>. In many regions, cultural barriers and safety concerns prevent girls from attending school. By requiring member states to <strong>actively remove</strong> these barriers, we ensure education reaches those <strong>most denied</strong> opportunity.</p>
+                            <p><strong>(Economic Argument)</strong> Some claim this is <strong>too expensive</strong>, but consider the cost of inaction. UNESCO estimates this would add $17 trillion to the global economy. This is <strong>not charity</strong>—it is <strong>investment</strong> in our collective future. We <strong>urge</strong> your support. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., Switzerland)</h4>
-                            <p>"Thank you, Chair. While Switzerland supports education access in principle, we must oppose this resolution's approach.</p>
-                            <p><strong>(Implementation/Vagueness Argument)</strong> First, the 2035 timeline is unrealistic for many nations facing conflict or infrastructure challenges. Setting unachievable deadlines undermines credibility and sets nations up for failure.</p>
-                            <p><strong>(Financial Argument)</strong> Second, the $50 billion annual fund lacks a clear financing mechanism. Which nations will contribute and how much? Without this clarity, the resolution is an empty promise.</p>
-                            <p><strong>(Unintended Consequences Argument)</strong> Third, the mandated 30:1 student-teacher ratio, while admirable, ignores context. Some rural areas struggle to find any qualified teachers. This rigid standard could force school closures where flexibility is needed most. We need targeted, sustainable solutions, not ambitious declarations. Vote against. Thank you."</p>
+                            <p>"Thank you, Chair. While Switzerland supports education access <strong>in principle</strong>, we must <strong>oppose</strong> this resolution's approach.</p>
+                            <p><strong>(Implementation/Vagueness Argument)</strong> First, the 2035 timeline is <strong>wildly unrealistic</strong> for many nations facing conflict or <strong>severe</strong> infrastructure challenges. Setting <strong>unachievable deadlines</strong> undermines credibility and sets nations up for failure.</p>
+                            <p><strong>(Financial Argument)</strong> Second, the $50 billion annual fund lacks a <strong>clear financing mechanism</strong>. Which nations will contribute and how much? Without this clarity, the resolution is an <strong>empty promise</strong>.</p>
+                            <p><strong>(Unintended Consequences Argument)</strong> Third, the mandated 30:1 student-teacher ratio, while <strong>admirable</strong>, ignores context. Some rural areas struggle to find <strong>any</strong> qualified teachers. This <strong>rigid standard</strong> could force school closures where flexibility is needed most. We need <strong>targeted, sustainable</strong> solutions, not <strong>ambitious declarations</strong>. <strong>Vote against</strong>. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2089,17 +2161,17 @@
                      <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., European Union)</h4>
-                            <p>"Thank you, Chair. The European Union rises in strong support of this resolution.</p>
-                            <p><strong>(Moral/Rights-Based Argument)</strong> First, this resolution is a necessary defense of human rights. "High-risk" AI, such as social scoring, is not a future threat—it is a current reality that enables discrimination and authoritarianism. By banning these systems, we draw a clear moral line that technology must serve humanity, not control it.</p>
-                            <p><strong>(Implementation Argument)</strong> Second, the creation of the GAAO provides a much-needed center of expertise. No single nation can regulate borderless technology alone. An independent, global auditor is the only way to ensure AI systems are safe, transparent, and unbiased before they are deployed.</p>
-                            <p>This is a an essential step for global digital governance. We urge all delegates to vote in favor. Thank you."</p>
+                            <p>"Thank you, Chair. The European Union rises in <strong>strong support</strong> of this resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> First, this resolution is a <strong>necessary defense</strong> of human rights. "High-risk" AI, such as social scoring, is <strong>not a future threat</strong>—it is a <strong>current reality</strong> that enables discrimination and authoritarianism. By banning these systems, we draw a <strong>clear moral line</strong> that technology must serve humanity, not control it.</p>
+                            <p><strong>(Implementation Argument)</strong> Second, the creation of the GAAO provides a <strong>much-needed</strong> center of expertise. <strong>No single nation</strong> can regulate borderless technology alone. An <strong>independent, global auditor</strong> is the <strong>only way</strong> to ensure AI systems are <strong>safe, transparent, and unbiased</strong> before they are deployed.</p>
+                            <p>This is a an <strong>essential step</strong> for global digital governance. We <strong>urge</strong> all delegates to vote in favor. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., China)</h4>
-                            <p>"Thank you, Chair. The delegation of China opposes this resolution in its entirety.</p>
-                            <p><strong>(Sovereignty Argument)</strong> First, this resolution is a direct and unacceptable violation of national sovereignty. The definition of "high-risk" AI and the regulation of technology are fundamentally domestic matters. This resolution attempts to impose a Western-centric view of ethics on all member states, which we cannot accept.</p>
-                            <p><strong>(Economic Argument)</strong> Second, the licensing requirement by a new UN bureaucracy will stifle innovation. The AI sector is a critical driver of economic growth. This resolution would create crippling delays and costs, harming developing nations trying to catch up in the technology race.</p>
-                            <p>AI governance should be led by sovereign states, not a supranational body. We strongly urge all delegates to vote against. Thank you."</p>
+                            <p>"Thank you, Chair. The delegation of China <strong>opposes</strong> this resolution <strong>in its entirety</strong>.</p>
+                            <p><strong>(Sovereignty Argument)</strong> First, this resolution is a <strong>direct and unacceptable violation</strong> of national sovereignty. The definition of "high-risk" AI and the regulation of technology are <strong>fundamentally domestic matters</strong>. This resolution attempts to impose a <strong>Western-centric view</strong> of ethics on all member states, which we <strong>cannot accept</strong>.</p>
+                            <p><strong>(Economic Argument)</strong> Second, the licensing requirement by a <strong>new UN bureaucracy</strong> will <strong>stifle innovation</strong>. The AI sector is a <strong>critical driver</strong> of economic growth. This resolution would create <strong>crippling delays</strong> and costs, <strong>harming</strong> developing nations trying to catch up in the technology race.</p>
+                            <p>AI governance should be led by <strong>sovereign states</strong>, not a supranational body. We <strong>strongly urge</strong> all delegates to vote against. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2117,17 +2189,17 @@
                      <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., Norway)</h4>
-                            <p>"Thank you, Chair. Norway strongly supports this resolution.</p>
-                            <p><strong>(Scientific/Precedent Argument)</strong> We must learn from the hard lessons of COVID-19. The data is clear: no nation is safe until all are safe. Pockets of low vaccination allow new variants to emerge, threatening the entire globe. A 90% target is the scientifically-backed threshold for herd immunity that will end pandemics quickly.</p>
-                            <p><strong>(Implementation Argument)</strong> The WHO-controlled distribution mechanism is vital. Last time, "vaccine nationalism" left developing nations waiting years for doses. A centralized, fair allocation system is the only way to ensure equity and end a global threat efficiently.</p>
-                            <p>Global health requires a collective response. This treaty provides it. We urge a vote in favor. Thank you."</p>
+                            <p>"Thank you, Chair. Norway <strong>strongly supports</strong> this resolution.</p>
+                            <p><strong>(Scientific/Precedent Argument)</strong> We must learn from the <strong>hard lessons</strong> of COVID-19. The data is <strong>clear</strong>: no nation is safe until all are safe. Pockets of <strong>low vaccination</strong> allow new variants to emerge, <strong>threatening the entire globe</strong>. A 90% target is the <strong>scientifically-backed</strong> threshold for herd immunity that will end pandemics <strong>quickly</strong>.</p>
+                            <p><strong>(Implementation Argument)</strong> The WHO-controlled distribution mechanism is <strong>vital</strong>. Last time, "vaccine nationalism" left developing nations <strong>waiting years</strong> for doses. A <strong>centralized, fair allocation system</strong> is the <strong>only way</strong> to ensure equity and end a global threat <strong>efficiently</strong>.</p>
+                            <p>Global health requires a <strong>collective response</strong>. This treaty provides it. We <strong>urge</strong> a vote in favor. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., Brazil)</h4>
-                            <p>"Thank you, Chair. The delegation of Brazil opposes this resolution.</p>
-                            <p><strong>(Implementation Argument)</strong> While the 90% target is admirable, it is logistically impossible for many nations. Brazil, for example, has vast, remote regions in the Amazon. Reaching this target would require diverting all public health resources, crippling our fight against malaria and dengue fever. It is an unachievable mandate.</p>
-                            <p><strong>(Sovereignty Argument)</strong> Furthermore, this resolution violates national sovereignty and personal liberty. Health policy and vaccination decisions must remain within the purview of national governments and their citizens, not mandated by a global treaty.</p>
-                            <p>This resolution is an overreach that ignores on-the-ground realities. We urge delegates to vote no. Thank you."</p>
+                            <p>"Thank you, Chair. The delegation of Brazil <strong>opposes</strong> this resolution.</p>
+                            <p><strong>(Implementation Argument)</strong> While the 90% target is <strong>admirable</strong>, it is <strong>logistically impossible</strong> for many nations. Brazil, for example, has <strong>vast, remote regions</strong> in the Amazon. Reaching this target would require diverting <strong>all public health resources</strong>, <strong>crippling</strong> our fight against malaria and dengue fever. It is an <strong>unachievable mandate</strong>.</p>
+                            <p><strong>(Sovereignty Argument)</strong> Furthermore, this resolution <strong>violates national sovereignty</strong> and <strong>personal liberty</strong>. Health policy and vaccination decisions must remain within the purview of national governments and their citizens, <strong>not mandated</strong> by a global treaty.</p>
+                            <p>This resolution is an <strong>overreach</strong> that <strong>ignores on-the-ground realities</strong>. We <strong>urge</strong> delegates to vote no. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2145,17 +2217,17 @@
                      <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., Switzerland)</h4>
-                            <p>"Thank you, Chair. Switzerland is proud to support this clear and necessary resolution.</p>
-                            <p><strong>(Financial/Economic Argument)</strong> The IMF reports that the world spends over $5 trillion annually on fossil fuel subsidies. This is a catastrophic misallocation of capital. We are paying to accelerate our own destruction. Clause 1 corrects this by freeing up trillions of dollars for health, education, and a green transition.</p>
-                            <p><strong>(Scientific Argument)</strong> The science is not debatable. The IPCC has stated that new fossil fuel infrastructure is incompatible with the 1.5-degree goal. By ending subsidies, we finally align global finance with scientific reality.</p>
-                            <p>The climate crisis demands bold action, not half-measures. We urge a 'yes' vote. Thank you."</p>
+                            <p>"Thank you, Chair. Switzerland is <strong>proud to support</strong> this <strong>clear and necessary</strong> resolution.</p>
+                            <p><strong>(Financial/Economic Argument)</strong> The IMF reports that the world spends over <strong>$5 trillion annually</strong> on fossil fuel subsidies. This is a <strong>catastrophic misallocation</strong> of capital. We are <strong>literally paying</strong> to accelerate our own destruction. Clause 1 corrects this by freeing up <strong>trillions of dollars</strong> for health, education, and a green transition.</p>
+                            <p><strong>(Scientific Argument)</strong> The science is <strong>not debatable</strong>. The IPCC has stated <strong>explicitly</strong> that new fossil fuel infrastructure is <strong>incompatible</strong> with the 1.5-degree goal. By ending subsidies, we <strong>finally align</strong> global finance with scientific reality.</p>
+                            <p>The climate crisis demands <strong>bold action</strong>, not <strong>half-measures</strong>. We <strong>urge</strong> a 'yes' vote. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., Saudi Arabia)</h4>
-                            <p>"Thank you, Chair. The Kingdom of Saudi Arabia strongly opposes this deeply flawed resolution.</p>
-                            <p><strong>(Unintended Consequences Argument)</strong> First, the "immediate" elimination of subsidies, as called for in Clause 1, would be catastrophic. It would cause a sudden, massive spike in energy prices globally, triggering inflation, food shortages, and political instability. This resolution hurts the poor the most.</p>
-                            <p><strong>(Economic Argument)</strong> Second, this resolution ignores the reality of energy security. The transition to renewables will take decades. Until then, stable, affordable fossil fuels are essential for economic development, especially in the Global South. This resolution attempts to pull the rug out from under developing economies.</p>
-                            <p>A stable transition is paramount. This resolution offers only chaos. We urge all delegates to vote against. Thank you."</p>
+                            <p>"Thank you, Chair. The Kingdom of Saudi Arabia <strong>strongly opposes</strong> this <strong>deeply flawed</strong> resolution.</p>
+                            <p><strong>(Unintended Consequences Argument)</strong> First, the "<strong>immediate</strong>" elimination of subsidies, as called for in Clause 1, would be <strong>catastrophic</strong>. It would cause a <strong>sudden, massive spike</strong> in energy prices globally, triggering inflation, food shortages, and <strong>political instability</strong>. This resolution <strong>hurts the poor the most</strong>.</p>
+                            <p><strong>(Economic Argument)</strong> Second, this resolution <strong>dangerously ignores</strong> the reality of energy security. The transition to renewables will take <strong>decades</strong>. Until then, <strong>stable, affordable</strong> fossil fuels are <strong>essential</strong> for economic development, <strong>especially</strong> in the Global South. This resolution attempts to pull the rug out from under developing economies.</p>
+                            <p>A <strong>stable transition</strong> is paramount. This resolution offers only <strong>chaos</strong>. We <strong>urge</strong> all delegates to vote against. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2174,17 +2246,17 @@
                      <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., Nigeria)</h4>
-                            <p>"Thank you, Chair. Nigeria strongly supports this resolution.</p>
-                            <p><strong>(Moral/Rights-Based Argument)</strong> For too long, PMCs have operated in a legal and moral black hole. They commit human rights abuses with impunity, as seen in conflicts across Africa, and face no international accountability. This resolution finally brings these groups out of the shadows and makes it clear that mercenaries have no place in modern warfare.</p>
-                            <p><strong>(Precedent Argument)</strong> The registry in Clause 1 is a logical extension of existing arms control treaties. If we register weapons, why would we not register the private armies that use them? This is a common-sense step for global transparency.</p>
-                            <p>Accountability must be paramount. We urge a vote in favor. Thank you."</p>
+                            <p>"Thank you, Chair. Nigeria <strong>strongly supports</strong> this resolution.</p>
+                            <p><strong>(Moral/Rights-Based Argument)</strong> For <strong>too long</strong>, PMCs have operated in a <strong>legal and moral black hole</strong>. They commit <strong>heinous</strong> human rights abuses with <strong>total impunity</strong>, as seen in conflicts across Africa, and face <strong>no international accountability</strong>. This resolution <strong>finally</strong> brings these groups out of the shadows and makes it clear that mercenaries have <strong>no place</strong> in modern warfare.</p>
+                            <p><strong>(Precedent Argument)</strong> The registry in Clause 1 is a <strong>logical extension</strong> of existing arms control treaties. If we register weapons, why would we not register the private armies that use them? This is a <strong>common-sense step</strong> for global transparency.</p>
+                            <p>Accountability must be <strong>paramount</strong>. We <strong>urge</strong> a vote in favor. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., Russia)</h4>
-                            <p>"Thank you, Chair. The Russian Federation finds this resolution to be unworkable and an infringement on state sovereignty.</p>
-                            <p><strong>(Scope/Mandate Argument)</strong> First, this issue is a matter of national security, which is explicitly outside the mandate of the General Assembly and this committee. How a state secures its interests is a domestic matter, period.</p>
-                            <p><strong>(Vagueness Argument)</strong> Second, Clause 2, which bans "offensive" operations, is dangerously vague. What is the legal definition of "offensive" versus "defensive"? This ambiguity makes the resolution unenforceable and open to political manipulation against any state the sponsors disagree with.</p>
-                            <p>This is a politically motivated and poorly drafted resolution that infringes on the UN Charter. We urge a 'no' vote. Thank you."</p>
+                            <p>"Thank you, Chair. The Russian Federation finds this resolution to be <strong>unworkable</strong> and an <strong>infringement on state sovereignty</strong>.</p>
+                            <p><strong>(Scope/Mandate Argument)</strong> First, this issue is a matter of national security, which is <strong>explicitly outside</strong> the mandate of the General Assembly and this committee. How a state secures its interests is a <strong>domestic matter, period</strong>.</p>
+                            <p><strong>(Vagueness Argument)</strong> Second, Clause 2, which bans "offensive" operations, is <strong>dangerously vague</strong>. What is the <strong>legal definition</strong> of "offensive" versus "defensive"? This <strong>fatal ambiguity</strong> makes the resolution <strong>unenforceable</strong> and open to <strong>political manipulation</strong> against any state the sponsors disagree with.</p>
+                            <p>This is a <strong>politically motivated</strong> and <strong>poorly drafted</strong> resolution that <strong>infringes</strong> on the UN Charter. We <strong>urge</strong> a 'no' vote. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2202,17 +2274,17 @@
                      <div class="speech-grid">
                         <div class="speech-box speech-for">
                             <h4>✅ Speech FOR (e.g., Norway / WFP)</h4>
-                            <p>"Thank you, Chair. The delegation of Norway supports this innovative resolution.</p>
-                            <p><strong>(Financial Argument)</strong> The current UN funding model is broken. Every year, agencies like the WFP are forced to beg for donations while millions starve. This year, the humanitarian funding gap is over $40 billion. This system is failing.</p>
-                            <p><strong>(Implementation Argument)</strong> A 0.1% transaction tax is the stable, predictable funding stream the UN desperately needs. It is a tiny fraction of a single percent, levied on the wealthiest sector of the global economy, and it would save millions of lives. It is a practical solution to a chronic and deadly problem.</p>
-                            <p>This is a moral and financial imperative. We urge a 'yes' vote. Thank you."</p>
+                            <p>"Thank you, Chair. The delegation of Norway supports this <strong>innovative</strong> resolution.</p>
+                            <p><strong>(Financial Argument)</strong> The current UN funding model is <strong>broken</strong>. Every year, agencies like the WFP are forced to <strong>beg</strong> for donations while millions starve. This year, the humanitarian funding gap is over <strong>$40 billion</strong>. This system is <strong>failing</strong>.</p>
+                            <p><strong>(Implementation Argument)</strong> A 0.1% transaction tax is the <strong>stable, predictable</strong> funding stream the UN <strong>desperately</strong> needs. It is a <strong>tiny fraction</strong> of a single percent, levied on the <strong>wealthiest sector</strong> of the global economy, and it would <strong>save millions of lives</strong>. It is a <strong>practical solution</strong> to a <strong>chronic and deadly</strong> problem.</p>
+                            <p>This is a <strong>moral and financial imperative</strong>. We <strong>urge</strong> a 'yes' vote. Thank you."</p>
                         </div>
                         <div class="speech-box speech-against">
                             <h4>❌ Speech AGAINST (e.g., United Kingdom)</h4>
-                            <p>"Thank you, Chair. The United Kingdom must strongly oppose this resolution.</p>
-                            <p><strong>(Sovereignty Argument)</strong> This resolution is a fundamental attack on national sovereignty. The power to tax is the most basic right of a sovereign state and its elected legislature. Granting this power to an unelected international body like the UN is a non-starter and violates the UN Charter itself.</p>
-                            <p><strong>(Financial/Implementation Argument)</strong> Furthermore, this creates a massive bureaucracy with zero accountability. Who would collect this tax? How? And who would manage the funds? This resolution would create a financial monster, accountable to no one, and would likely destabilize global financial markets.</p>
-                            <p>We support humanitarian aid, but this proposal is misguided and dangerous. We strongly urge a vote against. Thank you."</p>
+                            <p>"Thank you, Chair. The United Kingdom must <strong>strongly oppose</strong> this resolution.</p>
+                            <p><strong>(Sovereignty Argument)</strong> This resolution is a <strong>fundamental attack</strong> on national sovereignty. The power to tax is the <strong>most basic right</strong> of a sovereign state and its elected legislature. Granting this power to an <strong>unelected international body</strong> like the UN is a <strong>non-starter</strong> and <strong>violates the UN Charter itself</strong>.</p>
+                            <p><strong>(Financial/Implementation Argument)</strong> Furthermore, this creates a <strong>massive bureaucracy</strong> with <strong>zero accountability</strong>. Who would collect this tax? How? And who would manage the funds? This resolution would create a <strong>financial monster</strong>, accountable to <strong>no one</strong>, and would <strong>likely destabilize</strong> global financial markets.</p>
+                            <p>We support humanitarian aid, but this proposal is <strong>misguided and dangerous</strong>. We <strong>strongly urge</strong> a vote against. Thank you."</p>
                         </div>
                     </div>
                 </div>
@@ -2284,7 +2356,7 @@
                 console.error("Portal page not found!");
             }
             
-            // Initialize the Language Guide accordions
+            // Pre-initialize the language guide accordions so they are ready
             initLanguageGuideAccordionsOnClick();
         });
 
@@ -2303,6 +2375,8 @@
                 
                 // INITIALIZE scripts for the specific page
                 if (pageId === 'language-guide-page') {
+                    // This is already initialized on DOMContentLoaded, but we re-run to be safe
+                    // in case of any dynamic content issues.
                     initLanguageGuideAccordionsOnClick();
                 } else if (pageId === 'resolution-guide-page') {
                     initResolutionGuideAI();
@@ -2317,8 +2391,14 @@
         let lastOpenedAccordion = -1;
         
         function toggleAccordion(index) {
-            const allHeaders = document.querySelectorAll('#language-guide-page .accordion-header');
-            const allContents = document.querySelectorAll('#language-guide-page .accordion-content');
+            // Check if we are on the language guide page, if not, do nothing
+            const langPage = document.getElementById('language-guide-page');
+            if (!langPage || langPage.style.display === 'none') {
+                return;
+            }
+
+            const allHeaders = langPage.querySelectorAll('.accordion-header');
+            const allContents = langPage.querySelectorAll('.accordion-content');
 
             // If clicking the same one, close it
             if (lastOpenedAccordion === index) {
@@ -2355,11 +2435,13 @@
         
         // This helper function attaches the onclick attributes
         function initLanguageGuideAccordionsOnClick() {
-             const accordionHeaders = document.querySelectorAll('#language-guide-page .accordion-header');
+             const langPage = document.getElementById('language-guide-page');
+             if (!langPage) return;
+             const accordionHeaders = langPage.querySelectorAll('.accordion-header');
              accordionHeaders.forEach((header, index) => {
                  // Check if it already has an onclick to avoid duplicates
                  if (!header.getAttribute('onclick')) {
-                    header.setAttribute('onclick', `toggleAccordion(${index})`);
+                     header.setAttribute('onclick', `toggleAccordion(${index})`);
                  }
              });
         }
